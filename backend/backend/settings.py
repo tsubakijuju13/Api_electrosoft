@@ -38,14 +38,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'modelosApi',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     #'rest_framework.authtoken',
     #'dj_rest_auth',
     'django.contrib.sites',
-    #'allauth',
-    #'allauth.account',
     'corsheaders',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 #Configuración de las variables de configuración de jwt:_
@@ -154,6 +157,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+SITE_ID = 1
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -183,6 +188,12 @@ REST_FRAMEWORK = {
     ]
 }
 
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 '''CORS_ALLOWED_ORIGINS = [
     "https://8080-cs-966470023409-default.cs-us-east1-vpcf.cloudshell.dev",
 ]
@@ -193,4 +204,3 @@ CSRF_TRUSTED_ORIGINS = [
 CORS_ALLOWED_ALL_ORIGINS: True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
-SITE_ID = 1
