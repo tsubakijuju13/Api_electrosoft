@@ -85,9 +85,9 @@ SIMPLE_JWT = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -194,13 +194,25 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-'''CORS_ALLOWED_ORIGINS = [
+CORS_ALLOWED_ORIGINS = [
     "https://8080-cs-966470023409-default.cs-us-east1-vpcf.cloudshell.dev",
+    "https://127.0.0.0:3000",
+    "https://localhost:3000",
 ]
 CSRF_TRUSTED_ORIGINS = [
     "https://8080-cs-966470023409-default.cs-us-east1-vpcf.cloudshell.dev",
-    ]'''
+    ]
 
-CORS_ALLOWED_ALL_ORIGINS: True
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://\w+\.localhost:3000$",
+]
+
+CORS_ALLOWED_ALL_ORIGINS= True
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = [
+  'http://localhost:3000',
+]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
