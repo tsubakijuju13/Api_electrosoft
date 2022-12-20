@@ -13,6 +13,14 @@ import HomepageLayout from ".//../../hocs/HomepageLayout";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import './Login.css';
+
+
+
+
+
 const Login = () => {
     const navigate = useNavigate();
 
@@ -25,7 +33,7 @@ const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        try{
+        try {
             let response;
             response = await LoginAPI.getToken(user);
 
@@ -41,35 +49,62 @@ const Login = () => {
                 console.log("Login successful");
                 setUser(initialState);
                 navigate("/client");
-            }else{
+            } else {
                 console.log("Login failed");
             }
 
-        }catch(error){
+        } catch (error) {
             console.log(error);
         }
     };
 
     return (
-        <div className="fondo">
-            <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="text" placeholder="Enter email" name="username" value={user.username} onChange={handleInputChange}/>
+
+
+<div className="fondo">
+
+            <Form id="sign-in-form" className="formulario" onSubmit={handleSubmit}>
+
+                <img className="logo"
+                    src={require("./../../imagenes/logo.png")} alt="logo" />
+
+
+                <h1 class="titulo" >Iniciar Sesión</h1>
+
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Label className="texto">Correo</Form.Label>
+                    <Form.Control type="text" size="lg" placeholder="Ingresar Correo" name="username" value={user.username} onChange={handleInputChange} className="position-relative" />
                     <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
+                        Tu correo esta seguro con nosotros.
                     </Form.Text>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" name="password" value={user.password} onChange={handleInputChange}/>
+                
+
+
+
+                <Form.Group className="mb-4" controlId="formBasicPassword">
+                    <Form.Label className="texto" >Contraseña</Form.Label>
+                    <Form.Control type="password" placeholder="Ingrese Su Contraseña" name="password" value={user.password} onChange={handleInputChange} />
                 </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
+
+                <div class="d-grid">
+                    <button variant="primary" type="submit" class="btn btn-primary">Ingresar</button>
+                </div>
+
+                <div class="my-3">
+                    <span className="subtexto" >No tienes cuenta?<a href="/registro"> Registrate</a></span>
+                    <br />
+                    <span className="texto" ><a href="a"> Recuperar Contraseña</a></span>
+                </div>
+
+
+
+
+
             </Form>
-        </div>
+            </div>
+        
     )
 };
 
