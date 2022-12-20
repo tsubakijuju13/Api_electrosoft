@@ -2,23 +2,30 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 //Styles
-import './App.css';
+import './assets/styles/app.css';
 
 //Components
 import Login from './components/Login/Login';
 import FormularioRegistroAdmin from './components/Admin/FormularioRegistroAdmin';
 import Client from './components/Client/Client';
 
+//Layout
+import HomepageLayout from './hocs/HomepageLayout';
+import Signup from './components/Login/Signup';
+//<Route element={<HomepageLayout />}>
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/admin" element={<FormularioRegistroAdmin />} />
-          <Route path="/client" element={<Client />} />
-        </Routes>
-      </div>
+
+      <Routes>
+
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/admin" element={<HomepageLayout><FormularioRegistroAdmin /></HomepageLayout>} />
+        <Route path="/client" element={<HomepageLayout><Client /></HomepageLayout>} />
+
+      </Routes>
+
     </BrowserRouter>
   );
 }
