@@ -1,4 +1,3 @@
-import './boostrap.min.css';//frontend\src\components\Admin\FormularioRegistroAdmin.jsx
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';

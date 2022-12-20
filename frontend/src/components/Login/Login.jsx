@@ -1,63 +1,100 @@
-import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useState } from "react";
+
+import { useNavigate } from "react-router-dom";
 
 import * as LoginAPI from "./LoginAPI";
 
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import './Login.css';
+
+
+
+
 
 const Login = () => {
     const navigate = useNavigate();
 
-    const initialState = {username: "", password: ""};
+    const initialState = { username: "", password: "" };
     const [user, setUser] = useState(initialState);
 
     const handleInputChange = (event) => {
         //console.log(event.target.name)
         //console.log(event.target.value)
-        setUser({...user, [event.target.name]: event.target.value});
+        setUser({ ...user, [event.target.name]: event.target.value });
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        try{
+        try {
             let response;
             response = await LoginAPI.getToken(user);
 
             const data = await response.json();
             console.log(data);
 
-            if (response.ok){
+            if (response.ok) {
                 console.log("Login successful");
                 setUser(initialState);
                 navigate("/client");
-            }else{
+            } else {
                 console.log("Login failed");
             }
 
-        }catch(error){
+        } catch (error) {
             console.log(error);
         }
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="text" placeholder="Enter email" name="username" value={user.username} onChange={handleInputChange}/>
-                <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                </Form.Text>
-            </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" name="password" value={user.password} onChange={handleInputChange}/>
-            </Form.Group>
-            <Button variant="primary" type="submit">
-                Submit
-            </Button>
-        </Form>
+
+<div className="fondo">
+
+            <Form id="sign-in-form" className="formulario" onSubmit={handleSubmit}>
+
+                <img className="logo"
+                    src={require("./../../imagenes/logo.png")} alt="logo" />
+
+
+                <h1 class="titulo" >Iniciar Sesión</h1>
+
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Label className="texto">Correo</Form.Label>
+                    <Form.Control type="text" size="lg" placeholder="Ingresar Correo" name="username" value={user.username} onChange={handleInputChange} className="position-relative" />
+                    <Form.Text className="text-muted">
+                        Tu correo esta seguro con nosotros.
+                    </Form.Text>
+                </Form.Group>
+
+                
+
+
+
+                <Form.Group className="mb-4" controlId="formBasicPassword">
+                    <Form.Label className="texto" >Contraseña</Form.Label>
+                    <Form.Control type="password" placeholder="Ingrese Su Contraseña" name="password" value={user.password} onChange={handleInputChange} />
+                </Form.Group>
+
+                <div class="d-grid">
+                    <button variant="primary" type="submit" class="btn btn-primary">Ingresar</button>
+                </div>
+
+                <div class="my-3">
+                    <span className="subtexto" >No tienes cuenta?<a href="/registro"> Registrate</a></span>
+                    <br />
+                    <span className="texto" ><a href="a"> Recuperar Contraseña</a></span>
+                </div>
+
+
+
+
+
+            </Form>
+            </div>
+        
     )
 };
 
