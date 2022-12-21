@@ -1,34 +1,26 @@
-import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { isExpired, decodeToken } from "react-jwt";
 
 import * as LoginAPI from "./LoginAPI";
 
 //Styles
-//import './/../../assets/styles/app.css';
-
-//Layout
-import HomepageLayout from ".//../../hocs/HomepageLayout";
+import './/../../assets/styles/login.css';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import './Login.css';
-
-
-
-
 
 const Login = () => {
     const navigate = useNavigate();
 
-    const initialState = {username: "juanes", password: "123"};
+    const initialState = { username: "juanes", password: "123" };
     const [user, setUser] = useState(initialState);
 
     const handleInputChange = (event) => {
-        setUser({...user, [event.target.name]: event.target.value});
+        setUser({ ...user, [event.target.name]: event.target.value });
     };
 
     const handleSubmit = async (event) => {
@@ -40,10 +32,10 @@ const Login = () => {
             const data = await response.json();
             console.log(data);
 
-            if (response.ok){
+            if (response.ok) {
                 let token = data.access;
                 const decodedToken = decodeToken(token);
-                const tokenisexpired  = isExpired(token);
+                const tokenisexpired = isExpired(token);
                 console.log(decodedToken);
                 console.log(tokenisexpired);
                 console.log("Login successful");
@@ -60,13 +52,12 @@ const Login = () => {
 
     return (
 
-
-<div className="fondo">
+        <div className="fondo">
 
             <Form id="sign-in-form" className="formulario" onSubmit={handleSubmit}>
 
                 <img className="logo"
-                    src={require("./../../imagenes/logo.png")} alt="logo" />
+                    src={require("./../../imagenes/logo1.png")} alt="logo" />
 
 
                 <h1 class="titulo" >Iniciar Sesión</h1>
@@ -79,17 +70,13 @@ const Login = () => {
                     </Form.Text>
                 </Form.Group>
 
-                
-
-
-
                 <Form.Group className="mb-4" controlId="formBasicPassword">
                     <Form.Label className="texto" >Contraseña</Form.Label>
                     <Form.Control type="password" placeholder="Ingrese Su Contraseña" name="password" value={user.password} onChange={handleInputChange} />
                 </Form.Group>
 
                 <div class="d-grid">
-                    <button variant="primary" type="submit" class="btn btn-primary">Ingresar</button>
+                    <Button variant="primary" type="submit" class="btn btn-primary">Ingresar</Button>
                 </div>
 
                 <div class="my-3">
@@ -98,13 +85,9 @@ const Login = () => {
                     <span className="texto" ><a href="a"> Recuperar Contraseña</a></span>
                 </div>
 
-
-
-
-
             </Form>
-            </div>
-        
+        </div>
+
     )
 };
 

@@ -3,31 +3,43 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
     return (
-        <div className="border-end sidenav" id="sidebar-wrapper">
-            <div className="sidebar-heading border-bottom ">
+        <div className="sidenav" id="sidebar-wrapper">
+            <div>
                 <Link to="/">
-                    <img alt="Alt content" src={require('./../assets/images/logo.svg')} />
+                    <div className="sidebar-header">
+                        <span className="sidebar-header-title">ELECTRO</span>
+                        <br></br><br></br>
+                        <span className="text-right">SOFT</span>
+                    </div>
                 </Link>
             </div>
             <div className="sidebar-items">
                 <ul className="list-unstyled ps-0">
-                    <li className="mb-1">
+                    <li className="mb-3">
                         <Link tag="a" className="" to="/">
-                            <i className="fa fa-dashboard"></i> Dashboard
+                            <i className="fa fa-dashboard"></i> Resumen
                         </Link>
                     </li>
-                    <li className="mb-1">
+                    <li className="mb-3">
                         <Link tag="a" className="" to="/blank-page">
-                            <i className="fa fa-file-o"></i> Blank Page
+                            <i className="fa fa-file-o"></i> Consulta tu factura
                         </Link>
                     </li>
-                    <li className="border-top my-3"></li>
-                    <li className="mb-1">
+
+                    <li className="mb-3">
+                        <Link tag="a" className="" to="/blank-page">
+                            <i className="fa fa-file-o"></i> Paga tu factura
+                        </Link>
+                    </li>
+
+                    <li className="mb-3">
                         <Link tag="a" className="" to="/typography">
-                        <i className="fa fa-text-width" aria-hidden="true"></i> Typography
+                            <i className="fa fa-text-width" aria-hidden="true"></i> Historial de pagos
                         </Link>
                     </li>
-                    
+
+
+
                     {/* collapsable list item example */}
                     {/* <li className="mb-1">
                         <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
@@ -43,25 +55,29 @@ const Sidebar = () => {
                         </div>
                     </li> 
                     <li className="border-top my-3"></li> */}
-                   
+
                 </ul>
             </div>
+
             <div className="dropdown fixed-bottom-dropdown">
-                <a href="#" className="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://via.placeholder.com/50" alt="" width="32" height="32" className="rounded-circle me-2" />
-                    <span>Tarun Dhiman</span>
-                </a>
-                <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                    <li><Link className="dropdown-item" to="/profile"><i className="fa fa-user-circle" aria-hidden="true"></i> Profile</Link></li>
-                    <li><hr className="dropdown-divider" /></li>
-                    <li><Link className="dropdown-item" to="/login"><i className="fa fa-sign-out" aria-hidden="true"></i> Sign out</Link></li>
+            <ul className="list-unstyled ps-0">
+                <li className="mb-3">
+                    <Link tag="a" className="" to="/typography">
+                        <i className="fa fa-text-width" aria-hidden="true"></i> Ayuda
+                    </Link>
+                </li>
+                <li className="mb-3">
+                    <Link tag="a" className="" to="/typography">
+                        <i className="fa fa-text-width" aria-hidden="true"></i> Contactanos
+                    </Link>
+                </li>
                 </ul>
             </div>
         </div>
 
 
     )
-    
+
 };
 
 export default Sidebar;

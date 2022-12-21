@@ -16,7 +16,7 @@ import Signup from './components/Login/Signup';
 
 //Layout
 import HomepageLayout from './hocs/HomepageLayout';
-import Signup from './components/Login/Signup';
+
 //<Route element={<HomepageLayout />}>
 function App() {
   return (

@@ -77,3 +77,23 @@
     font-family: poppins-light-italic;
     src: url('../fonts-ttf/Poppins-LightItalic.ttf');
   }  
+
+  @font-face {
+    font-family: grandview-bold;
+    src: url('../fonts-ttf/GrandviewBold.ttf');
+  }
+
+  @font-face {
+    font-family: grandview-regular;
+    src: url('../fonts-ttf/Grandview.ttf');
+  }
+
+  @font-face {
+    font-family: grandview-light;
+    src: url('../fonts-ttf/GrandviewLight.ttf');
+  }
+
+  @font-face {
+    font-family: grandview-light-italic;
+    src: url('../fonts-ttf/GrandviewLightItalic.ttf');
+  }
