@@ -19,27 +19,22 @@ function FormularioRecuperarContraseña() {
   };
 
   return (
-    <div className="background">
+    <div className="backgroundrecovery">
 
         
       <Form
-        id="register-form"
-        noValidate
-        validated={validated}
+        id="recover-form"
         onSubmit={handleSubmit}
       >
         <h1 className="titulo">Recupera tu contraseña</h1>
     <Row className="justify-content-sm-center">
-      <Form.Group sm="2" controlId="validationCustom01">
+      <Form.Group as={Col} md="5"  /*</Row>controlId="validationCustom01"*/>
             
             <Form.Label className="Letras">Introduce tu correo</Form.Label>
-            
-              <Form.Control
+              <Form.Control 
               required
               type="email"
               placeholder="Correo registrado"
-              defaultValue="Alguien@example.com"
-              pattern="[A-Za-z-ñ]+"
             />
             <Form.Control.Feedback>Correcto!</Form.Control.Feedback>
             </Form.Group>
@@ -47,10 +42,12 @@ function FormularioRecuperarContraseña() {
           
       <Row className="justify-content-md-center">
           
-          <Form.Group  md="2" controlId="validationCustom01">
-          <Button type="submit" className="boton">
+          <Form.Group  md="2" /*controlId="validationCustom01"*/>
+            <div className="boton">
+          <Button type="submit">
             Enviar
           </Button>
+          </div>
         </Form.Group>
       </Row>
       </Form>
