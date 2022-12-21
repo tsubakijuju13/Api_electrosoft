@@ -1,4 +1,5 @@
 import React from "react";
+import CloseButton from "./closebutton";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
@@ -6,7 +7,7 @@ const Sidebar = () => {
         <div className="border-end sidenav" id="sidebar-wrapper">
             <div className="sidebar-heading border-bottom ">
                 <Link to="/">
-                    <img alt="Alt content" src={require('./../assets/images/logo.svg')} />
+                    <CloseButton/>
                 </Link>
             </div>
             <div className="sidebar-items">

@@ -1,9 +1,9 @@
 import React from "react";
 
 const Header = () => (
-    <div>
-        <h1>Header</h1>
-    </div>
+    <header>
+        <h2>Bienvenido *ROL*</h2>  
+    </header>
 );
 
 export default Header;

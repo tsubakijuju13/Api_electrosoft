@@ -8,9 +8,6 @@ import * as LoginAPI from "./LoginAPI";
 //import './/../../assets/styles/app.css';
 
 //Layout
-import HomepageLayout from ".//../../hocs/HomepageLayout";
-
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
