@@ -4,6 +4,8 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
+from rest_framework.views import APIView
+from django.contrib.auth.models import User as U
 from rest_framework.decorators import action
 from .serializers import UserSerializer, AdminSerializer
 from .models import *
@@ -44,6 +46,7 @@ class ViewUser(View):
         rq_body = json.loads(request.body)
         #Voy a crear usuarios
         User.objects.create(email=rq_body['email'], password=rq_body['password'], role=rq_body['role'], active=rq_body['active'])
+        U.objects.create_user(username=rq_body['username'], email=rq_body['email'], password=rq_body['password'], first_name=rq_body['name'], last_name=rq_body['last_name'])
         datos =  {"mensage: ": "Exito"} 
         return JsonResponse(datos)
 
@@ -90,3 +93,9 @@ class AdminView(ModelViewSet):
         '''ee = Admin.objects.filter(nombre=nom)
         ser = self.get_serializer(ee)
         return Response(ser.data)'''
+
+
+class Saitama(APIView):
+    def get(self, request):
+        da = list(U.objects.values())
+        return Response({"Mensaje": "exito", "data": da })
