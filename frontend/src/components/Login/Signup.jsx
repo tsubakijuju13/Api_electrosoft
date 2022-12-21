@@ -5,9 +5,11 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./Signup.css";
 import { useNavigate } from "react-router-dom";
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 import { isExpired, decodeToken } from "react-jwt";
 import * as LoginAPI from "./LoginAPI";
 import {useRef} from 'react';
+import 'react-notifications/lib/notifications.css';
 
 //Styles
 import './/../../assets/styles/login.css';
@@ -18,9 +20,10 @@ const FormularioRegistroAdmin = () => {
   const navigate = useNavigate();
 
   const initialState = { 
-    username: "hola",
+    username: "",
     email: "",
     password:"",
+    re_password:"",
     name: "",
     last_name: "",
   };
@@ -36,7 +39,26 @@ const FormularioRegistroAdmin = () => {
     console.log(inputRef.current.value);
   }
 
-  
+  //Componente que imprime notificaciones dependiendo del tipo pasado
+  const notification = (type, msg) => {
+    return () => {
+      switch(type) {
+        case 'information':
+          NotificationManager.info('Notificación de informacion');
+          break;
+        case 'exito': 
+          NotificationManager.success(msg, 'Exito');
+          break;
+        case 'advertencia':
+          NotificationManager.warning('Mensaje del Warning');
+          break;
+        case 'error':
+          NotificationManager.error('Mensaje del Error', "Titulo tambien xd", 2000);
+          break;
+      }
+    };
+  };
+
   const handleSubmit = async (event) => {
       event.preventDefault();
       try {
@@ -46,15 +68,10 @@ const FormularioRegistroAdmin = () => {
           const data = await response.json();
           console.log(data);
           if (response.ok) {
-              let token = data.access;
-              const decodedToken = decodeToken(token);
-              const tokenisexpired = isExpired(token);
-              console.log(decodedToken);
-              console.log("register successful");
-              setUser(initialState);
-              navigate("/");
+              NotificationManager.success('Se ha creado el registro', 'Exito', 4000);
+              //navigate("/login");
           } else {
-              console.log("Login failed");
+            NotificationManager.error('Error al registrar', "Error", 2000);
           }
 
       } catch (error) {
@@ -195,6 +212,9 @@ const FormularioRegistroAdmin = () => {
             <Form.Control
               type="password"
               placeholder="Confirmar Contraseña"
+              name="re_password"
+              value={user.re_password}
+              onChange={handleInputChange}
               required
             />
             <Form.Control.Feedback type="invalid">
@@ -220,6 +240,7 @@ const FormularioRegistroAdmin = () => {
         </Form.Group>
         </Col>
         </Row>
+        <NotificationContainer/>
       </Form>
     </div>
   );

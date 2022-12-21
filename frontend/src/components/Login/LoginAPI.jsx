@@ -1,5 +1,5 @@
 const API_URL = 'http://localhost:8000/login/token/';
-const API_SIGNUP_URL = 'http://localhost:8000/modelos_api/users/';
+const API_SIGNUP_URL = 'http://localhost:8000/api/usuarios/';
 
 export const signup = async (user) => {
     return await fetch(API_SIGNUP_URL, {
@@ -11,6 +11,7 @@ export const signup = async (user) => {
             username: user.username,
             email: user.email,
             password: user.password,
+            re_password: user.re_password,
             role: "Cliente",
             active: true,
             name: user.name,
