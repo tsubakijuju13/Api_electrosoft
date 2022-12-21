@@ -1,5 +1,4 @@
 import React from "react";
-import CloseButton from "./closebutton";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {

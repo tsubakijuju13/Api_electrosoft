@@ -31,7 +31,7 @@ function App() {
         <Route path="/manager" element={<HomepageLayout><Manager/></HomepageLayout>} />
         <Route path="/admin" element={<HomepageLayout><FormularioRegistroAdmin /></HomepageLayout>} />
         <Route path="/client" element={<HomepageLayout><Client /></HomepageLayout>} />
-        <Route path="/RecoveryPass" element={<RecoveryPassword />} />
+        <Route path="/recover" element={<RecoveryPassword />} />
         <Route path="/operator" element={<HomepageLayout><Operator/></HomepageLayout>} />
 
       </Routes>

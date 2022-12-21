@@ -7,7 +7,6 @@ import "./Signup.css";
 import { useNavigate } from "react-router-dom";
 import { isExpired, decodeToken } from "react-jwt";
 import * as LoginAPI from "./LoginAPI";
-import {useRef} from 'react';
 
 //Styles
 import './/../../assets/styles/login.css';
@@ -29,13 +28,6 @@ const FormularioRegistroAdmin = () => {
   const handleInputChange = (event) => {
       setUser({ ...user, [event.target.name]: event.target.value });
   };
-
-  const inputRef = useRef(null);
-
-  function handleClick() {
-    console.log(inputRef.current.value);
-  }
-
   
   const handleSubmit = async (event) => {
       event.preventDefault();
@@ -48,7 +40,7 @@ const FormularioRegistroAdmin = () => {
           if (response.ok) {
               let token = data.access;
               const decodedToken = decodeToken(token);
-              const tokenisexpired = isExpired(token);
+              //const tokenisexpired = isExpired(token);
               console.log(decodedToken);
               console.log("register successful");
               setUser(initialState);
