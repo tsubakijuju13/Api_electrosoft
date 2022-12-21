@@ -1,12 +1,15 @@
+from ast import Param
 from django.http.response import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, ViewSet
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.contrib.auth.models import User as U
+from rest_framework import status
+from django.contrib.auth.models import User as auth_user
 from rest_framework.decorators import action
+
 from .serializers import UserSerializer, AdminSerializer
 from .models import *
 import json
@@ -79,9 +82,50 @@ class ViewUser(View):
 
 
 #Other viewclass using viewsets
+'''class UserModelViewSet(ViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer #Descomentar
+
+    def list(self, request, *args, **kwargs):
+        queryset = User.objects.all()
+        serializer_class = UserSerializer(queryset, many=True)
+        return Response({"msg": "TEnga su malgarita"})'''
 class UserModelViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    #Metodo para comprobar que las contraseñas son las mismas
+    def check_same_password(self, pass_1, pass_2):
+        return True if pass_1 == pass_2 else False
+
+    #Metodo sobreescrito de ModelViewSet:
+    def create(self, request, *args, **kwargs):
+        #Deserializa la request para la lectura
+        rqs_deserialize = json.loads(request.body)
+
+        #Hace la comprobación de contraseñas
+        if not self.check_same_password(rqs_deserialize['password'], rqs_deserialize['re_password']):
+            return Response({"mensaje": "Las contraseñas no coinciden"}, status= status.HTTP_400_BAD_REQUEST)
+
+        serializador = self.get_serializer(data = request.data)
+        serializador.is_valid(raise_exception=True)
+
+        serializador.save()
+        headers = self.get_success_headers(serializador.data)
+
+        #Ahora realiza el registro en el modelo auth_user
+        auth_user.objects.create_user(
+                            id=serializador.data['user_id'],
+                            username=rqs_deserialize['email'],
+                            email=rqs_deserialize['email'],
+                            password=rqs_deserialize['password'],
+                            first_name=rqs_deserialize['name'], 
+                            last_name=rqs_deserialize['last_name'])
+
+        #Tambien puedo llamar el registro creado -> serializador.data
+        msg_success = {"message": "Se ha creado el registro con exito, ahora puede ingresar al sistema"}
+        return Response(msg_success, status=status.HTTP_201_CREATED, headers=headers)
+    
 
 class AdminView(ModelViewSet):
     queryset = Admin.objects.all()
