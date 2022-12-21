@@ -2,13 +2,7 @@
     place-items: center center;
 }
 
-#sign-in-form {
-    max-width: 330px;
-
-}
-
-
-.fondo {
+.backend {
   background: linear-gradient( -45deg, #fac474, #fac474 49%, #ebebeb 49%, #ebebeb 51%, #ebebeb 51% );
     background-color: #fac474;
     background-repeat: no-repeat;
@@ -24,9 +18,10 @@
 
 
 .logo {
-    width: 50%;
-    height: 50%;
-    margin-bottom: 10px;
+  width: 30%;
+  height: 10%;
+  margin: 0 auto;
+  margin-bottom: 0%;
 }
 
 
