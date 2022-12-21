@@ -79,7 +79,7 @@ const Login = () => {
                 </div>
 
                 <div class="my-3">
-                    <span className="subtexto" >No tienes cuenta?<a href="/registro"> Registrate</a></span>
+                    <span className="subtexto" >No tienes cuenta?<a href="/Signup"> Registrate</a></span>
                     <br />
                     <span className="texto" ><a href="a"> Recuperar Contraseña</a></span>
                 </div>
