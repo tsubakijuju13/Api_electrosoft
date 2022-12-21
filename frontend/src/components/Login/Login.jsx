@@ -76,7 +76,7 @@ const Login = () => {
                     </div>
 
                     <div class="my-3" className="text-container">
-                        <span className="subtext">¿Olvidaste tu contraseña? <a className="subtext link" href="a">Recuperar Contraseña</a></span>
+                        <span className="subtext">¿Olvidaste tu contraseña? <a className="subtext link" href="/recover">Recuperar Contraseña</a></span>
                         <span className="subtext">¿Aún no tienes cuenta? <a className="subtext link" href="/signup">Registrate</a></span>
 
                     </div>

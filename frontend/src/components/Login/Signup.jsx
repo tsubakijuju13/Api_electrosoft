@@ -11,7 +11,6 @@ import * as LoginAPI from "./LoginAPI";
 
 //Styles
 import './/../../assets/styles/login.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const FormularioRegistroAdmin = () => {
@@ -70,7 +69,7 @@ const FormularioRegistroAdmin = () => {
           src={require("./../../imagenes/logo1.png")}
           alt="logo"
         />
-        <h1 className="titulo">Registro de usuario</h1>
+        <h1 className="form-title">Registro de usuario</h1>
         <div className="container">
             <Row className="justify-content-md-center">
               <Form.Group as={Col} md="2" controlId="validationCustom01">
