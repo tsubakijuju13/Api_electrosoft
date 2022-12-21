@@ -1,0 +1,41 @@
+@import url('./variables.css');
+
+.title {
+    background-color: var(--light-yellow);
+    color: var(--dark-purple);
+    font-size: 32px;
+    font-family: var(--default-font-bold);
+    text-align: center;
+    border: var(--light-yellow);
+}
+
+.row {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.col {
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.content-card {
+    padding: 5px;
+    margin: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-family: var(--default-font-bold);
+}
+
+.publicity {
+    bottom: 0;
+    margin-bottom: 0px;
+    width: 100%;
+    text-align: center;
+}
+
+.green-text {
+    color: var(--green-normal);
+    font-weight: 900;
+}
