@@ -16,7 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Login = () => {
     const navigate = useNavigate();
 
-    const initialState = { username: "juanes", password: "123" };
+    const initialState = { username: "chostoy@gmail.com", password: "123" };
     const [user, setUser] = useState(initialState);
 
     const handleInputChange = (event) => {
@@ -37,7 +37,6 @@ const Login = () => {
                 const decodedToken = decodeToken(token);
                 const tokenisexpired = isExpired(token);
                 console.log(decodedToken);
-                console.log(tokenisexpired);
                 console.log("Login successful");
                 setUser(initialState);
                 navigate("/client");

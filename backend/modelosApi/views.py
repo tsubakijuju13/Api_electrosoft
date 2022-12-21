@@ -46,7 +46,7 @@ class ViewUser(View):
         rq_body = json.loads(request.body)
         #Voy a crear usuarios
         User.objects.create(email=rq_body['email'], password=rq_body['password'], role=rq_body['role'], active=rq_body['active'])
-        U.objects.create_user(username=rq_body['username'], email=rq_body['email'], password=rq_body['password'], first_name=rq_body['name'], last_name=rq_body['last_name'])
+        U.objects.create_user(username=rq_body['email'], email=rq_body['email'], password=rq_body['password'], first_name=rq_body['name'], last_name=rq_body['last_name'])
         datos =  {"mensage: ": "Exito"} 
         return JsonResponse(datos)
 

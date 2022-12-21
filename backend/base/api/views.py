@@ -15,7 +15,8 @@ class Serializar_Token(TokenObtainPairSerializer):
         query = list(User.objects.filter(user_id=user.id).values())
         #Nuevos clains para el token
         token['username'] = user.username
-        token['eee'] = query[0]['role']
+        token['role'] = query[0]['role']
+        token['name'] = user.first_name
 
         return token
 
