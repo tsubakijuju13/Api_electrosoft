@@ -34,7 +34,7 @@ function App() {
         <Route path="/client" element={<HomepageLayout><Client /></HomepageLayout>} />
         <Route path="/RecoveryPass" element={<RecoveryPassword />} />
         <Route path="/operator" element={<HomepageLayout><Operator/></HomepageLayout>} />
-        <Route path="/adminView" element={<AdminHomeView />} />
+        <Route path="/adminView" element={ <HomepageLayout> <AdminHomeView/> </HomepageLayout>} />
 
       </Routes>
 
