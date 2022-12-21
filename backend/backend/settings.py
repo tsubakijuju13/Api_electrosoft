@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -49,6 +50,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'djoser',
+    #'cuentas',
 ]
 
 #Configuración de las variables de configuración de jwt:_
@@ -185,7 +188,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ]
+}
+
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
 }
 
 
@@ -203,4 +211,23 @@ CSRF_TRUSTED_ORIGINS = [
 
 CORS_ALLOWED_ALL_ORIGINS: True
 
+DJOSER = {
+    "LOGIN_FIELD": 'email',
+    "USER_CREATE_PASSWORD_RETYPE": True,
+    "SET_USERNAME_RETYPE": True, 
+    "SET_PASSWORD_RETYPE": True,
+    "SERIALIZERS": {
+        'user_create': 'cuentas.serializers.UserCreateSerializer',
+        'user_delete': 'djoser.serializers.UserDeleteSerializer',
+        'user': 'djoser.serializers.UserSerializer',
+    }
+}
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATICFILES_DIRS = [
+ #   os.path.join(BASE_DIR, 'build/static')
+#]
+
+#AUTH_USER_MODEL = 'cuentas.UserAccount'
