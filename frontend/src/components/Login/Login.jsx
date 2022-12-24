@@ -10,8 +10,7 @@ import './/../../assets/styles/login.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+//<img className="logo" src={require("./../../imagenes/logo1.png")} alt="logo" />
 
 const Login = () => {
     const navigate = useNavigate();
@@ -35,7 +34,7 @@ const Login = () => {
             if (response.ok) {
                 let token = data.access;
                 const decodedToken = decodeToken(token);
-                const tokenisexpired = isExpired(token);
+                //const tokenisexpired = isExpired(token);
                 console.log(decodedToken);
                 console.log("Login successful");
                 setUser(initialState);
@@ -51,40 +50,39 @@ const Login = () => {
 
     return (
 
-        <div className="fondo">
+        <div className="background">
+            <div className="electrosoft-title">
+                <span>ELECTROSOFT</span>
+            </div>
+            
 
-            <Form id="sign-in-form" className="formulario" onSubmit={handleSubmit}>
+            <div className="form-container">
+                <Form id="sign-in-form" className="form" onSubmit={handleSubmit}>
 
-                <img className="logo"
-                    src={require("./../../imagenes/logo1.png")} alt="logo" />
+                    <h1 class="form-title" >¡Bienvenido!</h1>
 
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label className="form-text">Correo</Form.Label>
+                        <Form.Control type="text" size="lg" placeholder="Ingresar Correo" name="username" value={user.username} onChange={handleInputChange} className="position-relative" />
+                    </Form.Group>
 
-                <h1 class="titulo" >Iniciar Sesión</h1>
+                    <Form.Group className="mb-4" controlId="formBasicPassword">
+                        <Form.Label className="form-text" >Contraseña</Form.Label>
+                        <Form.Control type="password" size="lg" placeholder="Ingrese Su Contraseña" name="password" value={user.password} onChange={handleInputChange} />
+                    </Form.Group>
 
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label className="texto">Correo</Form.Label>
-                    <Form.Control type="text" size="lg" placeholder="Ingresar Correo" name="username" value={user.username} onChange={handleInputChange} className="position-relative" />
-                    <Form.Text className="text-muted">
-                        Tu correo esta seguro con nosotros.
-                    </Form.Text>
-                </Form.Group>
+                    <div class="d-grid" className="text-container">
+                        <Button variant="outline-warning" type="submit" className="submit-button">Ingresar</Button>
+                    </div>
 
-                <Form.Group className="mb-4" controlId="formBasicPassword">
-                    <Form.Label className="texto" >Contraseña</Form.Label>
-                    <Form.Control type="password" placeholder="Ingrese Su Contraseña" name="password" value={user.password} onChange={handleInputChange} />
-                </Form.Group>
+                    <div class="my-3" className="text-container">
+                        <span className="subtext">¿Olvidaste tu contraseña? <a className="subtext link" href="/recover">Recuperar Contraseña</a></span>
+                        <span className="subtext">¿Aún no tienes cuenta? <a className="subtext link" href="/signup">Registrate</a></span>
 
-                <div class="d-grid">
-                    <Button variant="primary" type="submit" class="btn btn-primary">Ingresar</Button>
-                </div>
+                    </div>
 
-                <div class="my-3">
-                    <span className="subtexto" >No tienes cuenta?<a href="/Signup"> Registrate</a></span>
-                    <br />
-                    <span className="texto" ><a href="a"> Recuperar Contraseña</a></span>
-                </div>
-
-            </Form>
+                </Form>
+            </div>
         </div>
 
     )
