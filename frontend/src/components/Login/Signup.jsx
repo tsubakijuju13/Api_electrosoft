@@ -5,15 +5,18 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./Signup.css";
 import { useNavigate } from "react-router-dom";
-import {NotificationContainer, NotificationManager} from 'react-notifications';
+import {NotificationContainer, NotificationManager} from 'react-notifications'
 import { isExpired, decodeToken } from "react-jwt";
 import * as LoginAPI from "./LoginAPI";
-import {useRef} from 'react';
 import 'react-notifications/lib/notifications.css';
+import axios from 'axios'
+
 
 //Styles
 import './/../../assets/styles/login.css';
 
+
+const url_api = 'http://localhost:8000/api/usuarios/'
 
 const FormularioRegistroAdmin = () => {
   const navigate = useNavigate();
@@ -22,21 +25,17 @@ const FormularioRegistroAdmin = () => {
     username: "",
     email: "",
     password:"",
-    re_password:"",
+    re_password: "",
     name: "",
     last_name: "",
+    role: "Usuario",
+    active: true
   };
   const [user, setUser] = useState(initialState);
 
   const handleInputChange = (event) => {
       setUser({ ...user, [event.target.name]: event.target.value });
   };
-
-  const inputRef = useRef(null);
-
-  function handleClick() {
-    console.log(inputRef.current.value);
-  }
 
   //Componente que imprime notificaciones dependiendo del tipo pasado
   const notification = (type, msg) => {
@@ -57,35 +56,45 @@ const FormularioRegistroAdmin = () => {
       }
     };
   };
-
+  
   const handleSubmit = async (event) => {
       event.preventDefault();
-      try {
+
+      axios.post(url_api, user).then((res) => {
+        NotificationManager.success("Registro realizado", 'Exito');
+      }).catch(error => {
+
+        //Mejorar el manejador de errores que van fuera del status 2xx
+        NotificationManager.error(error.response.data['mensaje'], "Error", 5000);
+        console.log(error.response.data);
+      });
+      /*try {
           let response;
           response = await LoginAPI.signup(user);
 
           const data = await response.json();
-          console.log(data);
+          //console.log(data);
           if (response.ok) {
-              NotificationManager.success('Se ha creado el registro', 'Exito', 4000);
-              //navigate("/login");
+              notification('exito', "Se ha realizado el registro");
+              //navigate("/");
           } else {
-            NotificationManager.error('Error al registrar', "Error", 2000);
+
           }
 
       } catch (error) {
-          console.log(error);
+        NotificationManager.error('Mensaje del Error', "Titulo tambien xd", 2000);
+        console.log(error);
       }
 
-      console.log(user);
+      //console.log(user);*/
   };
 
   return (
 
-
+    
    <div className="background">
 
-      
+      <NotificationContainer/>
       <Form id="register-form" onSubmit={handleSubmit}
       >
        <img
@@ -203,52 +212,39 @@ const FormularioRegistroAdmin = () => {
                   Ingrese su contraseña.
                 </Form.Control.Feedback>
               </Form.Group>
+            
+
+              <Form.Group as={Col} md="2" controlId="validationCustom09">
+                <Form.Label className="Letras">Confirmar Contraseña</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Confirmar Contraseña"
+                  name="re_password"
+                  value={user.re_password}
+                  onChange={handleInputChange}
+                  required
+                />
+                <Form.Control.Feedback type="invalid">
+                  Ingrese su contraseña.
+                </Form.Control.Feedback>
+              </Form.Group>
             </Row>
-
-        <br></br>
-        <Row className="justify-content-md-center">
-          <Form.Group as={Col} md="2" controlId="validationCustom08">
-            <Form.Label className="Letras">Contraseña</Form.Label>
-            <Form.Control type="password" placeholder="Contraseña" value={user.password}  name="password" onChange={handleInputChange} required />
-            <Form.Control.Feedback type="invalid">
-              Ingrese su contraseña.
-            </Form.Control.Feedback>
-          </Form.Group>
-
-          <Form.Group as={Col} md="2" controlId="validationCustom09">
-            <Form.Label className="Letras">Confirmar Contraseña</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Confirmar Contraseña"
-              name="re_password"
-              value={user.re_password}
-              onChange={handleInputChange}
-              required
-            />
-            <Form.Control.Feedback type="invalid">
-              Ingrese su contraseña.
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Row>
-        
-        
-        <br></br>
-        <Row className="justify-content-md-center">
-        <Col md="4" >
-        <Form.Group className="justify-content-md-center" id="abajo">
-          <Form.Check
-            className="Letras"
-            required
-            label="Estoy de acuerdo con los terminos y condiciones"
-            feedback="Debe aceptar antes de enviar."
-            feedbackType="invalid"
-          />
-        
-          <Button type="submit">Registrar</Button>
-        </Form.Group>
-        </Col>
-        </Row>
-        <NotificationContainer/>
+            
+            <Row className="justify-content-md-center">
+              <Col md="4" >
+              <Form.Group className="justify-content-md-center" id="abajo">
+                <Form.Check
+                  className="Letras"
+                  required
+                  label="Estoy de acuerdo con los terminos y condiciones"
+                  feedback="Debe aceptar antes de enviar."
+                  feedbackType="invalid"
+                />
+              
+                <Button type="submit">Registrar</Button>
+              </Form.Group>
+              </Col>
+            </Row>
         </div>
       </Form>
      

@@ -5,7 +5,10 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.viewsets import ModelViewSet, ViewSet
 from rest_framework.response import Response
+<<<<<<< HEAD
 from rest_framework.views import APIView
+=======
+>>>>>>> origin/frontend-auth
 from rest_framework import status
 from django.contrib.auth.models import User as auth_user
 from rest_framework.decorators import action
@@ -29,7 +32,7 @@ class ViewUser(View):
             case _:
                 return JsonResponse({"error": "Error en la funcionalidad del switch"})
 
-    def get(self, request, id=0):
+    '''def get(self, request, id=0):
         if id !=0:
             #Consulta con el filtro del id: -> list
             list_query = list(User.objects.filter(user_id=id).values())
@@ -77,7 +80,7 @@ class ViewUser(View):
         else:
             msg = {"message": "El usuario no se encuentra registrado"}
         
-        return JsonResponse(msg)
+        return JsonResponse(msg)'''
 
 
 
@@ -94,6 +97,7 @@ class UserModelViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+<<<<<<< HEAD
     #Metodo para comprobar que las contraseñas son las mismas
     def check_same_password(self, pass_1, pass_2):
         return True if pass_1 == pass_2 else False
@@ -126,6 +130,40 @@ class UserModelViewSet(ModelViewSet):
         msg_success = {"message": "Se ha creado el registro con exito, ahora puede ingresar al sistema"}
         return Response(msg_success, status=status.HTTP_201_CREATED, headers=headers)
     
+=======
+    #Función que realiza la comprobación de igualdad en las contraseñas
+    def check_same_password(self, pass_1, pass_2):
+        return True if pass_1 == pass_2 else False
+
+    #Sobre-escritura del metodo create de la clade heredada ModelViewSet
+    def create(self, request, *args, **kwargs):
+
+        #Deserializa la reques para la lectura
+        rqs_deserialize = json.loads(request.body)
+
+        #Realiza comprobación de contraseñas
+        if not self.check_same_password(rqs_deserialize['password'], rqs_deserialize['re_password']):
+            return Response({"mensaje": "Las contraseñas no coinciden"}, status= status.HTTP_400_BAD_REQUEST)
+
+        serializador = self.get_serializer(data= request.data)
+        serializador.is_valid(raise_exception=True)
+
+        serializador.save()
+        header = self.get_success_headers(serializador.data)
+
+        #Aqui se crea el usuario para el login
+        auth_user.objects.create_user(
+                id=serializador.data['user_id'],
+                username=rqs_deserialize['email'],
+                email=rqs_deserialize['email'],
+                password=rqs_deserialize['password'],
+                first_name=rqs_deserialize['name'], 
+                last_name=rqs_deserialize['last_name'])
+
+        #Todo salio OK, devuelve esto en la petición
+        msg_success = {"message": "Se ha creado el registro con exito, ahora puede ingresar al sistema"}
+        return Response(msg_success, status=status.HTTP_201_CREATED, headers=header)
+>>>>>>> origin/frontend-auth
 
 class AdminView(ModelViewSet):
     queryset = Admin.objects.all()
@@ -137,9 +175,3 @@ class AdminView(ModelViewSet):
         '''ee = Admin.objects.filter(nombre=nom)
         ser = self.get_serializer(ee)
         return Response(ser.data)'''
-
-
-class Saitama(APIView):
-    def get(self, request):
-        da = list(U.objects.values())
-        return Response({"Mensaje": "exito", "data": da })
