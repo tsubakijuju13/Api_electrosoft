@@ -50,8 +50,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'djoser',
-    #'cuentas',
 ]
 
 #Configuración de las variables de configuración de jwt:_
@@ -202,19 +200,6 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "https://8080-cs-966470023409-default.cs-us-east1-vpcf.cloudshell.dev",
-    "https://127.0.0.0:3000",
-    "https://localhost:3000",
-]
-CSRF_TRUSTED_ORIGINS = [
-    "https://8080-cs-966470023409-default.cs-us-east1-vpcf.cloudshell.dev",
-    ]
-
-CORS_ALLOWED_ORIGIN_REGEXES = [
-    r"^https://\w+\.localhost:3000$",
-]
-
 CORS_ALLOWED_ALL_ORIGINS= True
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -223,23 +208,4 @@ CORS_ORIGIN_WHITELIST = [
   'http://localhost:3000',
 ]
 
-DJOSER = {
-    "LOGIN_FIELD": 'email',
-    "USER_CREATE_PASSWORD_RETYPE": True,
-    "SET_USERNAME_RETYPE": True, 
-    "SET_PASSWORD_RETYPE": True,
-    "SERIALIZERS": {
-        'user_create': 'cuentas.serializers.UserCreateSerializer',
-        'user_delete': 'djoser.serializers.UserDeleteSerializer',
-        'user': 'djoser.serializers.UserSerializer',
-    }
-}
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-#STATICFILES_DIRS = [
- #   os.path.join(BASE_DIR, 'build/static')
-#]
-
-#AUTH_USER_MODEL = 'cuentas.UserAccount'

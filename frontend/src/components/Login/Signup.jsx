@@ -5,63 +5,96 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./Signup.css";
 import { useNavigate } from "react-router-dom";
+import {NotificationContainer, NotificationManager} from 'react-notifications'
 import { isExpired, decodeToken } from "react-jwt";
 import * as LoginAPI from "./LoginAPI";
+import 'react-notifications/lib/notifications.css';
+import axios from 'axios'
 
 
 //Styles
 import './/../../assets/styles/login.css';
 
 
+const url_api = 'http://localhost:8000/api/usuarios/'
+
 const FormularioRegistroAdmin = () => {
   const navigate = useNavigate();
 
   const initialState = { 
-    username: "hola",
+    username: "",
     email: "",
     password:"",
+    re_password: "",
     name: "",
     last_name: "",
+    role: "Usuario",
+    active: true
   };
   const [user, setUser] = useState(initialState);
 
   const handleInputChange = (event) => {
       setUser({ ...user, [event.target.name]: event.target.value });
   };
+
+  //Componente que imprime notificaciones dependiendo del tipo pasado
+  const notification = (type, msg) => {
+    return () => {
+      switch(type) {
+        case 'information':
+          NotificationManager.info('Notificación de informacion');
+          break;
+        case 'exito': 
+          NotificationManager.success(msg, 'Exito');
+          break;
+        case 'advertencia':
+          NotificationManager.warning('Mensaje del Warning');
+          break;
+        case 'error':
+          NotificationManager.error('Mensaje del Error', "Titulo tambien xd", 2000);
+          break;
+      }
+    };
+  };
   
   const handleSubmit = async (event) => {
       event.preventDefault();
-      try {
+
+      axios.post(url_api, user).then((res) => {
+        NotificationManager.success("Registro realizado", 'Exito');
+      }).catch(error => {
+
+        //Mejorar el manejador de errores que van fuera del status 2xx
+        NotificationManager.error(error.response.data['mensaje'], "Error", 5000);
+        console.log(error.response.data);
+      });
+      /*try {
           let response;
           response = await LoginAPI.signup(user);
 
           const data = await response.json();
-          console.log(data);
+          //console.log(data);
           if (response.ok) {
-              let token = data.access;
-              const decodedToken = decodeToken(token);
-              //const tokenisexpired = isExpired(token);
-              console.log(decodedToken);
-              console.log("register successful");
-              setUser(initialState);
-              navigate("/");
+              notification('exito', "Se ha realizado el registro");
+              //navigate("/");
           } else {
-              console.log("Login failed");
+
           }
 
       } catch (error) {
-          console.log(error);
+        NotificationManager.error('Mensaje del Error', "Titulo tambien xd", 2000);
+        console.log(error);
       }
 
-      console.log(user);
+      //console.log(user);*/
   };
 
   return (
 
-
+    
    <div className="background">
 
-      
+      <NotificationContainer/>
       <Form id="register-form" onSubmit={handleSubmit}
       >
        <img
@@ -185,6 +218,9 @@ const FormularioRegistroAdmin = () => {
                 <Form.Control
                   type="password"
                   placeholder="Confirmar Contraseña"
+                  name="re_password"
+                  value={user.re_password}
+                  onChange={handleInputChange}
                   required
                 />
                 <Form.Control.Feedback type="invalid">
