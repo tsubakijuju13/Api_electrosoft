@@ -18,6 +18,7 @@
     "react-bootstrap": "^2.7.0",
     "react-chartjs-2": "^5.1.0",
     "react-dom": "^18.2.0",
+    "react-fontawesome": "^1.7.1",
     "react-google-recaptcha": "^2.1.0",
     "react-jwt": "^1.1.7",
     "react-notifications": "^1.7.4",

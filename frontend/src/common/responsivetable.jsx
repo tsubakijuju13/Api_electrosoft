@@ -15,7 +15,6 @@ class App extends Component {
     modalInsertar: false,
     modalEliminar: false,
     form: {
-      user_id: "",
       name: "",
       last_name: "",
       email: "",
@@ -130,7 +129,7 @@ class App extends Component {
                   <td>{usuario.email}</td>
                   <td>{usuario.password}</td>
                   <td>{usuario.role}</td>
-                  <td>{usuario.active}</td>
+                  <td>{usuario.active? "True": "false"}</td>
                   <td>
                     <button
                       className="btn btn-primary"
@@ -187,7 +186,7 @@ class App extends Component {
                 name="name"
                 id="nombre"
                 onChange={this.handleChange}
-                value={form ? form.nombre : ""}
+                value={form ? form.name : ""}
               />
 
               <br />
@@ -198,7 +197,7 @@ class App extends Component {
                 name="last_name"
                 id="apellido"
                 onChange={this.handleChange}
-                value={form ? form.apellido : ""}
+                value={form ? form.last_name : ""}
               />
               <br />
 
@@ -209,14 +208,14 @@ class App extends Component {
                 name="email"
                 id="email"
                 onChange={this.handleChange}
-                value={form ? form.usuario : ""}
+                value={form ? form.email : ""}
               />
               <br />
               <label htmlFor="password">Password</label>
               <input
                 className="form-control"
                 type="password"
-                name="pasword"
+                name="password"
                 id="password"
                 onChange={this.handleChange}
                 value={form ? form.password : ""}
@@ -226,10 +225,10 @@ class App extends Component {
               <input
                 className="form-control"
                 type="password"
-                name="re_pasword"
+                name="re_password"
                 id="password2"
                 onChange={this.handleChange}
-                value={form ? form.password2 : ""}
+                value={form ? form.re_password : ""}
               />
               <br />
               <label htmlFor="role">Role</label>
