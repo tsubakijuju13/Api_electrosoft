@@ -30,11 +30,11 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/manager" element={<HomepageLayout><Manager/></HomepageLayout>} />
-        <Route path="/admin" element={<HomepageLayout><FormularioRegistroAdmin /></HomepageLayout>} />
+        <Route path="/adminref" element={<HomepageLayout><FormularioRegistroAdmin /></HomepageLayout>} />
         <Route path="/client" element={<HomepageLayout><Client /></HomepageLayout>} />
         <Route path="/recover" element={<RecoveryPassword />} />
         <Route path="/operator" element={<HomepageLayout><Operator/></HomepageLayout>} />
-        <Route path="/adminView" element={ <HomepageLayout> <AdminHomeView/> </HomepageLayout>} />
+        <Route path="/admin" element={ <HomepageLayout> <AdminHomeView/> </HomepageLayout>} />
 
       </Routes>
 
