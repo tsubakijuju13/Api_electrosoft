@@ -1,3 +1,6 @@
+import email
+from pyexpat import model
+from statistics import mode
 from django.db import models
 #from django.contrib.auth.models import User
 
@@ -112,3 +115,17 @@ class Factura(models.Model):
 
     class Meta:
         db_table = "Factura"
+
+
+class Juju(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    email = models.EmailField(max_length=50, null=False)
+    password = models.CharField(max_length=20, null=False, blank=False)
+    role = models.CharField(max_length=20, null=False)
+    active = models.BooleanField(null=False)
+
+    def __str__(self):
+        return self.id
+
+    class Meta:
+        db_table = "juju"

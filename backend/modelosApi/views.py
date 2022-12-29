@@ -1,4 +1,6 @@
+import re
 from django.http.response import JsonResponse
+from django.shortcuts import get_object_or_404
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -7,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.models import User as auth_user
 from rest_framework.decorators import action
-from .serializers import UserSerializer, AdminSerializer
+from .serializers import ChangeAge_juju, UserSerializer, AdminSerializer, JujuSerializer
 from .models import *
 import json
 
@@ -126,3 +128,24 @@ class AdminView(ModelViewSet):
         '''ee = Admin.objects.filter(nombre=nom)
         ser = self.get_serializer(ee)
         return Response(ser.data)'''
+
+class JujuView(ModelViewSet):
+    queryset = Juju.objects.all()
+    serializer_class = JujuSerializer
+
+    '''@action(methods=['post'], detail=True)
+    def change_age(self, request, pk=None):
+        #juju_obj = get_object_or_404(Juju, pk=pk)
+        juju_obj = Juju.objects.filter(id=pk).first()
+        age_serializador = ChangeAge_juju(data=request.data) 
+
+        age_serializador.is_valid(raise_exception=True)
+        juju_obj.age = age_serializador.validated_data['age']
+        juju_obj.save()
+
+        return Response({"message": "Se ha actualizado correctamente...."})'''
+    
+    @action(detail=True, methods=['get'])
+    def change_email(self, reques, pk=None):
+        obj = get_object_or_404(Juju, pk=pk)
+        return Response({'msg': 'Exitooo'})
