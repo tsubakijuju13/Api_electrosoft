@@ -120,9 +120,4 @@ class AdminView(ModelViewSet):
     queryset = Admin.objects.all()
     serializer_class = AdminSerializer
 
-    @action(detail=True, methods=['get'], url_name='juju')
-    def juju(self, request, nom):
-        return Response({"key": "kdkjdjkd"})
-        '''ee = Admin.objects.filter(nombre=nom)
-        ser = self.get_serializer(ee)
-        return Response(ser.data)'''
+    
