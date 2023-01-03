@@ -111,7 +111,7 @@ class App extends Component {
         <br />
         <br />
         <table className="table ">
-          <thead>
+          <thead >
             <tr>
               <th>ID</th>
               <th>Email</th>

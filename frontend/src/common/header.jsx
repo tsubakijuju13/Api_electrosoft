@@ -30,7 +30,7 @@ const Header = () => {
               </Nav>
               <Nav>
                 <Nav.Link href="#deets">Modo dark</Nav.Link>
-                <Nav.Link eventKey={2} href="#memes">
+                <Nav.Link eventKey={2} href="/">
                   Salir
                 </Nav.Link>
               </Nav>

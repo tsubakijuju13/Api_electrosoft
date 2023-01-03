@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 
+import Login from "../Login/Login";
 //Styles
 import ".//../../assets/styles/content.css";
 
@@ -11,11 +12,13 @@ import ".//../../assets/styles/content.css";
 import Graph from "./Graph";
 
 
+//const Nombre = () => { return (Login.user.username) };
+
 const Client = () => {
     return (
         <div>
             <Card className="title">
-                <Card.Body>¡Bienvenido/a de vuelta, Geider!</Card.Body>
+                <Card.Body>¡Bienvenido/a de vuelta, hola </Card.Body>
             </Card>
             <Row className="row">
                 <Col className="col" xs={5}>

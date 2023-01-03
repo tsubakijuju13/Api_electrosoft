@@ -8,16 +8,10 @@ const url = "http://localhost:8000/api/usuarios/";
 class App extends Component {
   state = {
     data: [],
-    modalInsertar: false,
-    modalEliminar: false,
     form: {
       name: "",
       last_name: "",
       email: "",
-      password: "",
-      re_password: "",
-      role: "",
-      active: "",
 
     },
   };
@@ -54,12 +48,10 @@ class App extends Component {
         <table className="table ">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Consumo</th>
-              <th>Pago</th>
-              <th>estado</th>
+              <th>Numero de Factura</th>
+              <th>Fecha de Pago</th>
+              <th>Valor</th>
+              <th>Referencia de pago</th>
             </tr>
           </thead>
           <tbody>
@@ -67,8 +59,6 @@ class App extends Component {
               return (
                 <tr>
                   <td>{usuario.user_id}</td>
-                  <td>{usuario.email}</td>
-                  <td>{usuario.role}</td>
                 </tr>
               );
             })}
