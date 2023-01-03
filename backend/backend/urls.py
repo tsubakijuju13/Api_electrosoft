@@ -7,5 +7,6 @@ urlpatterns = [
     #path('auth_login/', include('allauth.urls')),
     path('api/', include('modelosApi.routers')),
     path('', include('Usuario.router')),
-    path('', include('Contrato.routers'))
+    path('', include('Contrato.routers')),
+    path('', include('Factura.routers'))
 ]
