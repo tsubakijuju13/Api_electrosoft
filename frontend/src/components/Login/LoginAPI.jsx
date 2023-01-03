@@ -1,5 +1,5 @@
 const API_URL = 'http://localhost:8000/login/token/';
-const API_SIGNUP_URL = 'http://localhost:8000/api/usuarios/';
+const API_SIGNUP_URL = 'http://localhost:8000/usuarios/';
 
 export const signup = async (user) => {
     return await fetch(API_SIGNUP_URL, {

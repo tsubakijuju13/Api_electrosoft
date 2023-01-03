@@ -18,7 +18,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 //Styles
 import ".//../../assets/styles/login.css";
 
-const url_api = "http://localhost:8000/api/usuarios/";
+const url_api = "http://localhost:8000/usuarios/";
 
 function onChange(value) {
   console.log("Captcha value:", value);

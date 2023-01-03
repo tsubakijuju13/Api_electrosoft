@@ -3,7 +3,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
-const url = "http://localhost:8000/api/usuarios/";
+const url = "http://localhost:8000/usuarios/";
 
 class App extends Component {
   state = {

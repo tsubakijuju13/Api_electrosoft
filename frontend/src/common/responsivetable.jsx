@@ -5,13 +5,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 
+
+
+
+
 /**/
 
+const url = "http://localhost:8000/usuarios/";
 
-
-const url = "http://localhost:8000/api/usuarios/";
 
 class App extends Component {
+
+
+  
+
+
+
   state = {
     data: [],
     modalInsertar: false,
@@ -24,12 +33,13 @@ class App extends Component {
       re_password: "",
       role: "",
       active: "",
-
     },
   };
 
   peticionGet = () => {
-    axios.get(url).then((response) => {
+    axios
+      .get(url)
+      .then((response) => {
         this.setState({ data: response.data });
       })
       .catch((error) => {
@@ -39,8 +49,9 @@ class App extends Component {
 
   peticionPost = async () => {
     delete this.state.form.id;
-    await axios.post(url, this.state.form).then((response) => 
-    {
+    await axios
+      .post(url, this.state.form)
+      .then((response) => {
         this.modalInsertar();
         this.peticionGet();
       })
@@ -50,10 +61,12 @@ class App extends Component {
   };
 
   peticionPut = () => {
-    axios.put(url +this.state.form.id + '/', this.state.form).then((response) => {
-      this.modalInsertar();
-      this.peticionGet();
-    });
+    axios
+      .put(url + this.state.form.id + "/", this.state.form)
+      .then((response) => {
+        this.modalInsertar();
+        this.peticionGet();
+      });
   };
 
   peticionDelete = () => {
@@ -111,53 +124,60 @@ class App extends Component {
         >
           Agregar Usuario
         </button>
+        {/* Caja de busqueda
+        <input class="form-control mt-3" id="myInput" type="text" placeholder="Search.."></input> */}
         <br />
         <br />
-        <table className="table ">
-          <thead >
-            <tr>
-              <th>ID</th>
-              <th>Email</th>
-              <th>Password</th>
-              <th>Role</th>
-              <th>Active</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.data.map((usuario) => {
-              return (
-                <tr>
-                  <td>{usuario.user_id}</td>
-                  <td>{usuario.email}</td>
-                  <td>{usuario.password}</td>
-                  <td>{usuario.role}</td>
-                  <td>{usuario.active? "True": "false"}</td>
-                  <td>
-                    <button
-                      className="btn btn-primary"
-                      onClick={() => {
-                        this.seleccionarUsuario(usuario);
-                        this.modalInsertar();
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faEdit} />
-                    </button>
-                    {"   "}
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => {
-                        this.seleccionarUsuario(usuario);
-                        this.setState({ modalEliminar: true });
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faTrashAlt} />
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <div className="table-responsive">
+          <table className="table table-striped table-hover table-bordered">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Role</th>
+                <th>Active</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.data.map((usuario) => {
+                return (
+                  <tr>
+                    <td>{usuario.user_id}</td>
+                    <td>{usuario.email}</td>
+                    <td>{usuario.password}</td>
+                    <td>{usuario.role}</td>
+                    <td>{usuario.active ? "True" : "false"}</td>
+                    <td>
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => {
+                          this.seleccionarUsuario(usuario);
+                          this.modalInsertar();
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faEdit} />
+                      </button>
+                      {"   "}
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => {
+                          this.seleccionarUsuario(usuario);
+                          this.setState({ modalEliminar: true });
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faTrashAlt} />
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+
+          
+        </div>
+
 
 
         <Modal isOpen={this.state.modalInsertar}>
@@ -165,9 +185,7 @@ class App extends Component {
             <span
               style={{ float: "right" }}
               onClick={() => this.modalInsertar()}
-            >
-              
-            </span>
+            ></span>
           </ModalHeader>
           <ModalBody>
             <div className="form-group">
@@ -253,18 +271,14 @@ class App extends Component {
                 onChange={this.handleChange}
                 value={form ? form.active : ""}
               />
-
-
             </div>
-
-
           </ModalBody>
 
           <ModalFooter>
             {this.state.tipoModal === "insertar" ? (
               <button
                 className="btn btn-success"
-                onClick={() => /*console.log(this.state)*/  this.peticionPost()}
+                onClick={() => /*console.log(this.state)*/ this.peticionPost()}
               >
                 Insertar
               </button>
@@ -287,7 +301,8 @@ class App extends Component {
 
         <Modal isOpen={this.state.modalEliminar}>
           <ModalBody>
-            Estás seguro que deseas eliminar a este usuario {form && form.nombre}
+            Estás seguro que deseas eliminar a este usuario{" "}
+            {form && form.nombre}
           </ModalBody>
           <ModalFooter>
             <button
