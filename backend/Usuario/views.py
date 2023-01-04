@@ -110,7 +110,7 @@ class UsuariosViewSet(ModelViewSet):
     @action(methods=['put'], detail=True, url_path='change_state')
     def change_state_user(self, request, pk=None):
         if pk==None:
-            raise Response('message': 'Se necesita una pk')
+            raise Response({'message': 'Se necesita una pk'})
         
         user_query = User.objects.get(pk=pk)
         
