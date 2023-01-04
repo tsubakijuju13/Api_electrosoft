@@ -8,14 +8,17 @@ export const signup = async (user) => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            username: user.username,
+            nombre: user.nombre,
+            apellido: user.apellido,
+            direccion: user.direccion,
+            identificacion: user.identificacion,
+            telefono: user.telefono,
+            ciudad: "cali",
+            barrio: "puertas",
             email: user.email,
             password: user.password,
             re_password: user.re_password,
             role: "Cliente",
-            active: true,
-            name: user.name,
-            last_name: user.last_name
         })
 
     })

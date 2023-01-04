@@ -28,14 +28,18 @@ const FormularioRegistroAdmin = () => {
   const navigate = useNavigate();
 
   const initialState = {
-    username: "",
+    nombre: "",
+    apellido: "",
+    direccion: "",
+    identificacion: "",
+    telefono: "",
+    ciudad: "",
+    barrio: "",
     email: "",
     password: "",
     re_password: "",
-    name: "",
-    last_name: "",
-    role: "Usuario",
-    active: true,
+    //role: "cliente",
+    //active: true,
   };
   const [user, setUser] = useState(initialState);
 
@@ -70,21 +74,7 @@ const FormularioRegistroAdmin = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    axios
-      .post(url_api, user)
-      .then((res) => {
-        NotificationManager.success("Registro realizado", "Exito");
-      })
-      .catch((error) => {
-        //Mejorar el manejador de errores que van fuera del status 2xx
-        NotificationManager.error(
-          error.response.data["mensaje"],
-          "Error",
-          5000
-        );
-        console.log(error.response.data);
-      });
-    /*try {
+    try {
           let response;
           response = await LoginAPI.signup(user);
 
@@ -102,7 +92,7 @@ const FormularioRegistroAdmin = () => {
         console.log(error);
       }
 
-      //console.log(user);*/
+      console.log(user);
   };
 
   return (
@@ -121,8 +111,8 @@ const FormularioRegistroAdmin = () => {
               <Form.Label className="Letras">Nombre</Form.Label>
               <Form.Control
                 /*onBlur={(e) => console.log(e.target.value)}*/
-                value={user.name}
-                name="name"
+                value={user.nombre}
+                name="nombre"
                 required
                 className="nombre"
                 type="text"
@@ -134,11 +124,11 @@ const FormularioRegistroAdmin = () => {
             </Form.Group>
 
             <Form.Group as={Col} md="2" controlId="validationCustom02">
-              <Form.Label className="Letras">Last name</Form.Label>
+              <Form.Label className="Letras">Apellido</Form.Label>
               <Form.Control
                 /*onBlur={(e) => console.log(e.target.value)}*/
-                value={user.last_name}
-                name="last_name"
+                value={user.apellido}
+                name="apellido"
                 required
                 type="text"
                 placeholder="Last name"
@@ -152,6 +142,9 @@ const FormularioRegistroAdmin = () => {
             <Form.Group as={Col} md="3" controlId="validationCustom03">
               <Form.Label className="Letras">Documento</Form.Label>
               <Form.Control
+                value={user.identificacion}
+                onChange={handleInputChange}
+                name="identificacion"
                 maxlength="20"
                 minlength="3"
                 type="text"
@@ -179,7 +172,11 @@ const FormularioRegistroAdmin = () => {
           <Row className="justify-content-md-center">
             <Form.Group as={Col} md="3" controlId="validationCustom05">
               <Form.Label className="Letras">Direccion</Form.Label>
-              <Form.Control type="text" placeholder="Direccion" required />
+              <Form.Control
+              name="direccion"
+              value={user.direccion}
+              onChange={handleInputChange}
+              type="text" placeholder="Direccion" required />
               <Form.Control.Feedback type="invalid">
                 Escribe tu direccion.
               </Form.Control.Feedback>
@@ -188,6 +185,9 @@ const FormularioRegistroAdmin = () => {
             <Form.Group as={Col} md="2" controlId="validationCustom06">
               <Form.Label className="Letras">Telefono</Form.Label>
               <Form.Control
+              value={user.telefono}
+              onChange={handleInputChange}
+              name="telefono"
                 maxlength="10"
                 minlength="9"
                 type="text"
@@ -205,6 +205,7 @@ const FormularioRegistroAdmin = () => {
             <Form.Group as={Col} md="4" controlId="validationCustom07">
               <Form.Label className="Letras">Email</Form.Label>
               <Form.Control
+
                 type="Email"
                 placeholder="Email"
                 name="email"
