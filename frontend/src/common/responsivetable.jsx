@@ -4,11 +4,9 @@
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
   import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
   import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
-  
-  
-  
-  /**/
-  
+  import { faSearch } from "@fortawesome/free-solid-svg-icons";
+  import "./responsive.css";
+
   const urlUsuarios = "http://localhost:8000/usuarios/user_info/";
   const url = "http://localhost:8000/usuarios/";
   
@@ -17,8 +15,9 @@
   class App extends Component {
   
   
-  
+
     state = {
+      busqueda: "",
       user_id: "",
       data: [],
       modalInsertar: false,
@@ -114,9 +113,33 @@
       });
       console.log(this.state.form);
     };
+
+    filtrarElementos = () => {
+      var search = this.state.data.filter(item=>{
+        if (item.email.toString().includes(this.state.busqueda) ||
+            item.nombre.toString().includes(this.state.busqueda)
+        
+        )
+        
+        {
+          return item;
+        }
+      });
+      this.setState({data: search});
+    }
+
+
   
     componentDidMount() {
+      this.setState({ data: this.state.data });
       this.peticionGet();
+    }
+
+    onChange=async (e) => {
+      e.persist();
+      await this.setState({busqueda: e.target.value});
+      this.filtrarElementos();
+      console.log(this.state.busqueda);
     }
   
     render() {
@@ -139,7 +162,31 @@
           <input class="form-control mt-3" id="myInput" type="text" placeholder="Search.."></input> */}
           <br />
           <br />
+          
+
+
+
+
+
           <div className="table-responsive">
+          <div className="barraBusqueda">
+            <input
+              type="text"
+              placeholder="Buscar"
+              className="textField"
+              name="busqueda"
+              value={this.state.busqueda}
+              onChange={this.onChange}
+            />
+            <button type="button" className="btnBuscar" >
+              {" "}
+              <FontAwesomeIcon icon={faSearch} />
+            </button>
+          </div>
+
+
+
+
             <table  className="table table-striped table-hover table-bordered">
               <thead>
                 <tr>
