@@ -2,7 +2,7 @@ from multiprocessing import context
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
-
+from rest_framework import status
 from Contrato.serializers import ContratoSerializer, MyContractSerializer
 from .serializers import *
 from .models import Usuarios
@@ -75,7 +75,7 @@ class UsuariosViewSet(ModelViewSet):
             auth_serializer.is_valid(raise_exception=True)
             auth_serializer.save()
         else:
-            return Response(user_serializer.errors)
+            return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         return Response({"message": "Se ha realizado el registro"})
 
@@ -94,6 +94,7 @@ class UsuariosViewSet(ModelViewSet):
         user_serializer = State_Serializer(user_query, many=True)
         return Response(user_serializer.data)
 
+
     @action(methods=['get'], detail=False, url_path='user_info')
     def get_all_users_info(self, request):
         raw_sql = '''
@@ -104,3 +105,12 @@ class UsuariosViewSet(ModelViewSet):
         user_serializer = User_Info_Serializer(users, many=True)
         
         return Response(user_serializer.data)
+
+    
+    @action(methods=['put'], detail=True, url_path='change_state')
+    def change_state_user(self, request, pk=None):
+        if pk==None:
+            raise Response('message': 'Se necesita una pk')
+        
+        user_query = User.objects.get(pk=pk)
+        
