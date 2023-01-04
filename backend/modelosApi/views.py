@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.models import User as auth_user
 from rest_framework.decorators import action
-from .serializers import ChangeAge_juju, UserSerializer, AdminSerializer, JujuSerializer
+from .serializers import UserSerializer, AdminSerializer
 from .models import *
 import json
 

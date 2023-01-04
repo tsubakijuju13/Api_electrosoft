@@ -7,7 +7,7 @@ class Usuarios(models.Model):
     apellido  = models.CharField(max_length=30, null=False)
     role = models.CharField(max_length=20, default='cliente', null=False)
     identificacion = models.CharField(max_length=20, unique=True, null=False)
-    direccion = models.TextField(max_length=20, null=False, blank=False)
+    direccion = models.TextField(max_length=100, null=False, blank=False)
     ciudad = models.CharField(max_length=20, default='Cali')
     barrio = models.CharField(max_length=20, null=False, blank=False)
     telefono = models.CharField(max_length=20, default='0000000000')

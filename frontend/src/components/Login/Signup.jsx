@@ -79,7 +79,7 @@ const FormularioRegistroAdmin = () => {
           response = await LoginAPI.signup(user);
 
           const data = await response.json();
-          //console.log(data);
+          console.log(data);
           if (response.ok) {
               notification('exito', "Se ha realizado el registro");
               //navigate("/");
