@@ -17,9 +17,6 @@ const url = "http://localhost:8000/usuarios/";
 class App extends Component {
 
 
-  
-
-
 
   state = {
     data: [],

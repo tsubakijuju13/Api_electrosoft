@@ -42,3 +42,22 @@ class Auth_UserSerializer(serializers.Serializer):
                                         username=self.context['email'],
                                         password=validated_data['password'])
 
+class State_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
+
+class User_Info_Serializer(serializers.Serializer):
+
+    id = serializers.CharField()
+    nombre = serializers.CharField()
+    apellido  = serializers.CharField()
+    role = serializers.CharField()
+    identificacion = serializers.CharField()
+    direccion =  serializers.CharField()
+    ciudad = serializers.CharField()
+    barrio =  serializers.CharField()
+    telefono = serializers.CharField()
+    email = serializers.CharField()
+    is_active = serializers.CharField()
+    

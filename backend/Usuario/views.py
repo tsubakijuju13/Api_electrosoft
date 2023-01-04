@@ -87,3 +87,20 @@ class UsuariosViewSet(ModelViewSet):
         user_obj = Usuarios.objects.get(pk=pk)
         contrato_srlzer = MyContractSerializer(user_obj.contrato_set.all(), many=True)
         return Response(contrato_srlzer.data)
+
+    @action(methods=['get'], detail=False, url_path='auth_info')
+    def get_user_state(self, request):
+        user_query = User.objects.all()
+        user_serializer = State_Serializer(user_query, many=True)
+        return Response(user_serializer.data)
+
+    @action(methods=['get'], detail=False, url_path='user_info')
+    def get_all_users_info(self, request):
+        raw_sql = '''
+            SELECT * FROM Usuarios JOIN auth_user ON Usuarios.user_id = auth_user.id
+        '''
+
+        users = Usuarios.objects.raw(raw_sql)
+        user_serializer = User_Info_Serializer(users, many=True)
+        
+        return Response(user_serializer.data)
