@@ -1,4 +1,3 @@
-from multiprocessing import context
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
@@ -112,5 +111,14 @@ class UsuariosViewSet(ModelViewSet):
         if pk==None:
             raise Response({'message': 'Se necesita una pk'})
         
-        user_query = User.objects.get(pk=pk)
+        state = State_Serializer(data=request.data)
+
+        user_query = User.objects.filter(pk=pk).update(is_active=False)
+
+        return Response({"memem": "jkjdskjdskj"})
+
+
+
+#borrar usuario de las dos tablas   
+#Endpoint para cambiar contraseña
         

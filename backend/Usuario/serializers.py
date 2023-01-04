@@ -61,3 +61,5 @@ class User_Info_Serializer(serializers.Serializer):
     email = serializers.CharField()
     is_active = serializers.CharField()
     
+class ActiveSerializer(serializers.Serializer):
+    is_active = serializers.BooleanField(allow_null=False)
