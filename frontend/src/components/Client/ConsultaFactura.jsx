@@ -25,6 +25,7 @@ function ConsultaFactura() {
   const urlFactura = "http://localhost:8000/factura/1/contrato/";
   const urlContrato = "http://localhost:8000/contrato/";
 
+
   const getData = () => {
     axios.get(urlFactura).then((response) => {
       console.log(response.data);
