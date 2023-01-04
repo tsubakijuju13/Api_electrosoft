@@ -1,6 +1,8 @@
+from django.shortcuts import get_object_or_404
+from django.contrib.auth import authenticate
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view
 from rest_framework import status
 from Contrato.serializers import ContratoSerializer, MyContractSerializer
 from .serializers import *
@@ -111,14 +113,92 @@ class UsuariosViewSet(ModelViewSet):
         if pk==None:
             raise Response({'message': 'Se necesita una pk'})
         
-        state = State_Serializer(data=request.data)
-
-        user_query = User.objects.filter(pk=pk).update(is_active=False)
-
-        return Response({"memem": "jkjdskjdskj"})
-
+        state = ActiveSerializer(data=request.data)
+        state.is_valid(raise_exception=True)
+        User.objects.filter(pk=pk).update(is_active=state.data['is_active'])
+        return Response({"message": "Se ha actualizado la contraseña"})
 
 
-#borrar usuario de las dos tablas   
+    @action(methods=['put'], detail=True, url_path='admin_change_password')
+    def change_pswrd_admin(self, request, pk=None):
+        """
+        Metodo para cambiar la contraseña del usuario, solo para el ADMINISTRADOR
+        body request: {"password": "new_password", "re_password": "new_password"}
+        url: http://localhost:8000/usuarios/<pk>/admin_change_password/
+
+        password ->id:3, Geider -> univalle
+        """
+        user_query = get_object_or_404(User, id=pk)
+        password_serializer = Auth_UserSerializer(data=request.data)
+        password_serializer.is_valid(raise_exception=True)
+
+        user_query.set_password(password_serializer.data['password'])
+        user_query.save()
+
+        return Response({"message": "Se ha cambiado la contraseña"})
+
+    @action(methods=['put'], detail=False, url_path='user_change_password')
+    def change_pswrd_user(self, request):
+        """
+        Metodo para combio de contraseña por parte del USUARIO
+        body request: {"username": "email",
+                    "auth_password": "old_password", 
+                    "new_password": "new_password",
+                    "re_password": "new_password"}
+        url: http://localhost:8000/usuarios/user_change_password/
+        """
+        #Comprobación de información request
+        user_serializer = NewPswrUserSerializer(data=request.data)
+        user_serializer.is_valid(raise_exception=True)
+
+        #Comprobación de autenticación
+        auth_user = authenticate(username=user_serializer.data['username'], 
+                                password=user_serializer.data['auth_password'])
+
+        #Credenciales incorrectas
+        if auth_user is None:
+            return Response({"message": "Credenciales incorrectas"}, status=status.HTTP_401_UNAUTHORIZED)
+
+        #Proceso de cambio de contraseña
+        auth_user.set_password(user_serializer.data['new_password'])
+        auth_user.save()
+
+        return Response({"message": "Se ha cambiado la contraseña"})
+
+
+## ******* Otro enfoque de las views ****** ##
+## *******  No Utilizar user_state   ****** ##
+@api_view()
+def user_state(request, pk):
+    sql = '''SELECT * FROM Usuarios JOIN auth_user ON Usuarios.user_id = auth_user.id WHERE Usuarios.user_id = {} '''
+    usuario = Usuarios.objects.raw(sql.format(pk))
+    user_serializer = User_Info_Serializer(usuario, many=True)
+
+    if user_serializer.data == []:
+        return Response({'message': 'el usuario no se encuentra registrado'}, status=status.HTTP_204_NO_CONTENT)
+
+    return Response(user_serializer.data)
+
+@api_view(['DELETE'])
+def delete_user(request, pk):
+    """
+    Metodo para la eliminación de un usuario a partir de su pk o id
+    url:: http://localhost:8000/delete_user/<pk>/
+    Errors:
+        * No existe la pk en la tabla -> status: 404 Not Found
+    """
+    if request.method == 'DELETE':
+        #Se realiza la busqueda de los usuarios
+        auth_user = get_object_or_404(User, id=pk)
+        usuario = get_object_or_404(Usuarios, user_id=pk)
+
+        #Se procede a realizar la eliminación
+        auth_user.delete()
+        usuario.delete()
+
+        return Response({'message': 'Se ha eliminado el usuario'})
+
+  
 #Endpoint para cambiar contraseña
+#minuto 55:27
         

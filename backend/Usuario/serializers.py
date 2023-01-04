@@ -63,3 +63,15 @@ class User_Info_Serializer(serializers.Serializer):
     
 class ActiveSerializer(serializers.Serializer):
     is_active = serializers.BooleanField(allow_null=False)
+
+
+class NewPswrUserSerializer(serializers.Serializer):
+    username = serializers.EmailField(allow_blank=False)
+    auth_password = serializers.CharField(allow_null=False, allow_blank=False)
+    new_password = serializers.CharField(allow_null=False, allow_blank=False)
+    re_password = serializers.CharField(allow_null=False, allow_blank=False)
+
+    def validate(self, data):
+        if data['new_password'] != data['re_password']:
+            raise serializers.ValidationError({"password": "Las contraseñas no coinciden"})
+        return data
