@@ -13,12 +13,13 @@ export const signup = async (user) => {
             direccion: user.direccion,
             identificacion: user.identificacion,
             telefono: user.telefono,
-            ciudad: "cali",
-            barrio: "puertas",
+            ciudad: user.ciudad,
+            barrio: user.barrio,
             email: user.email,
             password: user.password,
             re_password: user.re_password,
             role: "Cliente",
+            
         })
 
     })

@@ -7,12 +7,10 @@
   
   
   
-  
-  
   /**/
   
-  const url = "http://localhost:8000/usuarios/user_info/";
-  const urlPost = "http://localhost:8000/usuarios/";
+  const urlUsuarios = "http://localhost:8000/usuarios/user_info/";
+  const url = "http://localhost:8000/usuarios/";
   
   
   
@@ -21,6 +19,7 @@
   
   
     state = {
+      user_id: "",
       data: [],
       modalInsertar: false,
       modalEliminar: false,
@@ -41,7 +40,7 @@
   
     peticionGet = () => {
       axios
-        .get(url)
+        .get(urlUsuarios)
         .then((response) => {
           this.setState({ data: response.data });
         })
@@ -53,20 +52,20 @@
     peticionPost = async () => {
       delete this.state.form.id;
       await axios
-        .post(urlPost, this.state.form)
+        .post(url, this.state.form)
         .then((response) => {
           this.modalInsertar();
           this.peticionGet();
-          
         })
+       
         .catch((error) => {
-          console.log(error.message);
+          console.log(error.data);
         });
     };
   
     peticionPut = () => {
       axios
-        .put(url + this.state.form.id + "/", this.state.form)
+        .put(url + this.state.user_id + "/", this.state.form)
         .then((response) => {
           this.modalInsertar();
           this.peticionGet();
@@ -74,7 +73,8 @@
     };
   
     peticionDelete = () => {
-      axios.delete(url + this.state.form.id).then((response) => {
+      console.log(this.state)
+      axios.delete(url + this.state.user_id).then((response) => {
         this.setState({ modalEliminar: false });
         this.peticionGet();
       });
@@ -86,13 +86,20 @@
   
     seleccionarUsuario = (usuario) => {
       this.setState({
+        user_id: usuario.id,
         tipoModal: "actualizar",
-        form: {
-          id: usuario.user_id,
+        form: {  
+          nombre: usuario.nombre,
+          apellido: usuario.apellido,
           email: usuario.email,
-          password: usuario.password,
           role: usuario.role,
           active: usuario.active,
+          barrio: usuario.barrio,
+          ciudad: usuario.ciudad,
+          direccion: usuario.direccion,
+          identificacion: usuario.identificacion,
+          telefono: usuario.telefono,
+
         },
       });
     };
@@ -133,7 +140,7 @@
           <br />
           <br />
           <div className="table-responsive">
-            <table className="table table-striped table-hover table-bordered">
+            <table  className="table table-striped table-hover table-bordered">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -147,7 +154,7 @@
               <tbody>
                 {this.state.data.map((usuario) => {
                   return (
-                    <tr>
+                    <tr key={usuario.id}>
                       <td>{usuario.id}</td>
                       <td>{usuario.nombre}</td>
                       <td>{usuario.apellido}</td>
@@ -201,7 +208,7 @@
                 <input
                   className="form-control"
                   type="text"
-                  name="name"
+                  name="nombre"
                   id="nombre"
                   onChange={this.handleChange}
                   value={form ? form.nombre : ""}
@@ -212,10 +219,10 @@
                 <input
                   className="form-control"
                   type="text"
-                  name="last_name"
+                  name="apellido"
                   id="apellido"
                   onChange={this.handleChange}
-                  value={form ? form.last_name : ""}
+                  value={form ? form.apellido : ""}
                 />
                 <br />
   
@@ -223,10 +230,10 @@
                 <input
                   className="form-control"
                   type="text"
-                  name="document"
+                  name="identificacion"
                   id="documento"
                   onChange={this.handleChange}
-                  value={form ? form.document : ""}
+                  value={form ? form.identificacion : ""}
                 />
   
   
@@ -234,40 +241,40 @@
                 <input
                   className="form-control"
                   type="text"
-                  name="phone"
+                  name="telefono"
                   id="telefono"
                   onChange={this.handleChange}
-                  value={form ? form.phone : ""}
+                  value={form ? form.telefono : ""}
                 />
   
                 <label htmlFor="city">Ciudad</label>
                 <input
                   className="form-control"
                   type="text"
-                  name="city"
+                  name="ciudad"
                   id="city"
                   onChange={this.handleChange}
-                  value={form ? form.city : ""}
+                  value={form ? form.ciudad : ""}
                 />
   
                 <label htmlFor="barrio">Barrio</label>
                 <input
                   className="form-control"
                   type="text"
-                  name="neighborhood"
+                  name="barrio"
                   id="barrio"
                   onChange={this.handleChange}
-                  value={form ? form.neighborhood : ""}
+                  value={form ? form.barrio : ""}
                 />
   
                 <label htmlFor="direccion">Direccion</label>
                 <input
                   className="form-control"
                   type="text"
-                  name="address"
+                  name="direccion"
                   id="direccion"
                   onChange={this.handleChange}
-                  value={form ? form.address : ""}
+                  value={form ? form.direccion : ""}
                 />
   
   
