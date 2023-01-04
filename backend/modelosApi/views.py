@@ -1,4 +1,6 @@
+import re
 from django.http.response import JsonResponse
+from django.shortcuts import get_object_or_404
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -7,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.models import User as auth_user
 from rest_framework.decorators import action
-from .serializers import UserSerializer, AdminSerializer
+from .serializers import ChangeAge_juju, UserSerializer, AdminSerializer, JujuSerializer
 from .models import *
 import json
 
