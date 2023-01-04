@@ -13,33 +13,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Contrato',
-            fields=[
-                ('id_contrato', models.BigAutoField(primary_key=True, serialize=False)),
-                ('direccion', models.TextField(max_length=20)),
-                ('estrato', models.IntegerField()),
-                ('lat', models.FloatField()),
-                ('lon', models.FloatField()),
-                ('codigo_postal', models.TextField(max_length=12)),
-            ],
-            options={
-                'db_table': 'Contrato',
-            },
-        ),
-        migrations.CreateModel(
-            name='Juju',
-            fields=[
-                ('user_id', models.BigAutoField(primary_key=True, serialize=False)),
-                ('email', models.EmailField(max_length=50)),
-                ('password', models.CharField(max_length=20)),
-                ('role', models.CharField(max_length=20)),
-                ('active', models.BooleanField()),
-            ],
-            options={
-                'db_table': 'juju',
-            },
-        ),
-        migrations.CreateModel(
             name='User',
             fields=[
                 ('user_id', models.BigAutoField(primary_key=True, serialize=False)),
@@ -50,78 +23,6 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'Users',
-            },
-        ),
-        migrations.CreateModel(
-            name='Operador',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nombre', models.CharField(max_length=20)),
-                ('apellido', models.CharField(max_length=20)),
-                ('documento', models.TextField(max_length=20, unique=True)),
-                ('tipo_documento', models.CharField(max_length=10)),
-                ('direccion', models.TextField(max_length=20)),
-                ('telefono', models.CharField(default='0000000', max_length=15)),
-                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modelosApi.user')),
-            ],
-            options={
-                'db_table': 'Operador',
-            },
-        ),
-        migrations.CreateModel(
-            name='Gerente',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nombre', models.CharField(max_length=20)),
-                ('apellido', models.CharField(max_length=20)),
-                ('documento', models.TextField(max_length=20, unique=True)),
-                ('tipo_documento', models.CharField(max_length=10)),
-                ('direccion', models.TextField(max_length=20)),
-                ('telefono', models.CharField(default='0000000', max_length=15)),
-                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modelosApi.user')),
-            ],
-            options={
-                'db_table': 'Gerente',
-            },
-        ),
-        migrations.CreateModel(
-            name='Factura',
-            fields=[
-                ('id_factura', models.BigAutoField(primary_key=True, serialize=False)),
-                ('lectura', models.TextField(max_length=20)),
-                ('ciclo', models.TextField(max_length=10)),
-                ('valor', models.FloatField(default=0.0)),
-                ('valor_recargo', models.FloatField(default=0.0)),
-                ('fecha_expedición', models.DateField()),
-                ('fecha_vencimiento', models.DateField()),
-                ('estado', models.CharField(default='En mora', max_length=10)),
-                ('fecha_pago', models.DateField(max_length=20)),
-                ('medio_recaudo', models.CharField(max_length=20)),
-                ('id_contrato', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modelosApi.contrato')),
-            ],
-            options={
-                'db_table': 'Factura',
-            },
-        ),
-        migrations.AddField(
-            model_name='contrato',
-            name='user_id',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modelosApi.user'),
-        ),
-        migrations.CreateModel(
-            name='Cliente',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nombre', models.CharField(max_length=20)),
-                ('apellido', models.CharField(max_length=20)),
-                ('documento', models.TextField(max_length=20, unique=True)),
-                ('tipo_documento', models.CharField(max_length=10)),
-                ('direccion', models.TextField(max_length=20)),
-                ('telefono', models.CharField(default='0000000', max_length=15)),
-                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modelosApi.user')),
-            ],
-            options={
-                'db_table': 'Cliente',
             },
         ),
         migrations.CreateModel(

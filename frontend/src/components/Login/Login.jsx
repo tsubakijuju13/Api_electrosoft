@@ -20,6 +20,7 @@ const Login = () => {
 
     const handleInputChange = (event) => {
         setUser({ ...user, [event.target.name]: event.target.value });
+
     };
 
     const handleSubmit = async (event) => {
@@ -62,7 +63,7 @@ const Login = () => {
                     <h1 class="form-title" >¡Bienvenido!</h1>
 
                     <Form.Group controlId="formBasicEmail">
-                        <Form.Label className="form-text">Correo</Form.Label>
+                        <Form.Label className="correo form-text">Correo</Form.Label>
                         <Form.Control type="text" size="lg" placeholder="Ingresar Correo" name="username" value={user.username} onChange={handleInputChange} className="position-relative" />
                     </Form.Group>
 

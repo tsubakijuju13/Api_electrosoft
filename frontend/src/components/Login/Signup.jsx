@@ -18,7 +18,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 //Styles
 import ".//../../assets/styles/login.css";
 
-const url_api = "http://localhost:8000/api/usuarios/";
+const url_api = "http://localhost:8000/usuarios/";
 
 function onChange(value) {
   console.log("Captcha value:", value);
@@ -260,13 +260,16 @@ const FormularioRegistroAdmin = () => {
                   feedback="Debe aceptar antes de enviar."
                   feedbackType="invalid"
                 />
-                <div className="mt-2 mb-2"> 
-                <ReCAPTCHA 
+                
+                <div> 
+                <ReCAPTCHA className="captcha"
                 sitekey="6LfD06ojAAAAAAV0fCbRNC_EYfBhE8_hFzHGsfuL" 
                 onChange={onChange} />
                 </div>
 
+                <center> 
                 <Button type="submit">Registrar</Button>
+                </center>
               </Form.Group>
             </Col>
           </Row>

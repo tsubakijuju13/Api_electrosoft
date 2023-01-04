@@ -10,27 +10,27 @@ const Header = () => {
     return (
         <Navbar collapseOnSelect expand="lg" variant="dark" className="page-header">
           <Container>
-            <Navbar.Brand href="#home">HEADER</Navbar.Brand>
+            <Navbar.Brand href="/client/quienes-somos">Quienes somos?</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link href="#features">No se</Nav.Link>
-                <Nav.Link href="#pricing">Que cosa</Nav.Link>
-                <NavDropdown title="Poner aqui" id="collasible-nav-dropdown">
+                {/*<Nav.Link href="#features">No se</Nav.Link>*/}
+               {/* <Nav.Link href="#pricing">Que cosa</Nav.Link>*/}
+                {/*<NavDropdown title="Poner aqui" id="collasible-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
                     Another action
-                  </NavDropdown.Item>
+                    </NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.4">
                     Separated link
                   </NavDropdown.Item>
-                </NavDropdown>
+    </NavDropdown>*/}
               </Nav>
               <Nav>
                 <Nav.Link href="#deets">Modo dark</Nav.Link>
-                <Nav.Link eventKey={2} href="#memes">
+                <Nav.Link eventKey={2} href="/">
                   Salir
                 </Nav.Link>
               </Nav>

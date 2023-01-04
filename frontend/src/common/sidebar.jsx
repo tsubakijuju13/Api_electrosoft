@@ -16,24 +16,24 @@ const Sidebar = () => {
             <div className="sidebar-items">
                 <ul className="list-unstyled ps-0">
                     <li className="mb-3">
-                        <Link tag="a" className="" to="/">
+                        <Link tag="a" className="" to="/client">
                             <i className="fa fa-dashboard"></i> Resumen
                         </Link>
                     </li>
                     <li className="mb-3">
-                        <Link tag="a" className="" to="/blank-page">
+                        <Link tag="a" className="" to="/client/consulta-tu-factura">
                             <i className="fa fa-file-o"></i> Consulta tu factura
                         </Link>
                     </li>
 
                     <li className="mb-3">
-                        <Link tag="a" className="" to="/blank-page">
+                        <Link tag="a" className="" to="/client/pagar-factura">
                             <i className="fa fa-file-o"></i> Paga tu factura
                         </Link>
                     </li>
 
                     <li className="mb-3">
-                        <Link tag="a" className="" to="/typography">
+                        <Link tag="a" className="" to="/client/historial-de-pagos">
                             <i className="fa fa-text-width" aria-hidden="true"></i> Historial de pagos
                         </Link>
                     </li>
@@ -60,14 +60,21 @@ const Sidebar = () => {
             </div>
 
             <div className="dropdown fixed-bottom-dropdown">
+                {/*cerrar cession*/}
+                
             <ul className="list-unstyled ps-0">
-                <li className="mb-3">
-                    <Link tag="a" className="" to="/typography">
+            <li className="mb-3">
+                    <Link tag="a" className="" to="/">
+                        <i className="fa fa-text-width" aria-hidden="true"></i> Cerrar sesión
+                    </Link>
+                </li>
+                <li>
+                    <Link tag="a" className="" to="/client/ayuda">
                         <i className="fa fa-text-width" aria-hidden="true"></i> Ayuda
                     </Link>
                 </li>
-                <li className="mb-3">
-                    <Link tag="a" className="" to="/typography">
+                <li>
+                    <Link tag="a" className="" to="/client/contactanos">
                         <i className="fa fa-text-width" aria-hidden="true"></i> Contactanos
                     </Link>
                 </li>

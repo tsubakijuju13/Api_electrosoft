@@ -28,13 +28,13 @@ const AdminView = () => {
                 <Col className="col">
                     <Manager />
                 </Col>
-                <Col className="col">
+                 <Col className="col">
                     <Row className="row">
                         <Col className="col">
                         <Operator />
                         </Col>
                     </Row>
-                </Col>
+                    </Col>
             </Row>
 
             <Row className="row publicity">

@@ -1,8 +1,8 @@
 from rest_framework.routers import DefaultRouter, SimpleRouter
 from .views import JujuView, UserModelViewSet, AdminView
 
-router = SimpleRouter()
-router.register(r'usuarios', UserModelViewSet)
+router = DefaultRouter()
+router.register(r'usuarios', UserModelViewSet, basename="usuarios_basename")
 router.register(r'administrador', AdminView)
 router.register(r'juju', JujuView)
 
