@@ -19,6 +19,7 @@
     state = {
       busqueda: "",
       user_id: "",
+      constData: [],
       data: [],
       modalInsertar: false,
       modalEliminar: false,
@@ -42,6 +43,7 @@
         .get(urlUsuarios)
         .then((response) => {
           this.setState({ data: response.data });
+          this.setState({ constData: response.data});
         })
         .catch((error) => {
           console.log(error.message);
@@ -115,10 +117,9 @@
     };
 
     filtrarElementos = () => {
-      var search = this.state.data.filter(item=>{
-        if (item.email.toString().includes(this.state.busqueda) ||
-            item.nombre.toString().includes(this.state.busqueda)
-        
+      var search = this.state.constData.filter(item=>{
+        if (item.email.toString().toLowerCase().includes(this.state.busqueda.toLowerCase()) ||
+            item.nombre.toString().toLowerCase().includes(this.state.busqueda.toLowerCase())
         )
         
         {
