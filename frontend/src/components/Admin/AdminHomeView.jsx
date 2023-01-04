@@ -27,7 +27,6 @@ const AdminView = () => {
       <div>
         <h1></h1> <ResponsiveTable />
       </div>
-     
     </div>
   );
 };

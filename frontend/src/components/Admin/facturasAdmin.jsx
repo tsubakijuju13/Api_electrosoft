@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import Card from "react-bootstrap/Card";
 //import "./responsive.css";
 
 const urlfactura = "http://localhost:8000/factura/";
@@ -88,9 +89,7 @@ class App extends Component {
       form: {
         no_factura: factura.no_factura,
         fecha_expedicion: factura.fecha_expedicion,
-        fecha_vencimiento: factura.fecha_vencimiento,
-        valor_total: factura.valor_total,
-        valor_recargo: factura.valor_recargo,
+        fecha_vencimiento: factura.fecha_vencimiento,      
         estado: factura.estado,
         codigo_contrato: factura.codigo_contrato,
         alumbrado_valor_total: factura.alumbrado_valor_total,
@@ -116,11 +115,13 @@ class App extends Component {
   };
 
   filtrarElementos = () => {
-    console.log(this.state.constData)
+    console.log(this.state.constData);
     var search = this.state.constData.filter((item) => {
-        
       if (
-        item.no_factura.toString().toLowerCase().includes(this.state.busqueda.toLowerCase())
+        item.no_factura
+          .toString()
+          .toLowerCase()
+          .includes(this.state.busqueda.toLowerCase())
       ) {
         return item;
       }
@@ -144,6 +145,9 @@ class App extends Component {
     const { form } = this.state;
     return (
       <div className="App">
+        <Card className="title">
+          <Card.Body>ADMINISTRACION DE FACTURAS</Card.Body>
+        </Card>
         <br />
         <br />
         <br />
