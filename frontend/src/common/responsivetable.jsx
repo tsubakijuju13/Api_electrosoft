@@ -9,6 +9,7 @@
 
   const urlUsuarios = "http://localhost:8000/usuarios/user_info/";
   const url = "http://localhost:8000/usuarios/";
+  const url_delete = "http://localhost:8000/delete_user/";
   
   
   
@@ -75,9 +76,11 @@
   
     peticionDelete = () => {
       console.log(this.state)
-      axios.delete(url + this.state.user_id).then((response) => {
+      axios.delete(url_delete + this.state.user_id + "/").then((response) => {
         this.setState({ modalEliminar: false });
         this.peticionGet();
+      }).catch((error) => {
+        console.log(error.response.data)
       });
     };
   
