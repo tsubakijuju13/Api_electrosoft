@@ -17,11 +17,6 @@ class AdminSerializer(serializers.ModelSerializer):
         model = Admin
         fields = '__all__'
 
-class JujuSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Juju
-        fields = '__all__'
-
 
 class ChangeAge_juju(serializers.Serializer):
     age = serializers.CharField(max_length=20)
