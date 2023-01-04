@@ -19,6 +19,9 @@ import QuienesSomos from './components/Empresa/QuienesSomos';
 import Ayuda from './components/Empresa/Ayuda';
 import Contacto from './components/Empresa/Contactanos';
 
+//Admin
+import FacturasAdmin from './components/Admin/facturasAdmin';
+
 
 
 import Signup from './components/Login/Signup';
@@ -31,6 +34,7 @@ import Geomap from './components/Openstreetmap/Geomap';
 
 //Layout
 import HomepageLayout from './hocs/HomepageLayout';
+import HomepageLayoutAdmin from './hocs/adminBar';
 
 //<Route element={<HomepageLayout />}>
 function App() {
@@ -64,8 +68,9 @@ function App() {
         <Route path="/operator" element={<HomepageLayout><Operator/></HomepageLayout>} />
 
         {/*rutas administrador */}
-        <Route path="/admin" element={ <HomepageLayout> <AdminHomeView/> </HomepageLayout>} />
+        <Route path="/admin/" element={ <HomepageLayoutAdmin>  <AdminHomeView/> </HomepageLayoutAdmin>  } />
         <Route path="/adminref" element={<HomepageLayout><FormularioRegistroAdmin /></HomepageLayout>} />
+        <Route path="/admin/facturas" element={<HomepageLayoutAdmin><FacturasAdmin /></HomepageLayoutAdmin>} />
 
         {/*rutas manager */}
         <Route path="/manager" element={<HomepageLayout><Manager/></HomepageLayout>} />

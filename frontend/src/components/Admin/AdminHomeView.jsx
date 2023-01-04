@@ -17,16 +17,17 @@ const AdminView = () => {
   return (
     <div>
       <Card className="title">
-        <Card.Body>¡Bienvenido/a de vuelta, Geider!</Card.Body>
+        <Card.Body>ADMINISTRACION DE USUARIOS</Card.Body>
       </Card>
       <Row className="row">
         <Col className="col" xs={5}></Col>
       </Row>
 
+      {/* TABLA ADMINISTRACION USUARIO */}
       <div>
-        <h1>Registro de Pagos</h1> <ResponsiveTable />
+        <h1></h1> <ResponsiveTable />
       </div>
-      <Row className="row publicity">ESPACIO PARA PUBLICIDAD</Row>
+     
     </div>
   );
 };

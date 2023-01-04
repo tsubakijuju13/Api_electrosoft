@@ -79,22 +79,7 @@ function ConsultaFactura() {
       ),
       text: "Imprimir Factura",
     },
-    {
-      formatter: (cellContent, row) => (
-        <a href="/client/pagar-factura">
-        <button
-          className="btn btn-primary"
-        >
-          Pagar factura
-      </button>
-        </a>
-      ),
-
-      text: "Pagar tu Factura",
-    }
-
   ];
-
 
   return (
     /* drop-down*/
@@ -106,7 +91,7 @@ function ConsultaFactura() {
       <label className="label">Seleccione el contrato</label>
       {/* Drop-down linlado a la base de datos */}
 
-      <Dropdown className="mb-3">
+      {/* <Dropdown className="mb-3">
         <Dropdown.Toggle variant="success" id="dropdown-basic">
           CONTRATOS
         </Dropdown.Toggle>
@@ -121,9 +106,8 @@ function ConsultaFactura() {
             contrato 2
           </Dropdown.Item>
         </Dropdown.Menu>
-      </Dropdown>
+      </Dropdown> */}
 
-      {/* <Select options={columns} labelField="name" valueField="id" onChange={(values) => this.setValues(values)} /> */}
 
       <div className="tabla">
         <BootstrapTable
