@@ -1,8 +1,9 @@
   import React, { Component } from "react";
+  import * as ReactDOM from 'react-dom';
   import axios from "axios";
   import "bootstrap/dist/css/bootstrap.min.css";
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-  import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+  import { faEdit, faTrashAlt, faSliders } from "@fortawesome/free-solid-svg-icons";
   import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
   import { faSearch } from "@fortawesome/free-solid-svg-icons";
   import "./responsive.css";
@@ -71,6 +72,9 @@
         .then((response) => {
           this.modalInsertar();
           this.peticionGet();
+        })
+        .catch((error) => {
+          console.log(error.response.data)
         });
     };
   
@@ -81,6 +85,26 @@
         this.peticionGet();
       }).catch((error) => {
         console.log(error.response.data)
+      });
+    };
+
+    changeActive = () => {
+      var pelos_peludos = {}
+
+      if (this.state.form.is_active == 'True') {
+        pelos_peludos.is_active = 'False'
+      }else {
+        pelos_peludos.is_active = 'True'
+      }
+
+      axios
+      .put(url + this.state.user_id + "/change_state/", pelos_peludos)
+      .then((data) => {
+        console.warn(data.data);
+        this.peticionGet();
+      })
+      .catch((error) => {
+        console.warn(error.response.data);
       });
     };
   
@@ -97,7 +121,7 @@
           apellido: usuario.apellido,
           email: usuario.email,
           role: usuario.role,
-          active: usuario.active,
+          is_active: usuario.is_active,
           barrio: usuario.barrio,
           ciudad: usuario.ciudad,
           direccion: usuario.direccion,
@@ -211,7 +235,7 @@
                       <td>{usuario.apellido}</td>
                       <td>{usuario.email}</td>
                       <td>{usuario.role}</td>
-                      <td>{usuario.active ? "True" : "false"}</td>
+                      <td>{usuario.is_active == 'True'? "True" : "False"}</td>
                       <td>
                         <button
                           className="btn btn-primary"
@@ -231,6 +255,18 @@
                           }}
                         >
                           <FontAwesomeIcon icon={faTrashAlt} />
+                        </button>
+                        {"   "}
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => {
+                            ReactDOM.flushSync(() => {
+                              this.seleccionarUsuario(usuario);
+                            });
+                            this.changeActive()
+                          }}
+                        >
+                          <FontAwesomeIcon icon={faSliders} />
                         </button>
                       </td>
                     </tr>
