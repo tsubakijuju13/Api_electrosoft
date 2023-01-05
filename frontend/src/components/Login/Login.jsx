@@ -39,7 +39,23 @@ const Login = () => {
                 console.log(decodedToken);
                 console.log("Login successful");
                 setUser(initialState);
-                navigate("/client");
+                switch (decodedToken.role) {
+                    case "administrador": navigate("/admin");
+                         console.log("Login admin successful");
+
+                        break;
+                    case "cliente": navigate("/client");
+                         console.log("Login client successful");
+
+                        break;
+                    case "operador": navigate("/operator");
+                    console.log("Login operador successful");
+
+                        break;
+                    case "gerente": navigate("/manager");
+                    console.log("Login gerente successful");
+
+                }
             } else {
                 console.log("Login failed");
             }
@@ -55,7 +71,7 @@ const Login = () => {
             <div className="electrosoft-title">
                 <span>ELECTROSOFT</span>
             </div>
-            
+
 
             <div className="form-container">
                 <Form id="sign-in-form" className="form" onSubmit={handleSubmit}>

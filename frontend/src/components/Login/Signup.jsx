@@ -33,13 +33,13 @@ const FormularioRegistroAdmin = () => {
     direccion: "",
     identificacion: "",
     telefono: "",
-    ciudad: "",
-    barrio: "",
+    ciudad: "Cali",
+    barrio: "Valle del lili",
     email: "",
     password: "",
     re_password: "",
-    //role: "cliente",
-    //active: true,
+    role: "cliente",
+    active: true,
   };
   const [user, setUser] = useState(initialState);
 
