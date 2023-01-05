@@ -14,6 +14,9 @@ import RecoveryPassword from './components/Login/RecoveryPass';
 
 import Manager from './components/Admin/Manager';
 import Operator from './components/Admin/Operator';
+import FormularioRegistroPagosOperador from './components/Admin/FormularioRegistroPagosOperador';
+import FormularioCrearFacturaOperador from './components/Admin/FormularioCrearFacturaOperador';
+import FormularioCrearContratoOperador from './components/Admin/FormularioCrearContratoOperador';
 import AdminHomeView from './components/Admin/AdminHomeView';
 import Geomap from './components/Openstreetmap/Geomap';
 
@@ -35,6 +38,9 @@ function App() {
         <Route path="/client" element={<HomepageLayout><Client /></HomepageLayout>} />
         <Route path="/recover" element={<RecoveryPassword />} />
         <Route path="/operator" element={<HomepageLayout><Operator/></HomepageLayout>} />
+        <Route path="/crearpagos" element={<HomepageLayout><FormularioRegistroPagosOperador/></HomepageLayout>} />
+        <Route path="/crearfacturas" element={<HomepageLayout><FormularioCrearFacturaOperador/></HomepageLayout>} />
+        <Route path="/crearcontratos" element={<HomepageLayout><FormularioCrearContratoOperador/></HomepageLayout>} />
         <Route path="/adminView" element={ <HomepageLayout> <AdminHomeView/> </HomepageLayout>} />
         <Route path="/reportes"  element={<HomepageLayout><Geomap lat={3.3718534} lon={-76.5495206}/></HomepageLayout>} />
 
