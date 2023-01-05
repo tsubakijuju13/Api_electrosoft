@@ -62,7 +62,7 @@
         })
        
         .catch((error) => {
-          console.log(error.data);
+          console.log(error.response.data);
         });
     };
   
@@ -258,7 +258,7 @@
                         </button>
                         {"   "}
                         <button
-                          className="btn btn-primary"
+                          className="btn btn-secondary"
                           onClick={() => {
                             ReactDOM.flushSync(() => {
                               this.seleccionarUsuario(usuario);
