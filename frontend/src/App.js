@@ -35,8 +35,12 @@ import Reporte_usuarios from './components/Manager/info_usuarios';
 
 import Signup from './components/Login/Signup';
 import RecoveryPassword from './components/Login/RecoveryPass';
-import Manager from './components/Manager/Manager';
-import Operator from './components/Operador/Operator';
+
+import Manager from './components/Admin/Manager';
+import Operator from './components/Admin/Operator';
+import FormularioRegistroPagosOperador from './components/Admin/FormularioRegistroPagosOperador';
+import FormularioCrearFacturaOperador from './components/Admin/FormularioCrearFacturaOperador';
+import FormularioCrearContratoOperador from './components/Admin/FormularioCrearContratoOperador';
 import AdminHomeView from './components/Admin/AdminHomeView';
 import Geomap from './components/Openstreetmap/Geomap';
 
@@ -59,6 +63,8 @@ function App() {
                
         {/*rutas inicio */}
         <Route path="/" element={<Login />} />
+        
+        <Route path="/reportes"  element={<HomepageLayout><Geomap lat={3.3718534} lon={-76.5495206}/></HomepageLayout>} />
 
         {/*rutas registro */}
         <Route path="/signup" element={<Signup />} />
@@ -80,7 +86,9 @@ function App() {
         {/*rutas operador */}
         <Route path="/operator" element={<HomepageLayoutOperator><Operator/></HomepageLayoutOperator>} />
         <Route path="/operator/pagos_bancarios" element={<HomepageLayoutOperator><Pagos_bancarios/></HomepageLayoutOperator>} />
-
+        <Route path="/crearpagos" element={<HomepageLayout><FormularioRegistroPagosOperador/></HomepageLayout>} />
+        <Route path="/crearfacturas" element={<HomepageLayout><FormularioCrearFacturaOperador/></HomepageLayout>} />
+        <Route path="/crearcontratos" element={<HomepageLayout><FormularioCrearContratoOperador/></HomepageLayout>} />
 
 
 
