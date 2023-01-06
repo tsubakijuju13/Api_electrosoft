@@ -8,6 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 //Components
 import Login from './components/Login/Login';
 import FormularioRegistroAdmin from './components/Admin/FormularioRegistroAdmin';
+import Validator from './components/Login/validator';
+
 // Clientes
 import Client from './components/Client/Client';
 import ConsultaFactura from './components/Client/ConsultaFactura';
@@ -35,6 +37,7 @@ import Geomap from './components/Openstreetmap/Geomap';
 //Layout
 import HomepageLayout from './hocs/HomepageLayout';
 import HomepageLayoutAdmin from './hocs/adminBar';
+
 
 //<Route element={<HomepageLayout />}>
 function App() {
@@ -68,9 +71,18 @@ function App() {
         <Route path="/operator" element={<HomepageLayout><Operator/></HomepageLayout>} />
 
         {/*rutas administrador */}
-        <Route path="/admin/" element={ <HomepageLayoutAdmin>  <AdminHomeView/> </HomepageLayoutAdmin>  } />
-        <Route path="/adminref" element={<HomepageLayout><FormularioRegistroAdmin /></HomepageLayout>} />
+        
+         
+         <Route 
+          path="admin" 
+          element= { <Validator><HomepageLayoutAdmin><AdminHomeView/></HomepageLayoutAdmin></Validator> } /> 
+        
+         <Route path="/adminref" element={<HomepageLayout><FormularioRegistroAdmin /></HomepageLayout>} />
         <Route path="/admin/facturas" element={<HomepageLayoutAdmin><FacturasAdmin /></HomepageLayoutAdmin>} />
+        
+            
+          
+        
 
         {/*rutas manager */}
         <Route path="/manager" element={<HomepageLayout><Manager/></HomepageLayout>} />

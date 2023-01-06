@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate, Outlet } from "react-router-dom";
 import { isExpired, decodeToken } from "react-jwt";
 
 import * as LoginAPI from "./LoginAPI";
@@ -13,6 +13,8 @@ import Form from 'react-bootstrap/Form';
 //<img className="logo" src={require("./../../imagenes/logo1.png")} alt="logo" />
 
 const Login = () => {
+
+    
     const navigate = useNavigate();
 
     const initialState = { username: "chostoy@gmail.com", password: "123" };
@@ -40,7 +42,8 @@ const Login = () => {
                 console.log("Login successful");
                 setUser(initialState);
                 switch (decodedToken.role) {
-                    case "administrador": navigate("/admin");
+                    case "administrador": navigate("/admin", {state: { acc_token: token, decodedToken: decodedToken}}
+                    );
                          console.log("Login admin successful");
 
                         break;
@@ -63,7 +66,9 @@ const Login = () => {
         } catch (error) {
             console.log(error);
         }
+
     };
+
 
     return (
 
