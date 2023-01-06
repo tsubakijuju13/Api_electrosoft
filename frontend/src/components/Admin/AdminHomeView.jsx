@@ -8,8 +8,7 @@ import Col from "react-bootstrap/esm/Col";
 import ".//../../assets/styles/content.css";
 
 //Components
-import Manager from "./Manager";
-import Operator from "./Operator";
+
 
 import ResponsiveTable from "../../common/responsivetable";
 

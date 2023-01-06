@@ -21,15 +21,22 @@ import QuienesSomos from './components/Empresa/QuienesSomos';
 import Ayuda from './components/Empresa/Ayuda';
 import Contacto from './components/Empresa/Contactanos';
 
+//Operador
+import Pagos_bancarios from './components/Operador/Pagos_bancarios';
+
 //Admin
 import FacturasAdmin from './components/Admin/facturasAdmin';
+
+//Manager
+import Reporte_consumo from './components/Manager/reporte_consumo';
+import Reporte_usuarios from './components/Manager/info_usuarios';
 
 
 
 import Signup from './components/Login/Signup';
 import RecoveryPassword from './components/Login/RecoveryPass';
-import Manager from './components/Admin/Manager';
-import Operator from './components/Admin/Operator';
+import Manager from './components/Manager/Manager';
+import Operator from './components/Operador/Operator';
 import AdminHomeView from './components/Admin/AdminHomeView';
 import Geomap from './components/Openstreetmap/Geomap';
 
@@ -37,6 +44,9 @@ import Geomap from './components/Openstreetmap/Geomap';
 //Layout
 import HomepageLayout from './hocs/HomepageLayout';
 import HomepageLayoutAdmin from './hocs/adminBar';
+import HomepageLayoutOperator from './hocs/operatorBar';
+import HomepageLayoutManager from './hocs/managerBar';
+
 
 
 //<Route element={<HomepageLayout />}>
@@ -68,11 +78,14 @@ function App() {
         
 
         {/*rutas operador */}
-        <Route path="/operator" element={<HomepageLayout><Operator/></HomepageLayout>} />
+        <Route path="/operator" element={<HomepageLayoutOperator><Operator/></HomepageLayoutOperator>} />
+        <Route path="/operator/pagos_bancarios" element={<HomepageLayoutOperator><Pagos_bancarios/></HomepageLayoutOperator>} />
+
+
+
 
         {/*rutas administrador */}
-        
-         
+
          <Route 
           path="admin" 
           element= { <Validator><HomepageLayoutAdmin><AdminHomeView/></HomepageLayoutAdmin></Validator> } /> 
@@ -85,10 +98,14 @@ function App() {
         
 
         {/*rutas manager */}
-        <Route path="/manager" element={<HomepageLayout><Manager/></HomepageLayout>} />
-        
-        <Route path="/reportes"  element={<HomepageLayout><Geomap lat={3.3718534} lon={-76.5495206}/></HomepageLayout>} />
+        <Route path="/manager" element={<HomepageLayoutManager><Manager/></HomepageLayoutManager>} />
+        <Route path="manager/geografia_cliente"  element={<HomepageLayoutManager><Geomap lat={3.3718534} lon={-76.5495206}/></HomepageLayoutManager>} />
+        <Route path="/manager/reporte_consumo" element={<HomepageLayoutManager><Reporte_consumo/></HomepageLayoutManager>} />
+        <Route path="/manager/reporte_usuarios" element={<HomepageLayoutManager><Reporte_usuarios/></HomepageLayoutManager>} />
 
+        
+        
+        
       </Routes>
 
     </BrowserRouter>
