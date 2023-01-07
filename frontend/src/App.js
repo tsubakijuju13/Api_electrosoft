@@ -22,25 +22,24 @@ import Ayuda from './components/Empresa/Ayuda';
 import Contacto from './components/Empresa/Contactanos';
 
 //Operador
+import Operator from './components/Operador/Operator';
 import Pagos_bancarios from './components/Operador/Pagos_bancarios';
+import FormularioRegistroPagosOperador from './components/Operador/FormularioRegistroPagosOperador';
+import FormularioCrearFacturaOperador from './components/Operador/FormularioCrearFacturaOperador';
+import FormularioCrearContratoOperador from './components/Operador/FormularioCrearContratoOperador';
 
 //Admin
 import FacturasAdmin from './components/Admin/facturasAdmin';
 
 //Manager
+import Manager from './components/Manager/Manager';
 import Reporte_consumo from './components/Manager/reporte_consumo';
 import Reporte_usuarios from './components/Manager/info_usuarios';
-
-
 
 import Signup from './components/Login/Signup';
 import RecoveryPassword from './components/Login/RecoveryPass';
 
-import Manager from './components/Admin/Manager';
-import Operator from './components/Admin/Operator';
-import FormularioRegistroPagosOperador from './components/Admin/FormularioRegistroPagosOperador';
-import FormularioCrearFacturaOperador from './components/Admin/FormularioCrearFacturaOperador';
-import FormularioCrearContratoOperador from './components/Admin/FormularioCrearContratoOperador';
+
 import AdminHomeView from './components/Admin/AdminHomeView';
 import Geomap from './components/Openstreetmap/Geomap';
 
@@ -86,9 +85,9 @@ function App() {
         {/*rutas operador */}
         <Route path="/operator" element={<HomepageLayoutOperator><Operator/></HomepageLayoutOperator>} />
         <Route path="/operator/pagos_bancarios" element={<HomepageLayoutOperator><Pagos_bancarios/></HomepageLayoutOperator>} />
-        <Route path="/crearpagos" element={<HomepageLayout><FormularioRegistroPagosOperador/></HomepageLayout>} />
-        <Route path="/crearfacturas" element={<HomepageLayout><FormularioCrearFacturaOperador/></HomepageLayout>} />
-        <Route path="/crearcontratos" element={<HomepageLayout><FormularioCrearContratoOperador/></HomepageLayout>} />
+        <Route path="/crearpagos" element={<HomepageLayoutOperator><FormularioRegistroPagosOperador/></HomepageLayoutOperator>} />
+        <Route path="/crearfacturas" element={<HomepageLayoutOperator><FormularioCrearFacturaOperador/></HomepageLayoutOperator>} />
+        <Route path="/crearcontratos" element={<HomepageLayoutOperator><FormularioCrearContratoOperador/></HomepageLayoutOperator>} />
 
 
 

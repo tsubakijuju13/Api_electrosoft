@@ -17,14 +17,19 @@ const SideBarOperador = () => {
       <div className="sidebar-items">
         <ul className="list-unstyled ps-0">
           <li className="mb-3">
-            <Link tag="a" className="" to="/operator">
-              <i className="fa fa-dashboard"></i> Pagos
+            <Link tag="a" className="" to="/crearfacturas">
+              <i className="fa fa-dashboard"></i> Registrar Facturas
             </Link>
           </li>
           <li className="mb-3">
-            <Link tag="a" className="" to="/operator/pagos_bancarios">
-              <i className="fa fa-file-o"></i> Pagos Bancarios
+            <Link tag="a" className="" to="/crearcontratos">
+              <i className="fa fa-file-o"></i> Registrar Contratos
             </Link>
+            <li className="mb-3">
+            <Link tag="a" className="" to="/crearpagos">
+              <i className="fa fa-dashboard"></i> Registrar Pagos
+            </Link>
+          </li>
           </li>
 
           
