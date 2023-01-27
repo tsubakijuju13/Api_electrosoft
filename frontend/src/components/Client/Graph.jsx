@@ -41,7 +41,7 @@ function Graph() {
 
 
     return (
-        <div style={{width: '500px', height: '500px', marginLeft: '20px' }}   > {/*tamaño de la grafica*/}
+        <div style={{width: '500px', height: '300px', marginLeft: '20px' }}   > {/*tamaño de la grafica*/}
             <Line data={data} options={options}></Line> {/*llamada a la grafica*/}
         </div>
     );

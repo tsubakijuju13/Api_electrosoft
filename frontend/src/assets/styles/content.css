@@ -28,12 +28,17 @@
     font-family: var(--default-font-bold);
 }
 
-.publicity {
-    bottom: 0;
-    margin-bottom: 0px;
-    width: 100%;
+ .publicity {
     text-align: center;
+    width: 100%;
+    height: 50%;
 }
+
+.baner {
+    width: 85%;
+    height: 250px;
+}
+
 
 .green-text {
     color: var(--green-normal);
