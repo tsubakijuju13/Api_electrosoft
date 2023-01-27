@@ -1,4 +1,5 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import Sidebar from ".//../common/sidebar";
 import Header from ".//../common/header";
 
@@ -10,7 +11,8 @@ class HomepageLayout extends React.Component {
                 <div className="main" id="page-content-wrapper">
                     <Header/>
                     <div div className="container-fluid content-container">
-                        <main>{this.props.children}</main>
+                        {/* <main>{this.props.children}</main> */}
+                        <Outlet />
                     </div>
                 </div>
             </div>

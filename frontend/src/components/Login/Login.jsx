@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate, Navigate, Outlet } from "react-router-dom";
-import { isExpired, decodeToken } from "react-jwt";
+import { useNavigate } from "react-router-dom";
+import { decodeToken } from "react-jwt";
 
 import * as LoginAPI from "./LoginAPI";
 
@@ -17,7 +17,7 @@ const Login = () => {
     
     const navigate = useNavigate();
 
-    const initialState = { username: "chostoy@gmail.com", password: "123" };
+    const initialState = { username: "chosto@gmail.com", password: "123" };
     const [user, setUser] = useState(initialState);
 
     const handleInputChange = (event) => {
@@ -32,34 +32,42 @@ const Login = () => {
             response = await LoginAPI.getToken(user);
 
             const data = await response.json();
-            console.log(data);
 
             if (response.ok) {
                 let token = data.access;
                 const decodedToken = decodeToken(token);
-                //const tokenisexpired = isExpired(token);
-                console.log(decodedToken);
-                console.log("Login successful");
-                setUser(initialState);
-                switch (decodedToken.role) {
-                    case "administrador": navigate("/admin", {state: { acc_token: token, decodedToken: decodedToken}}
-                    );
-                         console.log("Login admin successful");
-
-                        break;
-                    case "cliente": navigate("/client");
-                         console.log("Login client successful");
-
-                        break;
-                    case "operador": navigate("/operator");
-                    console.log("Login operador successful");
-
-                        break;
-                    case "gerente": navigate("/manager");
-                    console.log("Login gerente successful");
-
+                const userInfo = {
+                    user_id: decodedToken.user_id,
+                    name: decodedToken.name,
+                    email: decodedToken.username,
+                    role: decodedToken.role
                 }
-            } else {
+                
+                setUser(initialState);
+
+                switch (userInfo.role) {
+                    case "administrador": 
+                        navigate("/admin", {state: userInfo});
+                        break;
+
+                    case "cliente": 
+                        navigate("/cliente/home", {state: userInfo});
+                        break;
+
+                    case "operador": 
+                        navigate("/operator", {state: userInfo});
+                        break;
+
+                    case "gerente": 
+                        navigate("/manager", {state: userInfo});
+                        break;
+                    
+                    default:
+                        navigate("/")
+                        break;
+                }
+            } 
+            else {
                 console.log("Login failed");
             }
 
@@ -81,7 +89,7 @@ const Login = () => {
             <div className="form-container">
                 <Form id="sign-in-form" className="form" onSubmit={handleSubmit}>
 
-                    <h1 class="form-title" >¡Bienvenido!</h1>
+                    <h1 className="form-title" >¡Bienvenido!</h1>
 
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label className="correo form-text">Correo</Form.Label>
@@ -93,11 +101,11 @@ const Login = () => {
                         <Form.Control type="password" size="lg" placeholder="Ingrese Su Contraseña" name="password" value={user.password} onChange={handleInputChange} />
                     </Form.Group>
 
-                    <div class="d-grid" className="text-container">
+                    <div className="d-grid text-container">
                         <Button variant="outline-warning" type="submit" className="submit-button">Ingresar</Button>
                     </div>
 
-                    <div class="my-3" className="text-container">
+                    <div className="my-3 text-container">
                         <span className="subtext">¿Olvidaste tu contraseña? <a className="subtext link" href="/recover">Recuperar Contraseña</a></span>
                         <span className="subtext">¿Aún no tienes cuenta? <a className="subtext link" href="/signup">Registrate</a></span>
 

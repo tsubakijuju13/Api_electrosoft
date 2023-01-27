@@ -45,6 +45,7 @@ import Geomap from './components/Openstreetmap/Geomap';
 
 
 //Layout
+import ClientLayout from './hocs/ClientLayout';
 import HomepageLayout from './hocs/HomepageLayout';
 import HomepageLayoutAdmin from './hocs/adminBar';
 import HomepageLayoutOperator from './hocs/operatorBar';
@@ -58,28 +59,28 @@ function App() {
     <BrowserRouter>
 
       <Routes>
-
                
         {/*rutas inicio */}
         <Route path="/" element={<Login />} />
-        
-        <Route path="/reportes"  element={<HomepageLayout><Geomap lat={3.3718534} lon={-76.5495206}/></HomepageLayout>} />
 
         {/*rutas registro */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/recover" element={<RecoveryPassword />} />
 
         {/*rutas cliente */}
-        <Route path="/client" element={<HomepageLayout><Client /></HomepageLayout>} />
-        <Route path="/client/consulta-tu-factura" element={<HomepageLayout><ConsultaFactura /></HomepageLayout>} />
-        <Route path="/client/pagar-factura" element={<HomepageLayout><PagaFactura /></HomepageLayout>} />
-        <Route path="/client/historial-de-pagos" element={<HomepageLayout><HistorialPagos /></HomepageLayout>} />
-        
+        <Route path="cliente" element={<ClientLayout />}>
+          <Route index element={<Client />} />
+          <Route path="home" element={<Client />} />
+          <Route path="consulta-tu-factura" element={<ConsultaFactura />} />
+          <Route path="pagar-factura" element={<PagaFactura />} />
+          <Route path="historial-de-pagos" element={<HistorialPagos />} />
+          <Route path="quienes-somos" element={<QuienesSomos />} />
+          <Route path="contactanos" element={<Contacto />} />
+          <Route path="ayuda" element={<Ayuda />} />
+        </Route>
 
         {/*rutas empresa */}
-        <Route path="/client/quienes-somos" element={<HomepageLayout><QuienesSomos /></HomepageLayout>} />
-        <Route path="/client/contactanos" element={<HomepageLayout><Contacto /></HomepageLayout>} />
-        <Route path="/client/ayuda" element={<HomepageLayout><Ayuda /></HomepageLayout>} />
+        
         
 
         {/*rutas operador */}
@@ -111,7 +112,7 @@ function App() {
         <Route path="/manager/reporte_usuarios" element={<HomepageLayoutManager><Reporte_usuarios/></HomepageLayoutManager>} />
 
         
-        
+        <Route path="/reportes"  element={<HomepageLayout><Geomap lat={3.3718534} lon={-76.5495206}/></HomepageLayout>} />
         
       </Routes>
 
