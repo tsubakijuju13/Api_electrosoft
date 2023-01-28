@@ -70,12 +70,6 @@ function ConsultaFactura() {
       sort: true,
     },
     {
-      dataField: "valor_recargo",
-      text: "Valor recargo",
-      sort: true,
-    },
-
-    {
       formatter: (cellContent, row) => (
         <button
           className="btn btn-primary"
@@ -88,7 +82,7 @@ function ConsultaFactura() {
     },
     {
       formatter: (cellContent, row) => (
-        <a href="/client/pagar-factura">
+        <a href="/cliente/pagar-factura">
           <button
             className="btn btn-primary"
           >

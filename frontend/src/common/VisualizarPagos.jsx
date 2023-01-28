@@ -51,7 +51,6 @@ class App extends Component {
               <th>Numero de Factura</th>
               <th>Fecha de Pago</th>
               <th>Valor</th>
-              <th>Referencia de pago</th>
             </tr>
           </thead>
           <tbody>
