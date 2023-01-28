@@ -4,7 +4,7 @@ from django.utils import timezone
 class Contrato(models.Model):
     id_contrato = models.BigAutoField(primary_key=True)
     id_cliente = models.ForeignKey('Usuario.Usuarios', on_delete=models.CASCADE)
-    fecha_vinculación = models.DateField(default=timezone.now())
+    fecha_vinculación = models.DateField(auto_now=True)
     estado_contrato = models.CharField(max_length=20, default='activo', blank=False)
     ciudad = models.CharField(max_length=30, default='Cali', blank=False)
     direccion = models.CharField(max_length=40, null=False, blank=False)

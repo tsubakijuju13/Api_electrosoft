@@ -19,11 +19,9 @@ class Factura(models.Model):
     #energia_lectura_anterior = models.CharField(max_length=20, blank=False, default='0.0')
 
     energia_valor_total = models.FloatField(validators=[valid_cost_service], null=True, blank=False)
-    lys_valor_total = models.FloatField(validators=[valid_cost_service], null=True, blank=False)
     alumbrado_valor_total = models.FloatField(validators=[valid_cost_service], null=True, blank=False)
 
     valor_total = models.FloatField(null=True, blank=False)
-    valor_recargo = models.FloatField(null=True, blank=False)
 
     class Meta:
         db_table = "Factura"

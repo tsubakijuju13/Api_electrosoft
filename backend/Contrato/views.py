@@ -17,8 +17,6 @@ class ContratoView(ModelViewSet):
         contrato_query = Contrato.objects.filter(estado_contrato=pk).all()
         contrato_srlzer = self.get_serializer(contrato_query, many=True)
 
-        print(contrato_srlzer.data)
-
         return Response(contrato_srlzer.data)
 
     

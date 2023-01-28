@@ -44,6 +44,27 @@ localhost:8000/usuarios/   GET
 }
 
 ------- ## -------- ## ------- ## -------- ##------- ## 
+Creación Contratos:
+http://localhost:8000/contrato/   POST
+
+{
+  "estado_contrato": "activo",  ->Default: Opcional(opcional)
+  "ciudad": "Medellin",         ->Default: Cali(opcional)
+  "direccion": "Cra 2 #5av",
+  "estrato": "3",
+  "uso": "Domestico",           ->Default: Domestico(opcional)
+  "id_cliente": 3
+}
+
+{
+  "id_cliente": "1",
+  "ciudad": "Pradera",
+  "direccion": "Calle 6ta",
+  "estrato": "-6",
+  "estado_contrato": "suspendido"
+}
+
+------- ## -------- ## ------- ## -------- ##------- ## 
 {
     "fecha_vencimiento": "2023-1-1",
     "estado": "En Mora",
