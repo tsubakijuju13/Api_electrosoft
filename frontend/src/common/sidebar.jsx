@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, Navigate } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ state }) => {
+
     return (
         <div className="sidenav" id="sidebar-wrapper">
             <div>
@@ -16,68 +17,39 @@ const Sidebar = () => {
             <div className="sidebar-items">
                 <ul className="list-unstyled ps-0">
                     <li className="mb-3">
-                        <Link tag="a" className="" to="/client">
+                        <Link to="/cliente/home" state={state}>
                             <i className="fa fa-dashboard"></i> Resumen
                         </Link>
                     </li>
                     <li className="mb-3">
-                        <Link tag="a" className="" to="/client/consulta-tu-factura">
+                        <Link to="/cliente/consulta-tu-factura" state={state}>
                             <i className="fa fa-file-o"></i> Consulta tu factura
                         </Link>
                     </li>
 
                     <li className="mb-3">
-                        <Link tag="a" className="" to="/client/pagar-factura">
+                        <Link to="/cliente/pagar-factura" state={state}>
                             <i className="fa fa-file-o"></i> Paga tu factura
                         </Link>
                     </li>
 
                     <li className="mb-3">
-                        <Link tag="a" className="" to="/client/historial-de-pagos">
+                        <Link to="/cliente/historial-de-pagos" state={state}>
                             <i className="fa fa-text-width" aria-hidden="true"></i> Historial de pagos
                         </Link>
                     </li>
-
-
-
-                    {/* collapsable list item example */}
-                    {/* <li className="mb-1">
-                        <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                        Opportunity
-                        </button>
-                        <div className="collapse" id="dashboard-collapse">
-                        <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                            <li><a href="#" className="rounded">Overview</a></li>
-                            <li><a href="#" className="rounded">Weekly</a></li>
-                            <li><a href="#" className="rounded">Monthly</a></li>
-                            <li><a href="#" className="rounded">Annually</a></li>
-                        </ul>
-                        </div>
-                    </li> 
-                    <li className="border-top my-3"></li> */}
 
                 </ul>
             </div>
 
             <div className="dropdown fixed-bottom-dropdown">
-                {/*cerrar cession*/}
-                
-            <ul className="list-unstyled ps-0">
-            <li className="mb-3">
-                    <Link tag="a" className="" to="/">
-                        <i className="fa fa-text-width" aria-hidden="true"></i> Cerrar sesión
-                    </Link>
-                </li>
-                <li>
-                    <Link tag="a" className="" to="/client/ayuda">
-                        <i className="fa fa-text-width" aria-hidden="true"></i> Ayuda
-                    </Link>
-                </li>
-                <li>
-                    <Link tag="a" className="" to="/client/contactanos">
-                        <i className="fa fa-text-width" aria-hidden="true"></i> Contactanos
-                    </Link>
-                </li>
+
+                <ul className="list-unstyled ps-0">
+                    <li>
+                        <Link to="/cliente/ayuda" state={state}>
+                            <i className="fa fa-text-width" aria-hidden="true"></i> Ayuda
+                        </Link>
+                    </li>
                 </ul>
             </div>
         </div>

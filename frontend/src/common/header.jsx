@@ -4,13 +4,17 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Link } from "react-router-dom";
+
 
 //https://react-bootstrap.github.io/components/navbar/
-const Header = () => {
+const Header = ({state}) => {
     return (
         <Navbar collapseOnSelect expand="lg" variant="dark" className="page-header">
           <Container>
-            <Navbar.Brand href="/client/quienes-somos">Quienes somos?</Navbar.Brand>
+            <Navbar.Brand>
+              <Link to="/cliente/quienes-somos" state={state}> Quienes Somos </Link>
+             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="me-auto">
