@@ -96,9 +96,7 @@ class App extends Component {
         consumo_energia: factura.consumo_energia,
         energia_lectura_actual: factura.energia_lectura_actual,
         energia_valor_total: factura.energia_valor_total,
-        valor_recargo: factura.valor_recargo,
         valor_total: factura.valor_total,
-        lys_valor_total: factura.lys_valor_total,
       },
     });
   };
@@ -188,7 +186,6 @@ class App extends Component {
                 <th>Fecha de expedición</th>
                 <th>Fecha de vencimiento </th>
                 <th>Valor</th>
-                <th>Valor con recargo</th>
                 <th>Estado</th>
               </tr>
             </thead>
@@ -200,7 +197,6 @@ class App extends Component {
                     <td>{factura.fecha_expedicion}</td>
                     <td>{factura.fecha_vencimiento}</td>
                     <td>{factura.valor_total}</td>
-                    <td>{factura.valor_recargo}</td>
                     <td>{factura.estado}</td>
                     <td>
                       <button
@@ -330,26 +326,6 @@ class App extends Component {
                 id="energia_total"
                 onChange={this.handleChange}
                 value={form ? form.energia_valor_total : ""}
-              />
-              <br />
-              <label htmlFor="lys">Lys valor total</label>
-              <input
-                className="form-control"
-                type="text"
-                name="lys_valor_total"
-                id="lys"
-                onChange={this.handleChange}
-                value={form ? form.lys_valor_total : ""}
-              />
-              <br />
-              <label htmlFor="valor_recargo">Valor recargo</label>
-              <input
-                className="form-control"
-                type="text"
-                name="valor_recargo"
-                id="valor_recargo"
-                onChange={this.handleChange}
-                value={form ? form.valor_recargo : ""}
               />
               <br />
               <label htmlFor="valor_total">Valor total</label>
