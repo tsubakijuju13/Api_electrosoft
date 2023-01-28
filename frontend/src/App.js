@@ -19,7 +19,6 @@ import HistorialPagos from './components/Client/HistorialPagos';
 //Empresa
 import QuienesSomos from './components/Empresa/QuienesSomos';
 import Ayuda from './components/Empresa/Ayuda';
-import Contacto from './components/Empresa/Contactanos';
 
 //Operador
 import Operator from './components/Operador/Operator';
@@ -75,7 +74,6 @@ function App() {
           <Route path="pagar-factura" element={<PagaFactura />} />
           <Route path="historial-de-pagos" element={<HistorialPagos />} />
           <Route path="quienes-somos" element={<QuienesSomos />} />
-          <Route path="contactanos" element={<Contacto />} />
           <Route path="ayuda" element={<Ayuda />} />
         </Route>
 

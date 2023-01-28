@@ -50,11 +50,6 @@ const Sidebar = ({ state }) => {
                             <i className="fa fa-text-width" aria-hidden="true"></i> Ayuda
                         </Link>
                     </li>
-                    <li>
-                        <Link to="/cliente/contactanos" state={state}>
-                            <i className="fa fa-text-width" aria-hidden="true"></i> Contactanos
-                        </Link>
-                    </li>
                 </ul>
             </div>
         </div>

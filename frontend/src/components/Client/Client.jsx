@@ -3,6 +3,7 @@ import React from "react";
 import Card from 'react-bootstrap/Card';
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
+import { Link } from "react-router-dom";
 
 //Styles
 import ".//../../assets/styles/content.css";
@@ -11,6 +12,13 @@ import ".//../../assets/styles/content.css";
 import Graph from "./Graph";
 import { useLocation } from "react-router";
 
+// imagenes
+import banner1 from "../../assets/images/banner1.png";
+import banner2 from "../../assets/images/banner2.png"; 
+
+// radom de iamgenes
+const imagenes = [banner1, banner2];
+const random = Math.floor(Math.random() * imagenes.length);
 
 //const Nombre = () => { return (Login.user.username) };
 
@@ -57,9 +65,12 @@ const Client = () => {
                 </Col>
             </Row>
 
-            <Row className="row publicity">
-                ESPACIO PARA PUBLICIDAD
-            </Row>
+           <div className="publicity">
+        {/* poner imagenes de publicidad */}
+        <Link to="/client/nuevo_ontrato" target="_blank">
+          <img src={imagenes[random]} alt="publicidad" className="baner" />
+        </Link>
+      </div>
         </div>
     );
 };

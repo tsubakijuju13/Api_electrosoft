@@ -17,7 +17,7 @@ const ClientLayout = () => {
             <div className="d-flex" id="wrapper">
                 <Sidebar state={state} />
                 <div className="main" id="page-content-wrapper">
-                    <Header/>
+                    <Header state={state}/>
                     <div div className="container-fluid content-container">
                         {/* <main>{this.props.children}</main> */}
                         <Outlet />
