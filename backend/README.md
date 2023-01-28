@@ -1,6 +1,49 @@
 ```
 # Datos para pruebas en la API
 
+localhost:8000/usuarios/   GET
+
+{
+    "username": "geider",
+    "email": "geideran808087@gmail.com",
+    "password": "mami2000",
+    "re_password": "mami2000",
+    "role": "Cliente",
+    "active": true,
+    "nombre": "Geider",
+    "apellido": "Montano",
+    "identificacion": "69696969",
+    "direccion": "Cra 89 av. 6ta",
+    "barrio": "Braga"
+}
+{
+    "username": "santiago",
+    "email": "santirami@gmail.com",
+    "password": "soyfandelaslolis",
+    "re_password": "soyfandelaslolis",
+    "role": "Cliente",
+    "active": true,
+    "nombre": "Santiago",
+    "apellido": "Ramirez",
+    "identificacion": "10252556545",
+    "direccion": "Calle 6 #6b",
+    "barrio": "Llanos del norte"
+}
+{
+    "username": "juanes",
+    "email": "chostoy@gmail.com",
+    "password": "remasterChostoy",
+    "re_password": "remasterChostoy",
+    "role": "Cliente",
+    "active": true,
+    "nombre": "Juan",
+    "apellido": "Betancourt",
+    "identificacion": "25230147",
+    "direccion": "Cra 43 #90-100",
+    "barrio": "Sindicio"
+}
+
+------- ## -------- ## ------- ## -------- ##------- ## 
 {
     "fecha_vencimiento": "2023-1-1",
     "estado": "En Mora",
@@ -51,32 +94,6 @@ http://localhost:8000/factura/
     "valor_recargo": 312314535
 }
 PARA FILTRAR POR CONTRATO http://localhost:8000/factura/1/contrato/
-{
-    "username": "geider",
-    "email": "geideran808087@gmail.com",
-    "password": "mami2000",
-    "role": "Cliente",
-    "active": true,
-    "name": "Geider",
-    "last_name": "Montano"
-}
-{
-    "username": "santiago",
-    "email": "santirami@gmail.com",
-    "password": "soyfandelaslolis",
-    "role": "Cliente",
-    "active": true,
-    "name": "Santiago",
-    "last_name": "Ramirez"
-}
-{
-    "username": "juanes",
-    "email": "chostoy@gmail.com",
-    "password": "123",
-    "role": "Cliente",
-    "active": true,
-    "name": "Juan",
-    "last_name": "Betancourt"
-}
+
 
 ```
