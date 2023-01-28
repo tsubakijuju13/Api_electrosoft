@@ -1,5 +1,4 @@
 import {Navigate, Outlet } from "react-router-dom";
-import login from "./Login";
 import { useLocation } from 'react-router-dom';
 
 
@@ -13,9 +12,7 @@ export const Validator = ({ isAllowed, children, redirecTo= "/" }) => {
     else
     
     {
-    const { acc_token, decodedToken} = state; // Read values passed on state
-    return children? children : <Outlet />;
- 
+        return children? children : <Outlet />;
     }
 
 };

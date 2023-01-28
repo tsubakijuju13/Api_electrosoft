@@ -17,7 +17,17 @@ class ContratoView(ModelViewSet):
         contrato_query = Contrato.objects.filter(estado_contrato=pk).all()
         contrato_srlzer = self.get_serializer(contrato_query, many=True)
 
-        print(contrato_srlzer.data)
+        return Response(contrato_srlzer.data)
+
+
+    @action(methods=['get'], detail=True, url_path="cliente")
+    def filter_client_contratos(self, request, pk=None):
+        """
+        Función para realizar busqueda de los contratos por estados
+        url:: http://localhost:8000/contrato/<id_cliente>/cliente/
+        """
+        contrato_query = Contrato.objects.filter(id_cliente=pk).all()
+        contrato_srlzer = self.get_serializer(contrato_query, many=True)
 
         return Response(contrato_srlzer.data)
 
