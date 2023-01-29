@@ -42,5 +42,11 @@
 
 .green-text {
     color: var(--green-normal);
-    font-weight: 900;
+    font-family: var(--default-font-bold);
 }
+
+.red-text {
+    color: var(--red-normal);
+    font-family: var(--default-font-bold);
+}
+
