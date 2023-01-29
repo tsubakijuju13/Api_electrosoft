@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, useLocation, Navigate } from "react-router-dom";
 
+
+
 const Sidebar = ({ state }) => {
 
     return (
@@ -28,8 +30,8 @@ const Sidebar = ({ state }) => {
                     </li>
 
                     <li className="mb-3">
-                        <Link to="/cliente/pagar-factura" state={state}>
-                            <i className="fa fa-file-o"></i> Paga tu factura
+                        <Link to="/cliente/tarjeta-cliente" state={state}>
+                            <i className="fa fa-file-o"></i> Ingresa tu tarjeta
                         </Link>
                     </li>
 

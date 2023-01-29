@@ -13,7 +13,7 @@ import Validator from './components/Login/validator';
 // Clientes
 import Client from './components/Client/Client';
 import ConsultaFactura from './components/Client/ConsultaFactura';
-import PagaFactura from './components/Client/PagaFactura';
+import Tarjeta from './components/Client/Tarjeta';
 import HistorialPagos from './components/Client/HistorialPagos';
 
 //Empresa
@@ -71,7 +71,7 @@ function App() {
           <Route index element={<Client />} />
           <Route path="home" element={<Client />} />
           <Route path="consulta-tu-factura" element={<ConsultaFactura />} />
-          <Route path="pagar-factura" element={<PagaFactura />} />
+          <Route path="tarjeta-cliente" element={<Tarjeta />} />
           <Route path="historial-de-pagos" element={<HistorialPagos />} />
           <Route path="quienes-somos" element={<QuienesSomos />} />
           <Route path="ayuda" element={<Ayuda />} />
