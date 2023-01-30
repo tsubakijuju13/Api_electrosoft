@@ -5,19 +5,21 @@ import { useLocation } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 import {Factura} from "./Factura.jsx";
+import "./Factura.css";
 
 const Imprimir = () => {
     const componentRef = useRef();
 
     let state = useLocation().state
+    // console.log(state)
     state['ref'] = componentRef
 
     return (
-      <div>
+      <div className='pdf'>
         <Factura state={state}/>
         <center>
         <ReactToPrint
-          trigger={() => <Button variant='success'>Print this out!</Button>}
+          trigger={() => <Button variant='success'>imprimir</Button>}
           content={() => componentRef.current}
         />
         </center>

@@ -101,7 +101,7 @@ const FormularioRegistroAdmin = () => {
       <Form id="register-form" onSubmit={handleSubmit}>
         <img
           className="logo"
-          src={require("./../../imagenes/logo1.png")}
+          src={require("../../assets/images/logo1.png")}
           alt="logo"
         />
         <h1 className="form-title">Registro de usuario</h1>

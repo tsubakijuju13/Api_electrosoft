@@ -17,7 +17,7 @@ const Login = () => {
     
     const navigate = useNavigate();
 
-    const initialState = { username: "geideran808087@gmail.com", password: "1234" };
+    const initialState = { username: "cliente@gmail.com", password: "1234" };
     const [user, setUser] = useState(initialState);
 
     const handleInputChange = (event) => {
