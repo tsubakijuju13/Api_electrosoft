@@ -46,12 +46,17 @@ class ContratoView(ModelViewSet):
 
         contrato_srlzer = ContratoLocalizacion(contratos, many=True)
 
-        #PEticion a openmap:
-        r = requests.get('https://nominatim.openstreetmap.org/?street=Carrera+99&city=polvorines&country=Cali&state=Valle+del+Cauca&country=Colombia&format=json')
-        dat = r.json()
-        print(dat)
+        #Peticion a openmap:
+        url_reuest = 'https://nominatim.openstreetmap.org/?street={}&country={}&state={}&country=Colombia&format=json'
+        obj_coordenadas = []
 
-        return Response(contrato_srlzer.data)
+        for i in contrato_srlzer.data:
+            r = requests.get(url_reuest.format(i["direccion"], i["ciudad"], i["departamento"]))
+            r_data = r.json()
+            obj_coordenadas.append({'lat': r_data[0]["lat"], 'lon': r_data[0]["lon"]})
+
+
+        return Response(obj_coordenadas)
 
     
 '''
