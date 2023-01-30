@@ -21,6 +21,7 @@ class Migration(migrations.Migration):
                 ('numero_tarjeta', models.CharField(max_length=13, unique=True, validators=[Tarjetas.models.validar_numero_tarjeta])),
                 ('fecha_vencimiento', models.DateField()),
                 ('cvv', models.CharField(max_length=3)),
+                ('tipo', models.CharField(max_length=10)),
                 ('password', models.CharField(max_length=20)),
                 ('banco', models.CharField(max_length=14)),
             ],

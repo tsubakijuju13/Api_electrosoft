@@ -8,5 +8,6 @@ urlpatterns = [
     path('api/', include('modelosApi.routers')),
     path('', include('Usuario.router')),
     path('', include('Contrato.routers')),
-    path('', include('Factura.routers'))
+    path('', include('Factura.routers')),
+    path('', include('Tarjetas.router'))
 ]

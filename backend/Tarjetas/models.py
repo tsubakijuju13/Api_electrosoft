@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 from Usuario.models import Usuarios
 from django.core.exceptions import ValidationError
@@ -11,8 +12,7 @@ class Tarjetas(models.Model):
     numero_tarjeta = models.CharField(max_length=13, validators=[validar_numero_tarjeta], null=False, unique=True)
     fecha_vencimiento = models.DateField(null=False, blank=False)
     cvv = models.CharField(null=False, blank=False, max_length=3)
-    password = models.CharField(max_length=20, null=False, blank=False)
-    banco = models.CharField(max_length=14, blank=False, null=False)
+    tipo = models.CharField(null=False, blank=False, max_length=10)
 
     class Meta:
         db_table = "Tarjetas"
