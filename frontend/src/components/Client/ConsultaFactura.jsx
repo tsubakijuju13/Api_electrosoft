@@ -98,12 +98,21 @@ function ConsultaFactura() {
     },
     {
       formatter: (cellContent, row) => (
-        <a href="/cliente/pagar-factura">
-          <button className="btn btn-primary">Pagar factura</button>
-        </a>
+        //boton que imprime el usuario y el id de la factura en consola
+        <button
+          className="btn btn-primary"
+          onClick={() => {
+            console.log(
+              "Usuario: " +
+                state.user_id +
+                " Factura: " +
+                row.no_factura
+            );
+          }}
+        >
+          Pagar Factura
+        </button>
       ),
-
-      text: "Pagar tu Factura",
     },
   ];
 

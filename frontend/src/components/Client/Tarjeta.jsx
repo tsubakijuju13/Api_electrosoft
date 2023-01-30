@@ -35,12 +35,12 @@ const PaymentForm = () => {
   // code peticion post a la api
   const submitPayment = () => {
     const data = {
-      name: state.name,
-      number: state.number,
-      expiry: state.expiry,
-      cvc: state.cvc,
+      identificacion: state.identificacion,
+      numero_tarjeta: state.number,
+      fecha_vencimiento: state.expiry,
+      cvv: state.cvc,
     };
-    axios.post("http://localhost:8000/usuarios/", data).then((res) => {
+    axios.post("localhost:8000/tarjetas/registrar_tarjetas/", data).then((res) => {
         console.log(res);
         alert(JSON.stringify(res.data));
       })
@@ -77,13 +77,14 @@ const PaymentForm = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="Nombre">Nombre</label>
+              <label htmlFor="identificacion">identificacion</label>
               <input
                 type="text"
                 className="form-control"
-                name="name"
+                pattern="[0-9]+"
+                name="identificacion"
                 maxLength="30"
-                placeholder="Nombre"
+                placeholder="Identificacion"
                 onChange={handleChange}
                 onFocus={handleFocus}
               />

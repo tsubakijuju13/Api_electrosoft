@@ -20,7 +20,7 @@ def email_sender():
         "electuv@gmail.com",
         ['juanes@gmail.com']
     )
-    mensage.attach_file('/home/tsubaki_0x01/Pictures/electrosoft/backend/Factura/recibo.pdf')
+    # mensage.attach_file('/home/tsubaki_0x01/Pictures/electrosoft/backend/Factura/recibo.pdf')
     mensage.send()
 
 
