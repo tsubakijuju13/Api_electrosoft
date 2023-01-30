@@ -51,17 +51,41 @@ http://localhost:8000/contrato/   POST
   "estado_contrato": "activo",  ->Default: Opcional(opcional)
   "ciudad": "Medellin",         ->Default: Cali(opcional)
   "direccion": "Cra 2 #5av",
+  "departamento": "Antioquia"
   "estrato": "3",
   "uso": "Domestico",           ->Default: Domestico(opcional)
   "id_cliente": 3
 }
 
 {
-  "id_cliente": "1",
-  "ciudad": "Pradera",
-  "direccion": "Calle 6ta",
-  "estrato": "-6",
-  "estado_contrato": "suspendido"
+    "fecha_vinculación": "2023-01-29",    ->Default(Se rellena automaticamente)
+    "estado_contrato": "activo",          ->Default(Se rellena automaticamente)
+    "ciudad": "Pradera",
+    "departamento": "Valle del cauca",
+    "direccion": "Cra. 10",
+    "estrato": "3",
+    "uso": "Domestico",                   ->Default(Se rellena automaticamente)
+    "id_cliente": 1
+},
+{
+    "fecha_vinculación": "2023-01-29",      ->Default(Se rellena automaticamente)
+    "estado_contrato": "activo",            ->Default(Se rellena automaticamente)
+    "ciudad": "Manizales",
+    "departamento": "Caldas",
+    "direccion": "Calle 8",
+    "estrato": "1",
+    "uso": "Domestico",                     ->Default(Se rellena automaticamente)
+    "id_cliente": 2
+},
+{
+    "fecha_vinculación": "2023-01-29",      ->Default(Se rellena automaticamente)
+    "estado_contrato": "activo",            ->Default(Se rellena automaticamente)
+    "ciudad": "Medellín",
+    "departamento": "Antioquia",
+    "direccion": "Av. 80",
+    "estrato": "3",
+    "uso": "Domestico",                     ->Default(Se rellena automaticamente)
+    "id_cliente": 3
 }
 
 ------- ## -------- ## ------- ## -------- ##------- ## 
