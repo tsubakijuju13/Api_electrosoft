@@ -125,28 +125,26 @@ export const Factura = ({ state }) => {
             <table class="table table-bordered table-condensed">
               <thead>
                 <tr>
-                  <th class="text-center colfix">Concepto</th>
                   <th class="text-center colfix">Alumbrado</th>
-                  <th class="text-center colfix">Consumo </th>
+                  <th class="text-center colfix">Estado </th>
                   <th class="text-center colfix">Energia Total</th>
-                  <th class="text-center colfix">Lectura Actual</th>
+                  <th class="text-center colfix">Total a Pagar</th>
                 </tr>
               </thead>
 
               <tbody>
                 <tr>
-                  <td class="text-center colfix">Servicio Energetico</td>
                   <td class="text-center colfix">
                     ${factura.alumbrado_valor_total}
                   </td>
                   <td class="text-center colfix">
-                    Kwh {factura.consumo_energia}
+                     {factura.estado}
                   </td>
                   <td class="text-center colfix">
                     ${factura.energia_valor_total}
                   </td>
                   <td class="text-center colfix">
-                    Kwh {factura.energia_lectura_actual}
+                    ${factura.valor_total}
                   </td>
                 </tr>
               </tbody>
