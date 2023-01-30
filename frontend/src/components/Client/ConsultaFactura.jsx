@@ -1,38 +1,61 @@
 import React, { Component } from "react";
 import { useState } from "react";
-import { useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
 
 import BootstrapTable from "react-bootstrap-table-next";
 import "bootstrap/dist/css/bootstrap.min.css";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import Card from "react-bootstrap/Card";
-import Dropdown from "react-bootstrap/Dropdown";
 
-//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import axios from "axios";
+import "./Factura.jsx";
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
+
 
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
-import { useEffect } from "react";
 //import { icon } from "@fortawesome/fontawesome-svg-core";
 
 function ConsultaFactura() {
 
+  const navigate = useNavigate();
+
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
   const urlFactura = "http://localhost:8000/factura/";
   const urlContrato = "http://localhost:8000/contrato/";
 
-  const [ state, setState ] = useState(useLocation().state)
+  const [state, setState] = useState(useLocation().state);
 
-  console.log(state)
-
+  console.log(state);
 
   const buscarContrato = (contrato) => {
-    for(var i = 0; i < state.contratos.length; i++){
-      if(state.contratos[i].id_contrato == contrato){
-        return i
+    for (var i = 0; i < state.contratos.length; i++) {
+      if (state.contratos[i].id_contrato == contrato) {
+        return i;
       }
     }
-  }
+  };
+
+  const buscarFactura = (factura) => {
+    for (
+      var i = 0;
+      i < state.facturas[buscarContrato(state.contratoSeleccionado)].length;
+      i++
+    ) {
+      if (
+        state.facturas[buscarContrato(state.contratoSeleccionado)][i]
+          .no_factura == factura
+      ) {
+        return i;
+      }
+    }
+  };
 
   const columns = [
     {
@@ -58,11 +81,17 @@ function ConsultaFactura() {
     },
     {
       formatter: (cellContent, row) => (
+        //boton que imprime la factura en consola
         <button
           className="btn btn-primary"
-          onClick={() => alert("imprimiendo factura")}
+          onClick={() => {
+            const verFactura =
+              state.facturas[buscarContrato(state.contratoSeleccionado)][buscarFactura(row.no_factura)];
+            // console.log(state.facturas[buscarContrato(state.contratoSeleccionado)][buscarFactura(row.no_factura)]);
+            navigate("/imprimir", {state: {verFactura}})
+          }}
         >
-          Imprimir
+          Imprimir Factura
         </button>
       ),
       text: "Imprimir Factura",
@@ -70,25 +99,19 @@ function ConsultaFactura() {
     {
       formatter: (cellContent, row) => (
         <a href="/cliente/pagar-factura">
-          <button
-            className="btn btn-primary"
-          >
-            Pagar factura
-          </button>
+          <button className="btn btn-primary">Pagar factura</button>
         </a>
       ),
 
       text: "Pagar tu Factura",
-    }
-
+    },
   ];
 
   const changeContrato = (event) => {
-    console.log(event.target.value)
-    setState({...state, contratoSeleccionado:event.target.value})
-  }
+    console.log(event.target.value);
+    setState({ ...state, contratoSeleccionado: event.target.value });
+  };
 
-  
   return (
     /* drop-down*/
     <div>
@@ -99,9 +122,18 @@ function ConsultaFactura() {
       <label className="label">Selecciona tu contrato: &nbsp;</label>
       {/* Drop-down linlado a la base de datos */}
 
-      <select className='' name="contratos" value={state.contratoSeleccionado} onChange={changeContrato}>
+      <select
+        className=""
+        name="contratos"
+        value={state.contratoSeleccionado}
+        onChange={changeContrato}
+      >
         {state.contratos.map((e, key) => {
-          return <option key={key} value={e.id_contrato}>{e.direccion}</option>;
+          return (
+            <option key={key} value={e.id_contrato}>
+              {e.direccion}
+            </option>
+          );
         })}
       </select>
 
@@ -121,6 +153,7 @@ function ConsultaFactura() {
           button
         ></BootstrapTable>
       </div>
+      
     </div>
   );
 }
