@@ -50,7 +50,8 @@ import HomepageLayoutAdmin from './hocs/adminBar';
 import HomepageLayoutOperator from './hocs/operatorBar';
 import HomepageLayoutManager from './hocs/managerBar';
 
-
+import {Factura} from './components/Client/Factura.jsx';
+import Imprimir from './components/Client/Imprimir.jsx';
 
 //<Route element={<HomepageLayout />}>
 function App() {
@@ -76,6 +77,8 @@ function App() {
           <Route path="quienes-somos" element={<QuienesSomos />} />
           <Route path="ayuda" element={<Ayuda />} />
         </Route>
+        <Route path="/factura" element={<Factura />} />
+        <Route path="/imprimir" element={<Imprimir />} />
 
         {/*rutas empresa */}
         
@@ -111,7 +114,6 @@ function App() {
 
         
         <Route path="/reportes"  element={<HomepageLayout><Geomap lat={3.3718534} lon={-76.5495206}/></HomepageLayout>} />
-        
       </Routes>
 
     </BrowserRouter>

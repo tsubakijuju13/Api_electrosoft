@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "@react-pdf/renderer": "^3.1.1"
+    "@react-pdf/renderer": "^3.1.1",
+    "pdfjs-dist": "^2.16.105",
+    "react-pdf": "^6.2.2"
   }
 }
