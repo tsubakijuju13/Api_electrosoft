@@ -1,4 +1,50 @@
 @import url('./variables.css');
+/* ABOUT AS */
+
+.texto-about-us-g {
+  font-size: 18px;
+  text-align: center;
+}
+
+.texto-about-us{
+  font-size: 18px;
+  text-align: center;
+}
+
+.QuienesSomos {
+  color: white;
+}
+
+
+.section{
+  padding-top: 40px;
+  padding-bottom: 40px;   
+}
+
+.titulo-about{
+  color: rgb(204,18,18);
+  font-size: 35px;
+}
+
+.underline{
+  height: 04px;
+  width: auto;
+  background-color: orange;
+  margin-bottom: 10px;
+  margin-top: 10px;
+
+}
+
+.fondo-mv {
+  background-color: antiquewhite;
+}
+
+.vision {
+  text-align: center;
+}
+
+/*  FIN ABOUT US */ 
+
 
 body {
     margin: 0;

@@ -1,5 +1,7 @@
 const API_URL = 'http://localhost:8000/login/token/';
 const API_SIGNUP_URL = 'http://localhost:8000/usuarios/';
+const API_CONTRATO_URL = 'http://localhost:8000/contrato/';
+const API_FACTURA_URL = 'http://localhost:8000/factura/';
 
 export const signup = async (user) => {
     return await fetch(API_SIGNUP_URL, {
@@ -38,4 +40,12 @@ export const getToken = async (user) => {
         })
     })
 
+}
+
+export const getContratos = async (user_id) => {
+    return await fetch(API_CONTRATO_URL + user_id + "/cliente")
+}
+
+export const getFacturas = async (contrato_id) => {
+    return await fetch(API_FACTURA_URL + contrato_id + "/contrato")
 }

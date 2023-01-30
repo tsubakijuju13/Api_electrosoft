@@ -42,6 +42,9 @@ const Login = () => {
                     email: decodedToken.username,
                     role: decodedToken.role
                 }
+
+                let contrato = await LoginAPI.getContratos(userInfo.user_id);
+                const contratoData = await contrato.json();
                 
                 setUser(initialState);
 
@@ -50,7 +53,16 @@ const Login = () => {
                         navigate("/admin", {state: userInfo});
                         break;
 
-                    case "cliente": 
+                    case "cliente":
+                        let listaFacturas = [];
+                        for(var i=0; i<contratoData.length; i++){
+                            let facturas = await LoginAPI.getFacturas(contratoData[i].id_contrato);
+                            const facturasData = await facturas.json();
+                            listaFacturas.push(facturasData);
+                        }
+                        userInfo["contratos"] = contratoData;
+                        userInfo["facturas"] = listaFacturas;
+                        userInfo["contratoSeleccionado"] = contratoData[0].id_contrato;
                         navigate("/cliente/home", {state: userInfo});
                         break;
 
@@ -76,6 +88,7 @@ const Login = () => {
         }
 
     };
+
 
 
     return (
