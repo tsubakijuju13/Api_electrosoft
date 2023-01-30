@@ -1,4 +1,4 @@
-from dataclasses import fields
+from dataclasses import field, fields
 from operator import mod
 from pyexpat import model
 from rest_framework import serializers
@@ -19,3 +19,9 @@ class MyContractSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contrato
         fields = ['id_contrato', 'fecha_vinculación', 'estado_contrato', 'ciudad', 'direccion']
+
+
+class ContratoLocalizacion(serializers.ModelSerializer):
+    class Meta:
+        model = Contrato
+        fields = ['id_contrato', 'direccion', 'ciudad', 'departamento']
