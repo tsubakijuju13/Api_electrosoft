@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { decodeToken } from "react-jwt";
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 import * as LoginAPI from "./LoginAPI";
 
@@ -83,6 +84,7 @@ const Login = () => {
                 }
             } 
             else {
+                NotificationManager.warning('Usuario no activo', 'Close after 3000ms', 3000);
                 console.log("Login failed");
             }
 
@@ -129,6 +131,8 @@ const Login = () => {
 
                 </Form>
             </div>
+
+            <NotificationContainer/>
         </div>
 
     )
