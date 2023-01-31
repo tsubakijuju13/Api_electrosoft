@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 /*import InputGroup from 'react-bootstrap/InputGroup';*/
 import Row from 'react-bootstrap/Row';
+import axios from 'axios';
 
 function FormularioCrearContratoOperador() {
   const [validated, setValidated] = useState(false);
@@ -16,6 +17,28 @@ function FormularioCrearContratoOperador() {
     }
 
     setValidated(true);
+
+    const info = {
+      id_cliente: form.elements.id_cliente.value,
+      fecha_vinculacion: form.elements.fecha_vinculacion.value,
+      estado: form.elements.estado.value,
+      ciudad: form.elements.ciudad.value,
+      direccion: form.elements.direccion.value,
+      estrato: form.elements.estrato.value,
+      uso_del_servicio: form.elements.uso_del_servicio.value,
+    };
+
+
+    axios
+      .post('http://localhost:8000/contrato/', info)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error.data);
+      });
+
+
   };
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>

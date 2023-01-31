@@ -22,7 +22,6 @@ const Login = () => {
 
     const handleInputChange = (event) => {
         setUser({ ...user, [event.target.name]: event.target.value });
-
     };
 
     const handleSubmit = async (event) => {

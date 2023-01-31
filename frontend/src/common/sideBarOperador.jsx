@@ -17,6 +17,11 @@ const SideBarOperador = () => {
       <div className="sidebar-items">
         <ul className="list-unstyled ps-0">
           <li className="mb-3">
+            <Link tag="a" className="" to="/operator">
+              <i className="fa fa-file-o"></i> Administracion de  facturas
+            </Link>
+          </li>
+          <li className="mb-3">
             <Link tag="a" className="" to="/crearfacturas">
               <i className="fa fa-dashboard"></i> Registrar Facturas
             </Link>
@@ -25,14 +30,10 @@ const SideBarOperador = () => {
             <Link tag="a" className="" to="/crearcontratos">
               <i className="fa fa-file-o"></i> Registrar Contratos
             </Link>
-            <li className="mb-3">
-            <Link tag="a" className="" to="/crearpagos">
-              <i className="fa fa-dashboard"></i> Registrar Pagos
-            </Link>
-          </li>
           </li>
 
-          
+
+
 
           {/* collapsable list item example */}
           {/* <li className="mb-1">
