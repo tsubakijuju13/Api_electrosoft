@@ -66,7 +66,7 @@ function ConsultaFactura() {
       factura: no_factura,
     };
     console.log(data)
-    axios.post("http://localhost:8000/tarjetas/registrar_tarjetas/", data).then((res) => {
+    axios.post("http://localhost:8000/tarjetas/pagar/", data).then((res) => {
         console.log(res);
         alert(JSON.stringify(res.data));
       })
