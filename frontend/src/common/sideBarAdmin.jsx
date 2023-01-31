@@ -21,11 +21,7 @@ const SidebarAdmin = () => {
               <i className="fa fa-dashboard"></i> Administrar de  usuarios
             </Link>
           </li>
-          <li className="mb-3">
-            <Link tag="a" className="" to="/admin/facturas">
-              <i className="fa fa-file-o"></i> Administracion de  facturas
-            </Link>
-          </li>
+
 
           
 
