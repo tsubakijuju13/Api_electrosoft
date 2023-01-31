@@ -14,11 +14,14 @@ import "./Factura.jsx";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 
+import axios from "axios";
+
 
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 //import { icon } from "@fortawesome/fontawesome-svg-core";
 
 function ConsultaFactura() {
+
 
   const navigate = useNavigate();
 
@@ -31,7 +34,6 @@ function ConsultaFactura() {
   const urlContrato = "http://localhost:8000/contrato/";
 
   const [state, setState] = useState(useLocation().state);
-
   console.log(state);
 
   const buscarContrato = (contrato) => {
@@ -56,6 +58,24 @@ function ConsultaFactura() {
       }
     }
   };
+
+
+  const pagar = (no_factura) => {
+    const data = {
+      cliente: state.user_id,
+      factura: no_factura,
+    };
+    console.log(data)
+    axios.post("http://localhost:8000/tarjetas/registrar_tarjetas/", data).then((res) => {
+        console.log(res);
+        alert(JSON.stringify(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log(JSON.stringify(err));
+      });
+  };
+
 
   const columns = [
     {
@@ -98,20 +118,18 @@ function ConsultaFactura() {
     },
     {
       formatter: (cellContent, row) => (
-        //boton que imprime el usuario y el id de la factura en consola
+        //boton que envia pagar factura a la base de datos y pone en consola el id del usuario y el id de la factura
         <button
           className="btn btn-primary"
           onClick={() => {
-            console.log(
-              "Usuario: " +
-                state.user_id +
-                " Factura: " +
-                row.no_factura
-            );
+            const facturaSeleccionada =
+              state.facturas[buscarContrato(state.contratoSeleccionado)][buscarFactura(row.no_factura)];
+            pagar(facturaSeleccionada.no_factura);
           }}
         >
           Pagar Factura
         </button>
+
       ),
     },
   ];

@@ -9,8 +9,8 @@ def validar_numero_tarjeta(v):
 
 class Tarjetas(models.Model):
     id_tarjeta = models.BigAutoField(primary_key=True)
-    numero_tarjeta = models.CharField(max_length=13, validators=[validar_numero_tarjeta], null=False, unique=True)
-    fecha_vencimiento = models.DateField(null=False, blank=False)
+    numero_tarjeta = models.CharField(max_length=16, validators=[validar_numero_tarjeta], null=False, unique=True)
+    fecha_vencimiento = models.CharField(max_length=4, null=False, blank=False)
     cvv = models.CharField(null=False, blank=False, max_length=3)
     tipo = models.CharField(null=False, blank=False, max_length=10)
 
