@@ -36,7 +36,7 @@ class TarjetaView(ModelViewSet):
             return Response("Este número de tarjeta esta incorrecto")
 
         #Busqueda de la tarjeta
-        query = Tarjetas.objects.get(numero_tarjeta=tarjeta.data['numero_tarjeta'])
+        query = Tarjetas.objects.filter(numero_tarjeta=tarjeta.data['numero_tarjeta']).get()
         query_data = self.get_serializer(query).data
 
         if (query_data['cvv'] == tarjeta.data['cvv'] and 
@@ -52,14 +52,43 @@ class TarjetaView(ModelViewSet):
 
     @action(methods=['post'], detail=False, url_path='pagar')
     def pagar(self,request):
-        factura = FacturaSerializer(Factura.objects.get(no_factura=request.data['factura'])).data
+        factura_query = Factura.objects.get(no_factura=request.data['factura'])
+        factura = FacturaSerializer(factura_query).data
         #tarjeta = MisTarjetas_serializer(MiTarjeta.objects.filter(cliente=request.data['cliente'])).data    
 
-        sql_query = '''SELECT Tarjetas.tipo FROM Tarjetas JOIN MiTarjeta ON Tarjetas.id_tarjeta = MiTarjeta.tarjeta WHERE MiTarjeta.cliente = {}'''
+        sql_query = '''SELECT * FROM Tarjetas JOIN MiTarjeta ON Tarjetas.id_tarjeta = MiTarjeta.tarjeta_id WHERE MiTarjeta.cliente_id = {}'''
         tarjeta = Tarjetas.objects.raw(sql_query.format(request.data['cliente']))
-        tarjeta_srl = self.get_serializer(tarjeta).data
+        tarjeta_srl = self.get_serializer(tarjeta, many=True).data
 
-        return Response(tarjeta_srl)
+        if tarjeta_srl[0]["tipo"] == "Debito":
+            debito_query = Tarjeta_debito.objects.filter(num_tarjeta=tarjeta_srl[0]['id_tarjeta']).get()
+            debito = Debito_serializer(debito_query).data
+
+            if debito['saldo'] - factura['valor_total'] >= 0:
+                factura_query.estado = "Pagado"
+                factura_query.save()
+
+                debito_query.saldo -= factura['valor_total']
+                debito_query.save()
+
+                return Response({"message:": "Se ha realizado el pago con exito"}, status=status.HTTP_202_ACCEPTED)
+            else:
+                return Response({"message:": "No tienes suficiente dinero :3"}, status=status.HTTP_406_NOT_ACCEPTABLE)
+            
+        else:
+            credito_query = Tarjeta_credito.objects.filter(num_tarjeta=tarjeta_srl[0]['id_tarjeta']).get()
+            credito = Credito_serializer(credito_query).data
+
+            if credito['cupo'] - factura['valor_total'] >= 0:
+                factura_query.estado = "Pagado"
+                factura_query.save()
+
+                credito_query.saldo -= factura['valor_total']
+                credito_query.save()
+
+                return Response({"message:": "Se ha realizado el pago con exito"}, status=status.HTTP_202_ACCEPTED)
+            else:
+                return Response({"message:": "No tienes suficiente dinero :3"}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
 
         

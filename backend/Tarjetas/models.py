@@ -9,7 +9,7 @@ def validar_numero_tarjeta(v):
 
 class Tarjetas(models.Model):
     id_tarjeta = models.BigAutoField(primary_key=True)
-    numero_tarjeta = models.CharField(max_length=13, validators=[validar_numero_tarjeta], null=False, unique=True)
+    numero_tarjeta = models.CharField(max_length=16, validators=[validar_numero_tarjeta], null=False, unique=True)
     fecha_vencimiento = models.DateField(null=False, blank=False)
     cvv = models.CharField(null=False, blank=False, max_length=3)
     tipo = models.CharField(null=False, blank=False, max_length=10)
@@ -26,7 +26,7 @@ class Tarjeta_debito(models.Model):
     saldo = models.FloatField(blank=False, null=False)
 
     class Meta:
-        db_table = "Debito"
+        db_table = "Tarjeta_debito"
 
     def __str__(self):
         return '%s %f' % (self.num_tarjeta, self.saldo)
@@ -37,7 +37,7 @@ class Tarjeta_credito(models.Model):
     cupo = models.FloatField(blank=False, null=False)
 
     class Meta:
-        db_table = "Credito"
+        db_table = "Tarjeta_credito"
 
     def __str__(self):
         return '%s %f' % (self.num_tarjeta, self.cupo)
@@ -47,7 +47,7 @@ class MiTarjeta(models.Model):
     tarjeta = models.ForeignKey('Tarjetas', unique=True, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = "MisTarjetas"
+        db_table = "MiTarjeta"
 
     def __str__(self):
         return self.tarjeta
