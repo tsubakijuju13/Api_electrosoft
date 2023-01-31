@@ -1,8 +1,10 @@
+from .models import *
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
-from .models import *
+from Factura.models import Factura
+from Factura.serializers import FacturaSerializer
 from .serializers import *
 
 
@@ -25,6 +27,8 @@ class TarjetaView(ModelViewSet):
 
         return Response({"message": "Se ha creado la tarjeta"}, status=status.HTTP_201_CREATED)
 
+
+
     @action(methods=['post'], detail=False, url_path='registrar_tarjetas')
     def registrar_tarjetas(self, request):
         tarjeta = self.get_serializer(data=request.data)
@@ -44,5 +48,18 @@ class TarjetaView(ModelViewSet):
             return Response({"message": "Datos incorrectos"}, status=status.HTTP_401_UNAUTHORIZED)
 
         return Response({"message:": "Se ha registrado la targeta"})
+
+
+    @action(methods=['post'], detail=False, url_path='pagar')
+    def pagar(self,request):
+        factura = FacturaSerializer(Factura.objects.get(no_factura=request.data['factura'])).data
+        #tarjeta = MisTarjetas_serializer(MiTarjeta.objects.filter(cliente=request.data['cliente'])).data    
+
+        sql_query = '''SELECT Tarjetas.tipo FROM Tarjetas JOIN MiTarjeta ON Tarjetas.id_tarjeta = MiTarjeta.tarjeta WHERE MiTarjeta.cliente = {}'''
+        tarjeta = Tarjetas.objects.raw(sql_query.format(request.data['cliente']))
+        tarjeta_srl = self.get_serializer(tarjeta).data
+
+        return Response(tarjeta_srl)
+
 
         
