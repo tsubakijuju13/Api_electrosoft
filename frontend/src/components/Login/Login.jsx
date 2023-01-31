@@ -48,7 +48,7 @@ const Login = () => {
                 setUser(initialState);
 
                 switch (userInfo.role) {
-                    case "administrador": 
+                    case "administrador":
                         navigate("/admin", {state: userInfo});
                         break;
 
@@ -70,6 +70,10 @@ const Login = () => {
                         break;
 
                     case "gerente": 
+                        let facturas = await fetch("http://localhost:8000/factura/");
+                        const facturasData = await facturas.json();
+                        userInfo["facturas"] = facturasData;
+
                         navigate("/manager", {state: userInfo});
                         break;
                     
