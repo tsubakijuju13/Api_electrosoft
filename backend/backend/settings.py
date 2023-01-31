@@ -126,8 +126,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'electrosoft', 
+        'USER': 'satoru@electrisoft-db', 
+        'PASSWORD': 'Univalle2022',
+        'HOST': 'electrisoft-db.postgres.database.azure.com', 
+        'PORT': '5432',
     }
 }
 

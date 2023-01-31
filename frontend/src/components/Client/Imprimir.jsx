@@ -19,6 +19,7 @@ const Imprimir = () => {
         <Factura state={state}/>
         <center>
         <ReactToPrint
+          documentTitle={'Factura'+state.verFactura.no_factura}
           trigger={() => <Button variant='success'>imprimir</Button>}
           content={() => componentRef.current}
         />

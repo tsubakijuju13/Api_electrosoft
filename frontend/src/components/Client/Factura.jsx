@@ -3,12 +3,18 @@ import "./Factura.css";
 import { Row, Col } from "reactstrap";
 import { Image } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import banner3 from "../../assets/images/banner1.png"
+import banner4 from "../../assets/images/banner2.png";
+import codigo from "../../assets/images/codigos.jpg";
 
 import "./Factura.jsx";
 
 //const imagen = "https://drive.google.com/file/d/1rSquirLKxlxxSBWvPx8FUU-0YRIqEVDp/view?usp=share_link"
-const imagen = '../../assets/images/logo.svg'
+const imagen = "../../assets/images/logo.svg";
 //import {Prueba} from './prueba.jsx';
+// radom de iamgenes
+const imagenes = [banner3,banner4];
+const random = Math.floor(Math.random() * imagenes.length);
 
 export const Factura = ({ state }) => {
   const factura = state.verFactura;
@@ -137,15 +143,11 @@ export const Factura = ({ state }) => {
                   <td class="text-center colfix">
                     ${factura.alumbrado_valor_total}
                   </td>
-                  <td class="text-center colfix">
-                     {factura.estado}
-                  </td>
+                  <td class="text-center colfix">{factura.estado}</td>
                   <td class="text-center colfix">
                     ${factura.energia_valor_total}
                   </td>
-                  <td class="text-center colfix">
-                    ${factura.valor_total}
-                  </td>
+                  <td class="text-center colfix">${factura.valor_total}</td>
                 </tr>
               </tbody>
             </table>
@@ -191,7 +193,18 @@ export const Factura = ({ state }) => {
               </div>
             </div>
           </div>
+
+          <center> 
+          <img src={codigo} alt="codigo de barras" className="codigo-barras"  />
+        </center>
+          <div className="publicity">
+          {/* poner imagenes de publicidad */}
+          <img src={imagenes[random]} alt="publicidad" className="baner-factura" />
         </div>
+        </div>
+
+
+        
 
         <div class="invoice-footer">
           Gracias por elegir nuestros servicios.

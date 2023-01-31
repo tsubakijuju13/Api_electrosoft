@@ -1,6 +1,23 @@
 @import url('./variables.css');
 /* ABOUT AS */
 
+@media print {
+  @page {
+    size: 210mm 297mm;
+  }
+}
+
+.codigo-barras {
+  display: flex;
+  width: 450px;
+}
+
+.baner-factura {
+  margin-top: 24px;
+  width: 100%;
+  height: 100%;
+}
+
 .texto-about-us-g {
   font-size: 18px;
   text-align: center;
