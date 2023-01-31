@@ -56,7 +56,12 @@ class TarjetaView(ModelViewSet):
         factura = FacturaSerializer(factura_query).data
         #tarjeta = MisTarjetas_serializer(MiTarjeta.objects.filter(cliente=request.data['cliente'])).data    
 
-        sql_query = '''SELECT * FROM Tarjetas JOIN MiTarjeta ON Tarjetas.id_tarjeta = MiTarjeta.tarjeta_id WHERE MiTarjeta.cliente_id = {}'''
+        sql_query = '''
+            SELECT * FROM public."Tarjetas"
+            JOIN public."MiTarjeta"
+            ON public."Tarjetas".id_tarjeta = public."MiTarjeta".tarjeta_id 
+            WHERE public."MiTarjeta".cliente_id = {}
+            '''
         tarjeta = Tarjetas.objects.raw(sql_query.format(request.data['cliente']))
         tarjeta_srl = self.get_serializer(tarjeta, many=True).data
 

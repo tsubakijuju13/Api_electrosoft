@@ -31,7 +31,7 @@ const Client = () => {
 
     const checkFacturasPendientes = () => {
         for (let i = 0; i < state.facturas[0].length; i++) {
-            if (state.facturas[0][i].estado === "En Mora") {
+            if (state.facturas[0][i].estado === "En mora") {
                 return true;
             }
         }

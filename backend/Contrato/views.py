@@ -41,7 +41,7 @@ class ContratoView(ModelViewSet):
         """
         #Prefiero utilizar un enfoque más directo para esto ...
         #sql_statement = '''SELECT c.direccion, c.ciudad, c.departamento FROM Contrato as c JOIN Usuario ON c.id_cliente = Usuario.user_id'''
-        sql_statement = '''SELECT c.id_contrato, c.direccion, c.ciudad, c.departamento FROM Contrato as c '''
+        sql_statement = '''SELECT c.id_contrato, c.direccion, c.ciudad, c.departamento FROM public."Contrato" as c '''
         contratos = Contrato.objects.raw(sql_statement)
 
         contrato_srlzer = ContratoLocalizacion(contratos, many=True)

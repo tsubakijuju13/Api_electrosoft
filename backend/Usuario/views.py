@@ -99,7 +99,7 @@ class UsuariosViewSet(ModelViewSet):
     @action(methods=['get'], detail=False, url_path='user_info')
     def get_all_users_info(self, request):
         raw_sql = '''
-            SELECT * FROM Usuarios JOIN auth_user ON Usuarios.user_id = auth_user.id
+            SELECT * FROM public."Usuarios" JOIN public."auth_user" ON public."Usuarios".user_id = public."auth_user".id
         '''
 
         users = Usuarios.objects.raw(raw_sql)
@@ -170,7 +170,11 @@ class UsuariosViewSet(ModelViewSet):
 ## *******  No Utilizar user_state   ****** ##
 @api_view()
 def user_state(request, pk):
-    sql = '''SELECT * FROM Usuarios JOIN auth_user ON Usuarios.user_id = auth_user.id WHERE Usuarios.user_id = {} '''
+    sql = '''
+    SELECT * FROM public."Usuarios"
+    JOIN public."auth_user"
+    ON public."Usuarios".user_id = public."auth_user".id 
+    WHERE public."Usuarios".user_id = {} '''
     usuario = Usuarios.objects.raw(sql.format(pk))
     user_serializer = User_Info_Serializer(usuario, many=True)
 

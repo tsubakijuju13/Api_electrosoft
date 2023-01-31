@@ -78,7 +78,7 @@ const PaymentForm = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="Nombre">Nombre</label>
+              <label htmlFor="Nombre">Identificacion</label>
               <input
                 type="text"
                 className="form-control"
