@@ -18,7 +18,7 @@ def email_sender():
         'Factura de Electricidad de la fecha: ' + str(datetime.now()),
         'A continuación se adjunta el recibo',
         "electuv@gmail.com",
-        ['juanes@gmail.com']
+        ['geideran808087@gmail.com']
     )
     # mensage.attach_file('/home/tsubaki_0x01/Pictures/electrosoft/backend/Factura/recibo.pdf')
     mensage.send()

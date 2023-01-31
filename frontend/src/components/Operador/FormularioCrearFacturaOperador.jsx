@@ -48,8 +48,8 @@ function FormularioCrearFacturaOperador() {
   };
 
   return (
-    <>
-      <Form id="form-factura" className="form" onSubmit={handleSubmit}>
+    <div className='background'>
+      <Form id="form-factura" className="content-container" onSubmit={handleSubmit}>
         <Row className="mb-3">
           <Form.Group as={Col} md="2" controlId="cont">
             <Form.Label>Numero Contrato</Form.Label>
@@ -75,7 +75,7 @@ function FormularioCrearFacturaOperador() {
           </center>
         </Row>
       </Form>
-    </>
+    </div>
   );
 }
 

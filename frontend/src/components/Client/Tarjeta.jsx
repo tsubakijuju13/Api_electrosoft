@@ -52,6 +52,7 @@ const PaymentForm = () => {
   console.log(submitPayment);
 
   return (
+    <div className="background" >
     <center>
       <div className="card center" id="contenedorTarjeta">
         <div className="card-body">
@@ -125,6 +126,7 @@ const PaymentForm = () => {
         </div>
       </div>
     </center>
+    </div>
   );
 };
 
