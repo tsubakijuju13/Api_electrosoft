@@ -7,3 +7,7 @@ class Tarjeta_serializer(serializers.ModelSerializer):
         model = Tarjetas
         fields = '__all__'
 
+class MisTarjetas_serializer(serializers.ModelSerializer):
+    class Meta:
+        model = MiTarjeta
+        fields = '__all__'
