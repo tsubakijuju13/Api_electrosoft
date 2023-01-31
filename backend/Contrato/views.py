@@ -47,23 +47,19 @@ class ContratoView(ModelViewSet):
         contrato_srlzer = ContratoLocalizacion(contratos, many=True)
 
         #Peticion a openmap:
-        url_reuest = 'https://nominatim.openstreetmap.org/?street={}&country={}&state={}&country=Colombia&format=json'
+        #'https://nominatim.openstreetmap.org/ui/search.html?street=calle+13+%23100&city=Cali&state=valle+del+cauca&country=colombia'
+        url_reuest = 'https://nominatim.openstreetmap.org/?street={}&city={}&state={}&country=Colombia&format=json'
         obj_coordenadas = []
 
         for i in contrato_srlzer.data:
-            r = requests.get(url_reuest.format(i["direccion"], i["ciudad"], i["departamento"]))
+            direccion = i["direccion"].replace(" ", "+").replace("#", "%23")
+            ciudad = i["ciudad"].replace(" ", "+")
+            departamento = i["departamento"].replace(" ", "+")
+
+            r = requests.get(url_reuest.format(direccion, ciudad, departamento))
+            print(r)
             r_data = r.json()
             obj_coordenadas.append({'lat': r_data[0]["lat"], 'lon': r_data[0]["lon"]})
 
 
         return Response(obj_coordenadas)
-
-    
-'''
-¿que necesito hacer...?
-pues necesito traer probablemente los contratos que estan asociados a cierto cliente
-¿para que?.
-    para saber que contratos tiene asociados
-    pero eso lo puedo hacer en la view del usuario
-    vamos para alla...
-'''

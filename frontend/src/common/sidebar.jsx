@@ -35,12 +35,7 @@ const Sidebar = ({ state }) => {
                         </Link>
                     </li>
 
-                    <li className="mb-3">
-                        <Link to="/cliente/historial-de-pagos" state={state}>
-                            <i className="fa fa-text-width" aria-hidden="true"></i> Historial de pagos
-                        </Link>
-                    </li>
-
+                
                 </ul>
             </div>
 

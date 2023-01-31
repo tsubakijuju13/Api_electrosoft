@@ -12,6 +12,7 @@ const Geomap = (props) => {
         [-24.703615, -127.439308], [-24.143474, -10.030696], 
         [37.09024, -95.712891], [-32.522779, -55.765835], [-8.874217, 125.727539], 
         [61.52401, 105.318756]] 
+        
 
         
 
@@ -22,9 +23,9 @@ const Geomap = (props) => {
             .then((res) => {
                 //Seteo tanto log como lat
                 setData(res.data)
-                //console.log(data);
+                //console.log(res.data);
             })
-            .catch((e) => console.log(e));
+            .catch((e) => console.log(e.response.data));
     }, []);
 
     return(
@@ -35,7 +36,7 @@ const Geomap = (props) => {
             />
             
             {data.map((coor) => (
-                <Circle center={[coor["lat"], coor["lon"]]} color='red' fill='#f03' fillOpacity={0.5} radius={3500}>
+                <Circle center={[coor["lat"], coor["lon"]]} color='red' fill='#f03' fillOpacity={0.5} radius={500}>
                     <Popup>
                         Información extra  ....
                     </Popup>
