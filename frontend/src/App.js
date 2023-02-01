@@ -105,12 +105,9 @@ function App() {
 
         {/*rutas manager */}
         <Route path="/manager" element={<HomepageLayoutManager><Manager/></HomepageLayoutManager>} />
-        <Route path="manager/geografia_cliente"  element={<HomepageLayoutManager><Geomap lat={3.3718534} lon={-76.5495206}/></HomepageLayoutManager>} />
+        <Route path="manager/geografia_cliente"  element={<HomepageLayoutManager><Geomap lat={3.4108332954835498} lon={-76.52112185077115}/></HomepageLayoutManager>} />
         <Route path="/manager/reporte_consumo" element={<HomepageLayoutManager><Reporte_consumo/></HomepageLayoutManager>} />
         <Route path="/manager/reporte_usuarios" element={<HomepageLayoutManager><Reporte_usuarios/></HomepageLayoutManager>} />
-
-        
-        <Route path="/reportes"  element={<HomepageLayout><Geomap lat={3.3718534} lon={-76.5495206}/></HomepageLayout>} />
       </Routes>
 
     </BrowserRouter>

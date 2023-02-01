@@ -18,43 +18,15 @@ const SideBarManager = () => {
         <ul className="list-unstyled ps-0">
           <li className="mb-3">
             <Link tag="a" className="" to="/manager">
-              <i className="fa fa-dashboard"></i> Estado financiero
+              <i className="fa fa-dashboard"></i> Resumen
             </Link>
           </li>
           <li className="mb-3">
             <Link tag="a" className="" to="/manager/geografia_cliente">
               <i className="fa fa-file-o"></i> Geografia de cliente
             </Link>
-          </li>
-          <li className="mb-3">
-            <Link tag="a" className="" to="/manager/reporte_consumo">
-              <i className="fa fa-file-o"></i> Reporte de consumo
-            </Link>
-          </li>
-          <li className="mb-3">
-            <Link tag="a" className="" to="/manager/reporte_usuarios">
-              <i className="fa fa-file-o"></i> Reporte de usuarios
-            </Link>
-          </li>
-          
+          </li>         
 
-          
-
-          {/* collapsable list item example */}
-          {/* <li className="mb-1">
-                        <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                        Opportunity
-                        </button>
-                        <div className="collapse" id="dashboard-collapse">
-                        <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                            <li><a href="#" className="rounded">Overview</a></li>
-                            <li><a href="#" className="rounded">Weekly</a></li>
-                            <li><a href="#" className="rounded">Monthly</a></li>
-                            <li><a href="#" className="rounded">Annually</a></li>
-                        </ul>
-                        </div>
-                    </li> 
-                    <li className="border-top my-3"></li> */}
         </ul>
       </div>
 

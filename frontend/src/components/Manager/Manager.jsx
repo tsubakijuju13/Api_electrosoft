@@ -1,6 +1,8 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import GraphConsumos from "./GraphConsumos";
+import GraphPagos from "./GraphPagos";
+import Publicidad from "./Publicidad";
 import { Row, Col } from "react-bootstrap";
 
 const Manager = () => {
@@ -9,7 +11,7 @@ const Manager = () => {
 
     const [state, setState] = React.useState(useLocation())
 
-    console.log(state)
+    //console.log(state)
 
     return (
         <div>
@@ -18,9 +20,12 @@ const Manager = () => {
                     <GraphConsumos state={state} xs={6}/>
                 </Col>
                 <Col>
-                    <GraphConsumos state={state} xs={6}/>
+                    <GraphPagos state={state} xs={6}/>
                 </Col>
             </Row>
+            {/* <Row>
+                <Publicidad />
+            </Row> */}
             
         </div>
     )

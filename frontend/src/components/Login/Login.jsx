@@ -23,6 +23,7 @@ const Login = () => {
 
     const handleInputChange = (event) => {
         setUser({ ...user, [event.target.name]: event.target.value });
+        console.log(user)
     };
 
     const handleSubmit = async (event) => {
@@ -84,7 +85,7 @@ const Login = () => {
                 }
             } 
             else {
-                NotificationManager.warning('Usuario no activo', 'Close after 3000ms', 3000);
+                NotificationManager.warning('Usuario no activo', 'Error', 3000);
                 console.log("Login failed");
             }
 

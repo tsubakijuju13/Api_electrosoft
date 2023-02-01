@@ -48,5 +48,5 @@ class Factura(models.Model):
         return '%s %f' % (self.factura, self.pago_total)
 
     def save(self, *args, **kwargs):
-        email_sender()
+        #email_sender()
         return super(Factura, self).save(*args, **kwargs)

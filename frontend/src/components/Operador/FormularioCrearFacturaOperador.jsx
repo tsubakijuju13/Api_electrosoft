@@ -21,25 +21,29 @@ function FormularioCrearFacturaOperador() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-
-    let consumo = Math.floor(Math.random() * 1000);
+    let consumo = Math.floor(Math.random() * 450);
     let energia = Math.floor(Math.random() * 1000000)
     let alumbrado = 25165
     let total = energia + alumbrado
 
-    setFactura({
-      ...factura, consumo: consumo,
+    const facturaEnviar = {
+      contrato: factura.contrato,
+      lectura_actual: factura.lectura_actual,
+      consumo: consumo,
       fecha_expedicion: new Date(),
       energia_valor_total: energia,
       alumbrado_valor_total: alumbrado,
       valor_total: total,
       valor_recargo: 1.02 * total
-    });
+    };
 
-    console.log(factura);
+
     try {
-      const response = await OperadorAPI.postFactura(factura);
-      console.log(response);
+      const response = await OperadorAPI.postFactura(facturaEnviar);
+      //console.log("Factura Creada")
+      //console.log(facturaEnviar);
+      setFactura(initialFactura);
+      //console.log(response);
     }
 
     catch (error) {

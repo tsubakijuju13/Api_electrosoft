@@ -8,77 +8,117 @@ class GraphConsumos extends Component {
 
     constructor(props) {
         super(props)
-        this.state = props.state
+        this.state = props.state.state
 
         var dataFacturas = {
-            enero: [],
-            febrero: [],
-            marzo: [],
-            abril: [],
-            mayo: [],
-            junio: [],
-            julio: [],
-            agosto: [],
-            septiembre: [],
-            octubre: [],
-            noviembre: [],
-            diciembre: []
+            "enero": 0,
+            "febrero": 0,
+            "marzo": 0,
+            "abril": 0,
+            "mayo": 0,
+            "junio": 0,
+            "julio": 0,
+            "agosto": 0,
+            "septiembre": 0,
+            "octubre": 0,
+            "noviembre": 0,
+            "diciembre": 0
         }
 
-        // for (let i = 0; i < this.state.facturas.length; i++) {
-        //     switch (this.state.facturas[i].fecha_expedicion.split('-')[1]) {
-        //         case '01':
-        //             dataFacturas.enero.push(this.state.facturas[i].consumo)
-        //             break;
-        //         case '02':
-        //             dataFacturas.febrero.push(this.state.facturas[i].consumo)
-        //             break;
-        //         case '03':
-        //             dataFacturas.marzo.push(this.state.facturas[i].consumo)
-        //             break;
-        //         case '04':
-        //             dataFacturas.abril.push(this.state.facturas[i].consumo)
-        //             break;
-        //         case '05':
-        //             dataFacturas.mayo.push(this.state.facturas[i].consumo)
-        //             break;
-        //         case '06':
-        //             dataFacturas.junio.push(this.state.facturas[i].consumo)
-        //             break;
-        //         case '07':
-        //             dataFacturas.julio.push(this.state.facturas[i].consumo)
-        //             break;
-        //         case '08':
-        //             dataFacturas.agosto.push(this.state.facturas[i].consumo)
-        //             break;
-        //         case '09':
-        //             dataFacturas.septiembre.push(this.state.facturas[i].consumo)
-        //             break;
-        //         case '10':
-        //             dataFacturas.octubre.push(this.state.facturas[i].consumo)
-        //             break;
-        //         case '11':
-        //             dataFacturas.noviembre.push(this.state.facturas[i].consumo)
-        //             break;
-        //         case '12':
-        //             dataFacturas.diciembre.push(this.state.facturas[i].consumo)
-        //             break;
-        //         default:
-        //             break;
-        //     }
-        // }
+        for (let i = 0; i < this.state.facturas.length; i++) {
+            switch (this.state.facturas[i].fecha_expedicion.split('-')[1]) {
+                case '01':
+                    dataFacturas.enero += this.state.facturas[i].consumo_energia
+                    break;
+                case '02':
+                    dataFacturas.febrero += this.state.facturas[i].consumo_energia
+                    break;
+                case '03':
+                    dataFacturas.marzo += this.state.facturas[i].consumo_energia
+                    break;
+                case '04':
+                    dataFacturas.abril += this.state.facturas[i].consumo_energia
+                    break;
+                case '05':
+                    dataFacturas.mayo += this.state.facturas[i].consumo_energia
+                    break;
+                case '06':
+                    dataFacturas.junio += this.state.facturas[i].consumo_energia
+                    break;
+                case '07':
+                    dataFacturas.julio += this.state.facturas[i].consumo_energia
+                    break;
+                case '08':
+                    dataFacturas.agosto += this.state.facturas[i].consumo_energia
+                    break;
+                case '09':
+                    dataFacturas.septiembre += this.state.facturas[i].consumo_energia
+                    break;
+                case '10':
+                    dataFacturas.octubre += this.state.facturas[i].consumo_energia
+                    break;
+                case '11':
+                    dataFacturas.noviembre += this.state.facturas[i].consumo_energia
+                    break;
+                case '12':
+                    dataFacturas.diciembre += this.state.facturas[i].consumo_energia
+                    break;
+                default:
+                    break;
+            }
+        }
 
-        // var mes_actual = this.state.facturas[0].fecha_expedicion.split('-')[1]
+        console.log(dataFacturas)
 
-        // var datapoints = [
-        //     { label: "Enero", y: dataFacturas.enero.reduce((a, b) => a + b, 0) },
-        //     { label: "Febrero", y: dataFacturas.febrero.reduce((a, b) => a + b, 0) },
-        //     { label: "Marzo", y: dataFacturas.marzo.reduce((a, b) => a + b, 0) },
-        // ]
+        var mesesAnteriores = []
+        mesesAnteriores.push(this.state.facturas[0].fecha_expedicion.split('-')[1]*1)
+        for(let i = 1; i < 7; i++){
+            var mes = mesesAnteriores[mesesAnteriores.length-1] -1
+            if (mes <= 0){
+                mes += 12
+            }
+            mesesAnteriores.push(mes)
+        }
 
-        
-        //this.dataPoints = facturas.reverse()
-        console.log(this.state)
+        this.dataFacturas = dataFacturas
+
+        const meses = {
+            1: 'Enero',
+            2: 'Febrero',
+            3: 'Marzo',
+            4: 'Abril',
+            5: 'Mayo',
+            6: 'Junio',
+            7: 'Julio',
+            8: 'Agosto',
+            9: 'Septiembre',
+            10: 'Octubre',
+            11: 'Noviembre',
+            12: 'Diciembre'
+        }
+
+        var mesesGrafico = mesesAnteriores.map((mes) => {
+            return meses[mes]
+        })
+
+        this.mesesGrafico = mesesGrafico
+
+        const dataPoints = [
+            { label: mesesGrafico[5],  y: dataFacturas[mesesGrafico[5].toLowerCase()] },
+            { label: mesesGrafico[4],  y: dataFacturas[mesesGrafico[4].toLowerCase()] },  
+            { label: mesesGrafico[3],  y: dataFacturas[mesesGrafico[3].toLowerCase()] },
+            { label: mesesGrafico[2],  y: dataFacturas[mesesGrafico[2].toLowerCase()] },
+            { label: mesesGrafico[1],  y: dataFacturas[mesesGrafico[1].toLowerCase()] },
+            { label: mesesGrafico[0],  y: dataFacturas[mesesGrafico[0].toLowerCase()] }
+        ]
+
+        this.dataPoints = dataPoints
+
+        CanvasJS.addColorSet("greenShades",
+        [//colorSet Array
+            "#6D1AA5",
+        ]);
+
     }
 
     render() {
@@ -89,8 +129,10 @@ class GraphConsumos extends Component {
             animationEnabled: true,
             theme: "light2",
 
+            colorSet: "greenShades",
+
 			title: {
-				text: "Tus últimos consumos",
+				text: "Consumos generales de los últimos 6 meses",
                 fontSize: 22
 			},
             // axisX: {
@@ -105,15 +147,9 @@ class GraphConsumos extends Component {
 			data: [
 			{
 				// Change type to "doughnut", "line", "splineArea", etc.
-				type: "column",
+				type: "line",
                 //dataPoints: this.facturas
-				dataPoints: [
-					{ label: "Septiembre",  y: 28  },
-					{ label: "Octubre",  y: 30  },
-					{ label: "Noviembre", y: 25  },
-                    { label: "Diciembre", y: 15  },
-                    { label: "Enero",  y: 10  },
-				]
+				dataPoints: this.dataPoints
 			}
 			]
 		}

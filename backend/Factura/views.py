@@ -18,3 +18,13 @@ class FacturaView(ModelViewSet):
         contrato_srlzer = self.get_serializer(factura_query, many=True)
 
         return Response(contrato_srlzer.data)
+
+    #@action(methods=['get'], detail=False, url_path="order")
+    def list(self, request):
+        """
+        Función para realizar busqueda de las facturas con orden
+        """
+        factura_query = Factura.objects.order_by('-fecha_expedicion').all()
+        contrato_srlzer = self.get_serializer(factura_query, many=True)
+
+        return Response(contrato_srlzer.data)

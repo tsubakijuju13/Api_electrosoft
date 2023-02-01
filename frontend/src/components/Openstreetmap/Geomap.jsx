@@ -29,6 +29,9 @@ const Geomap = (props) => {
     }, []);
 
     return(
+        <center>
+        <h1>Mapa de contratos</h1>
+        <br />
         <MapContainer center={[props.lat, props.lon]} zoom={13} scrollWheelZoom={false}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -36,13 +39,14 @@ const Geomap = (props) => {
             />
             
             {data.map((coor) => (
-                <Circle center={[coor["lat"], coor["lon"]]} color='red' fill='#f03' fillOpacity={0.5} radius={500}>
+                <Circle center={[coor["lat"], coor["lon"]]} color='red' fill='#f03' fillOpacity={0.5} radius={250}>
                     <Popup>
                         Información extra  ....
                     </Popup>
                 </Circle>
             ))}
         </MapContainer>
+        </center>
     );
 }
 

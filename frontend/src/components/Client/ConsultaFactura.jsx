@@ -100,6 +100,11 @@ function ConsultaFactura() {
       sort: true,
     },
     {
+      dataField: "estado",
+      text: "Estado",
+      sort: true,
+    },
+    {
       formatter: (cellContent, row) => (
         //boton que imprime la factura en consola
         <button
