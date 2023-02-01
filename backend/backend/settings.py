@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ir8t$=0vu7!%gbscnoup$36)j^@b0cw=5qmlfgd3gcp-h#lal8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://electrosoft-backend.azurewebsites.net']
 
 
 # Application definition
@@ -213,7 +213,7 @@ CORS_ALLOWED_ALL_ORIGINS= True
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ORIGIN_WHITELIST = [
-  'http://localhost:3000',
+  'https://electrosoft-backend.azurewebsites.net',
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
